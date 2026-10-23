@@ -131,6 +131,66 @@
   dd a.map { font-size: 13px; font-weight: 500; }
 
   .empty { text-align: center; padding: 48px 16px; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 14px; margin-top: 20px; }
+  /* Additional Information */
+  .info { margin-top: 48px; }
+  .info > h2 { font-family: Fraunces, Georgia, serif; font-size: 26px; font-weight: 600; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--line); }
+  details.acc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); margin-bottom: 12px; overflow: hidden; }
+  details.acc > summary { list-style: none; cursor: pointer; padding: 14px 16px; font-weight: 600; font-size: 17px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  details.acc > summary::-webkit-details-marker { display: none; }
+  details.acc > summary::after { content: ""; width: 9px; height: 9px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); transition: transform .2s; flex: 0 0 auto; margin-top: -4px; }
+  details.acc[open] > summary::after { transform: rotate(-135deg); margin-top: 4px; }
+  details.acc > summary:hover { background: var(--bg); }
+  details.acc .acc-body { padding: 4px 16px 16px; }
+  details.acc details.acc { box-shadow: none; border-radius: 10px; background: var(--bg); }
+  details.acc details.acc > summary { font-size: 15px; padding: 12px 14px; }
+  details.acc details.acc > summary:hover { background: var(--line); }
+  details.acc details.acc .acc-body { padding: 4px 14px 14px; }
+  .acc:target, .acc.flash { outline: 2px solid #00529B; outline-offset: 2px; }
+
+  .rules { font-size: 14px; }
+  .rules h4 { margin: 14px 0 4px; font-size: 14px; color: #00529B; }
+  :root[data-theme="dark"] .rules h4 { color: #7fb4e6; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .rules h4 { color: #7fb4e6; } }
+  .rules h4:first-child { margin-top: 4px; }
+  .rules ul { margin: 0; padding-left: 20px; display: grid; gap: 3px; }
+
+  .brackets { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); }
+  .bracket { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px; border-top: 4px solid #00529B; }
+  .bracket h4 { margin: 0; font-size: 15px; }
+  .bracket .teams { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .phase { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 10px 0 4px; }
+  .fx { display: grid; grid-template-columns: 64px 1fr; gap: 2px 8px; font-size: 14px; padding: 6px 0; border-top: 1px dashed var(--line); }
+  .fx:first-of-type { border-top: 0; }
+  .fx .no { color: var(--muted); font-size: 12px; padding-top: 1px; }
+  .fx .vs { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .fx .tbd { color: var(--muted); font-style: italic; }
+  .sched-note { margin: 4px 0 10px; font-size: 13px; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 5px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+  .chip.on { background: #00529B; border-color: #00529B; color: #fff; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+  table.sched { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.sched th { text-align: left; background: #00529B; color: #fff; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; padding: 9px 10px; position: sticky; top: 0; }
+  table.sched td { padding: 8px 10px; border-top: 1px solid var(--line); white-space: nowrap; }
+  table.sched tbody tr:nth-child(even) td { background: var(--bg); }
+  table.sched tr.final td { font-weight: 600; }
+  table.sched td:last-child { font-variant-numeric: tabular-nums; }
+  .cat { font-size: 12px; padding: 2px 8px; border-radius: 999px; font-weight: 500; }
+  .c-l { background: #fde4ea; color: #9b1c3c; } .c-m { background: #efe3fb; color: #5b2a8c; }
+  .c-u { background: #ddf3e6; color: #1d6a3f; } .c-a { background: #fdf0d5; color: #8a5a00; } .c-t { background: #dceafb; color: #0b4f96; }
+  .sched .short { display: none; }
+  @media (max-width: 480px) {
+    table.sched { font-size: 13px; } table.sched td, table.sched th { padding: 7px 6px; }
+    table.sched th { letter-spacing: .02em; font-size: 11px; }
+    .sched .long { display: none; } .sched .short { display: inline; }
+    table.sched td, table.sched th { padding: 7px 5px; }
+    details.acc .acc-body { padding: 4px 10px 12px; }
+    details.acc details.acc .acc-body { padding: 4px 8px 10px; }
+  }
+  .fx.final { background: var(--gold-soft); border-radius: 6px; padding: 6px; border-top: 0; }
+  dd.info-links { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  dd.info-links a { font-size: 13px; }
+
   footer { padding: 32px 0 40px; color: var(--muted); font-size: 13px; }
   footer p { margin: 4px 0; }
 
@@ -146,7 +206,7 @@
     h1 img { filter: invert(1); }
     .hero-row { padding-bottom: 12px; }
     header.hero::after, .filters { display: none; }
-    .card { break-inside: avoid; box-shadow: none; }
+    .card, .bracket { break-inside: avoid; box-shadow: none; }
     .day.past { opacity: 1; }
   }
 </style>
@@ -210,6 +270,103 @@
   </div>
 
   <div id="list"></div>
+
+  <section class="info" id="additional-info" aria-labelledby="info-title">
+    <h2 id="info-title">Additional Information</h2>
+
+    <details class="acc" id="info-pickleball">
+      <summary>Pickleball</summary>
+      <div class="acc-body">
+        <details class="acc" id="pickleball-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>1. General Rules</h4>
+            <ul><li>The tournament will be conducted according to the latest <a href="https://usapickleball.org/docs/rules/USAP-Rules-Summary.pdf" target="_blank" rel="noopener">USA Pickleball rules</a>.</li><li>All players are expected to demonstrate good sportsmanship and fair play.</li><li>The Core Committee's decision (based on the Pickleball Subcommittee) will be final in case of any disputes.</li></ul>
+            <h4>2. Match Format</h4>
+            <ul><li><strong>Up to the semi-finals:</strong> one game of 21 points. <strong>Point no. 21 will be the golden point</strong>, which decides the winner.</li><li><strong>Up to the semi-finals:</strong> teams will switch sides when either team reaches 11 points.</li><li><strong>Semi-finals and finals:</strong> best of three games of 11 points. <strong>The winner of a game is the team that reaches 11 points first. Point no. 11 will be the golden point.</strong></li><li><strong>Semi-finals and finals:</strong> teams will switch sides in the third game when either team reaches 6 points.</li><li>The team that wins the toss (e.g. Team A) can choose to serve or choose a side. If Team A chooses to serve, the opposing team can choose their preferred side.</li><li>One time-out is allowed per match for each team.</li></ul>
+            <h4>3. Scoring</h4>
+            <ul><li>Rally point scoring will be used.</li></ul>
+            <h4>4. Serving Rules</h4>
+            <ul><li>The serve must be made diagonally into the opponent's service court.</li><li>Only one serve attempt is allowed.</li><li>At least one foot must remain behind the baseline during the serve.</li></ul>
+            <h4>5. Two-Bounce Rule</h4>
+            <ul><li>The receiving team must allow the serve to bounce before returning it.</li><li>The serving team must also allow the return of serve to bounce before hitting it.</li><li>After these two bounces, volleys are allowed while players are outside the Kitchen (Non-Volley Zone).</li></ul>
+            <h4>6. Kitchen (Non-Volley Zone) Rules</h4>
+            <ul><li>Players may not volley the ball while standing in the Kitchen.</li><li>A player cannot step on the Kitchen line during a volley.</li><li>Momentum carrying a player into the Kitchen after a volley is also a fault.</li></ul>
+            <h4>7. Time Regulations</h4>
+            <ul><li>Players must report to the court at least 15 minutes before their scheduled match.</li><li>Any team that fails to report within 10 minutes of the called match time may forfeit the match, and a walkover will be awarded to the opposing team.</li></ul>
+            <h4>8. Equipment</h4>
+            <ul><li>Non-marking court shoes are mandatory.</li><li>USPA-approved pickleball paddles must be used.</li></ul>
+            <h4>9. Conduct</h4>
+            <ul><li>Unsportsmanlike behaviour, abusive language or misconduct may result in a warning or disqualification.</li></ul>
+            <h4>10. Injury &amp; Safety</h4>
+            <ul><li>Players participate at their own risk.</li><li>Tournament organisers are not responsible for injuries sustained during play.</li></ul>
+            <h4>11. Ball Hitting the Roof</h4>
+            <ul><li>If the ball touches the roof or any overhead structure during play, it shall be considered a fault.</li><li>The point will be awarded to the team opposing the player/team that caused the ball to hit the roof.</li></ul>
+          </div>
+        </details>
+        <details class="acc" id="pickleball-fixtures">
+          <summary>Fixtures</summary>
+          <div class="acc-body"><div class="brackets" data-fixtures="pickleball"></div></div>
+        </details>
+        <details class="acc" id="pickleball-schedule">
+          <summary>Tournament Schedule</summary>
+          <div class="acc-body">
+            <p class="sched-note">Saturday, 24 October 2026 · PickleBots, Kollamkodimugal</p>
+            <div class="chips" role="group" aria-label="Filter by category"><button type="button" class="chip on" data-cat="">All</button><button type="button" class="chip" data-cat="Ladies">Ladies Doubles</button><button type="button" class="chip" data-cat="Mixed">Mixed Doubles</button><button type="button" class="chip" data-cat="U19">Under 19</button><button type="button" class="chip" data-cat="Above 50">Above 50 Men's</button><button type="button" class="chip" data-cat="20-50">20–50 Men's</button></div>
+            <div class="table-wrap"><table class="sched">
+              <thead><tr><th>Match</th><th>Category</th><th>Stage</th><th>Court</th><th>Time</th></tr></thead>
+              <tbody>
+              <tr data-cat="Ladies"><td>M1</td><td><span class="cat c-l"><span class="long">Ladies Doubles</span><span class="short">Ladies</span></span></td><td>Match 1</td><td><span class="long">Court </span>1</td><td>5:00 PM</td></tr>
+              <tr data-cat="Mixed"><td>M2</td><td><span class="cat c-m"><span class="long">Mixed Doubles</span><span class="short">Mixed</span></span></td><td>Match 1</td><td><span class="long">Court </span>3</td><td>5:00 PM</td></tr>
+              <tr data-cat="Ladies"><td>M3</td><td><span class="cat c-l"><span class="long">Ladies Doubles</span><span class="short">Ladies</span></span></td><td>Match 2</td><td><span class="long">Court </span>1</td><td>5:15 PM</td></tr>
+              <tr data-cat="Mixed"><td>M4</td><td><span class="cat c-m"><span class="long">Mixed Doubles</span><span class="short">Mixed</span></span></td><td>Match 2</td><td><span class="long">Court </span>3</td><td>5:15 PM</td></tr>
+              <tr data-cat="Ladies"><td>M5</td><td><span class="cat c-l"><span class="long">Ladies Doubles</span><span class="short">Ladies</span></span></td><td>Match 3</td><td><span class="long">Court </span>1</td><td>5:30 PM</td></tr>
+              <tr data-cat="Mixed"><td>M6</td><td><span class="cat c-m"><span class="long">Mixed Doubles</span><span class="short">Mixed</span></span></td><td>Match 3</td><td><span class="long">Court </span>3</td><td>5:30 PM</td></tr>
+              <tr data-cat="U19"><td>M7</td><td><span class="cat c-u"><span class="long">Under 19</span><span class="short">U19</span></span></td><td>Quarter 1</td><td><span class="long">Court </span>1</td><td>5:45 PM</td></tr>
+              <tr data-cat="U19"><td>M8</td><td><span class="cat c-u"><span class="long">Under 19</span><span class="short">U19</span></span></td><td>Quarter 2</td><td><span class="long">Court </span>3</td><td>5:45 PM</td></tr>
+              <tr data-cat="U19"><td>M10</td><td><span class="cat c-u"><span class="long">Under 19</span><span class="short">U19</span></span></td><td>Quarter 3</td><td><span class="long">Court </span>3</td><td>6:00 PM</td></tr>
+              <tr data-cat="U19"><td>M11</td><td><span class="cat c-u"><span class="long">Under 19</span><span class="short">U19</span></span></td><td>Quarter 4</td><td><span class="long">Court </span>1</td><td>6:15 PM</td></tr>
+              <tr data-cat="Above 50"><td>M12</td><td><span class="cat c-a"><span class="long">Above 50 Men's</span><span class="short">50+</span></span></td><td>Match 1</td><td><span class="long">Court </span>3</td><td>6:15 PM</td></tr>
+              <tr data-cat="Above 50"><td>M13</td><td><span class="cat c-a"><span class="long">Above 50 Men's</span><span class="short">50+</span></span></td><td>Match 2</td><td><span class="long">Court </span>1</td><td>6:30 PM</td></tr>
+              <tr data-cat="20-50"><td>M14</td><td><span class="cat c-t"><span class="long">20–50 Men's</span><span class="short">20–50</span></span></td><td>Prelim 1</td><td><span class="long">Court </span>3</td><td>6:30 PM</td></tr>
+              <tr data-cat="20-50"><td>M15</td><td><span class="cat c-t"><span class="long">20–50 Men's</span><span class="short">20–50</span></span></td><td>Prelim 2</td><td><span class="long">Court </span>1</td><td>6:45 PM</td></tr>
+              <tr data-cat="20-50"><td>M16</td><td><span class="cat c-t"><span class="long">20–50 Men's</span><span class="short">20–50</span></span></td><td>Prelim 3</td><td><span class="long">Court </span>3</td><td>6:45 PM</td></tr>
+              <tr data-cat="20-50"><td>M17</td><td><span class="cat c-t"><span class="long">20–50 Men's</span><span class="short">20–50</span></span></td><td>Quarter 1</td><td><span class="long">Court </span>1</td><td>7:00 PM</td></tr>
+              <tr data-cat="20-50"><td>M18</td><td><span class="cat c-t"><span class="long">20–50 Men's</span><span class="short">20–50</span></span></td><td>Quarter 2</td><td><span class="long">Court </span>3</td><td>7:00 PM</td></tr>
+              <tr data-cat="20-50"><td>M19</td><td><span class="cat c-t"><span class="long">20–50 Men's</span><span class="short">20–50</span></span></td><td>Quarter 3</td><td><span class="long">Court </span>1</td><td>7:15 PM</td></tr>
+              <tr data-cat="20-50"><td>M20</td><td><span class="cat c-t"><span class="long">20–50 Men's</span><span class="short">20–50</span></span></td><td>Quarter 4</td><td><span class="long">Court </span>3</td><td>7:15 PM</td></tr>
+              <tr data-cat="U19"><td>M21</td><td><span class="cat c-u"><span class="long">Under 19</span><span class="short">U19</span></span></td><td>Semi I</td><td><span class="long">Court </span>1</td><td>7:30 PM</td></tr>
+              <tr data-cat="U19"><td>M22</td><td><span class="cat c-u"><span class="long">Under 19</span><span class="short">U19</span></span></td><td>Semi II</td><td><span class="long">Court </span>3</td><td>7:30 PM</td></tr>
+              <tr data-cat="Ladies"><td>M23</td><td><span class="cat c-l"><span class="long">Ladies Doubles</span><span class="short">Ladies</span></span></td><td>Semi I</td><td><span class="long">Court </span>1</td><td>7:30 PM</td></tr>
+              <tr data-cat="Mixed"><td>M24</td><td><span class="cat c-m"><span class="long">Mixed Doubles</span><span class="short">Mixed</span></span></td><td>Semi I</td><td><span class="long">Court </span>3</td><td>7:45 PM</td></tr>
+              <tr data-cat="Ladies"><td>M25</td><td><span class="cat c-l"><span class="long">Ladies Doubles</span><span class="short">Ladies</span></span></td><td>Semi II</td><td><span class="long">Court </span>1</td><td>7:45 PM</td></tr>
+              <tr data-cat="Mixed"><td>M26</td><td><span class="cat c-m"><span class="long">Mixed Doubles</span><span class="short">Mixed</span></span></td><td>Semi II</td><td><span class="long">Court </span>3</td><td>8:00 PM</td></tr>
+              <tr data-cat="Above 50"><td>M27</td><td><span class="cat c-a"><span class="long">Above 50 Men's</span><span class="short">50+</span></span></td><td>Semi I</td><td><span class="long">Court </span>1</td><td>8:00 PM</td></tr>
+              <tr data-cat="20-50"><td>M28</td><td><span class="cat c-t"><span class="long">20–50 Men's</span><span class="short">20–50</span></span></td><td>Semi I</td><td><span class="long">Court </span>3</td><td>8:15 PM</td></tr>
+              <tr data-cat="Above 50"><td>M29</td><td><span class="cat c-a"><span class="long">Above 50 Men's</span><span class="short">50+</span></span></td><td>Semi II</td><td><span class="long">Court </span>1</td><td>8:15 PM</td></tr>
+              <tr data-cat="20-50"><td>M30</td><td><span class="cat c-t"><span class="long">20–50 Men's</span><span class="short">20–50</span></span></td><td>Semi II</td><td><span class="long">Court </span>3</td><td>8:30 PM</td></tr>
+              <tr data-cat="U19" class=final><td>M31</td><td><span class="cat c-u"><span class="long">Under 19</span><span class="short">U19</span></span></td><td>Final</td><td><span class="long">Court </span>3</td><td>8:45 PM</td></tr>
+              <tr data-cat="Above 50" class=final><td>M32</td><td><span class="cat c-a"><span class="long">Above 50 Men's</span><span class="short">50+</span></span></td><td>Final</td><td><span class="long">Court </span>3</td><td>9:00 PM</td></tr>
+              <tr data-cat="Ladies" class=final><td>M33</td><td><span class="cat c-l"><span class="long">Ladies Doubles</span><span class="short">Ladies</span></span></td><td>Final</td><td><span class="long">Court </span>3</td><td>9:15 PM</td></tr>
+              <tr data-cat="Mixed" class=final><td>M34</td><td><span class="cat c-m"><span class="long">Mixed Doubles</span><span class="short">Mixed</span></span></td><td>Final</td><td><span class="long">Court </span>3</td><td>9:30 PM</td></tr>
+              <tr data-cat="20-50" class=final><td>M35</td><td><span class="cat c-t"><span class="long">20–50 Men's</span><span class="short">20–50</span></span></td><td>Final</td><td><span class="long">Court </span>3</td><td>9:45 PM</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+        </details>
+        <details class="acc" id="pickleball-parking">
+          <summary>Parking Guidelines</summary>
+          <div class="acc-body rules">
+            <ul>
+              <li>Parking at the venue is limited.</li>
+              <li>We request as many players and viewers as possible to come by Uber.</li>
+              <li>A few cars can be parked at <strong>Noel Serenia</strong>, just a 250-metre walk from the venue. <a href="https://maps.app.goo.gl/JxA9LxQWJKV9wiBC6" target="_blank" rel="noopener">📍 Noel Serenia on Google Maps</a></li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </details>
+  </section>
 </main>
 
 <footer class="wrap">
@@ -249,7 +406,8 @@ const EVENTS = [
     categories: [C("Men (Doubles) – 19 & Below", 0, 19, "M"), C("Men (Doubles) – 20 to 49", 20, 49, "M"), C("Men (Doubles) – 50 & Above", 50, MAX, "M"),
       OPEN("Women (Doubles) – Open Category", "F"), OPEN("Mixed Doubles – Open Category")],
     tags: [T.men, T.women, T.mixed, T.open, T.juniors, T.adults, T.seniors],
-    participants: "For each category, 1 team per association", venue: "PickleBots, Kollamkodimugal", host: "Core Team", coord: "George", phone: "98XXX X2159" },
+    participants: "For each category, 1 team per association", venue: "PickleBots, Kollamkodimugal", host: "Core Team", coord: "George", phone: "98XXX X2159",
+    info: [["Rules & Guidelines", "pickleball-rules"], ["Fixtures", "pickleball-fixtures"], ["Tournament Schedule", "pickleball-schedule"], ["Parking Guidelines", "pickleball-parking"]] },
 
   { date: "2026-10-25", name: "Flower Arrangement", categories: [OPEN("For Ladies – Open Category", "F")], tags: [T.ladies, T.open],
     participants: "One team from each association", venue: "Noel Ecotat, Thrikkakara", host: "Ecotat", coord: "Dr. Shine", phone: "94XXX X0755" },
@@ -323,7 +481,7 @@ const MAPS = {
   "Noel Ivy Creek, Chittethukara": "https://maps.app.goo.gl/UKuRF4gY7mCvjzxo6",
   "Noel Earth Song, Kadavanthra": "",
   "Bright Sports Center, Kangarapady": "",
-  "Noel Serenia, Thrikkakara": "",
+  "Noel Serenia, Thrikkakara": "https://maps.app.goo.gl/JxA9LxQWJKV9wiBC6",
   "Noel Palmdale, Kakkanad": "",
   "Noel Poetry, Kakkanad": "",
   "Noel Arcadia, Vazhakkala": "https://maps.app.goo.gl/NYExi8yxe9MPVbUj7",
@@ -416,6 +574,7 @@ function card(e, age, g, personal) {
       <dt>Venue</dt><dd>${esc(e.venue)}<br><a class="map" href="${esc(mapUrl(e.venue))}" target="_blank" rel="noopener">📍 Open in Google Maps</a></dd>
       <dt>Host</dt><dd>${esc(e.host)}</dd>
       <dt>Coordinator</dt><dd>${esc(e.coord)} · ${esc(e.phone)}</dd>
+      ${e.info ? `<dt>More info</dt><dd class="info-links">${e.info.map(([l, id]) => `<a href="#${id}" data-open="${id}">${esc(l)}</a>`).join("")}</dd>` : ""}
     </dl>
   </article>`;
 }
@@ -427,6 +586,68 @@ $("reset").addEventListener("click", () => {
   $("fUpcoming").checked = false; render();
 });
 render();
+/* ---------- Fixtures (Additional Information) ---------- */
+const W = s => "Winner of " + s;
+const FIXTURES = {
+  pickleball: [
+    { title: "Ladies Doubles", teams: 7, phases: [
+      ["First Round", [["Match 1", "Tall Terrace", "Arcadia"], ["Match 2", "Greenature", "Palmdale"], ["Match 3", "Ecoden", "Serenia"]]],
+      ["Semi-finals", [["Semi I · Match 4", "Poetry", W("Match 1")], ["Semi II · Match 5", W("Match 2"), W("Match 3")]]],
+      ["Final", [["Final", W("Match 4"), W("Match 5")]]] ] },
+    { title: "Mixed Doubles", teams: 7, phases: [
+      ["First Round", [["Match 1", "Poetry", "Ecoden"], ["Match 2", "Greenature", "Serenia"], ["Match 3", "Palmdale", "Arcadia"]]],
+      ["Semi-finals", [["Semi I · Match 4", "Tall Terrace", W("Match 1")], ["Semi II · Match 5", W("Match 2"), W("Match 3")]]],
+      ["Final", [["Final", W("Match 4"), W("Match 5")]]] ] },
+    { title: "Under 19", teams: 8, phases: [
+      ["Quarter-finals", [["Match 1", "Octave", "Greenature"], ["Match 2", "Ivy Creek", "Palmdale"], ["Match 3", "Arcadia", "Tall Terrace"], ["Match 4", "Ecoden", "Serenia"]]],
+      ["Semi-finals", [["Semi I", W("Match 1"), W("Match 2")], ["Semi II", W("Match 3"), W("Match 4")]]],
+      ["Final", [["Final", W("Semi I"), W("Semi II")]]] ] },
+    { title: "20–50 Men's", teams: 11, phases: [
+      ["Preliminary Matches", [["Match 1", "Signature", "Ivy Creek"], ["Match 2", "Palmdale", "Ecoden"], ["Match 3", "Arcadia", "Serenia"]]],
+      ["Quarter-finals", [["Q1 · Match 4", "Poetry", "Greenature"], ["Q2 · Match 5", "Tall Terrace", W("Match 1")], ["Q3 · Match 6", "Earth Song", W("Match 2")], ["Q4 · Match 7", "Fragranz", W("Match 3")]]],
+      ["Semi-finals", [["Semi 1 · Match 8", W("Q1"), W("Q2")], ["Semi 2 · Match 9", W("Q3"), W("Q4")]]],
+      ["Final", [["Match 10", W("Semi-final 1"), W("Semi-final 2")]]] ] },
+    { title: "Above 50 Men's", teams: 6, phases: [
+      ["First Round", [["Match 1", "Tall Terrace", "Arcadia"], ["Match 2", "Palmdale", "Greenature"]]],
+      ["Semi-finals", [["Semi I · Match 3", "Ecoden", W("Match 1")], ["Semi II · Match 4", "Serenia", W("Match 2")]]],
+      ["Final", [["Final", W("Match 3"), W("Match 4")]]] ] }
+  ]
+};
+const team = t => `<span class="${t.startsWith("Winner of") ? "tbd" : ""}">${esc(t)}</span>`;
+document.querySelectorAll("[data-fixtures]").forEach(box => {
+  box.innerHTML = (FIXTURES[box.dataset.fixtures] || []).map(b => `
+    <div class="bracket">
+      <h4>${esc(b.title)}</h4><div class="teams">${b.teams} teams</div>
+      ${b.phases.map(([phase, ms]) => `<div class="phase">${esc(phase)}</div>` + ms.map(([no, a, c]) => `
+        <div class="fx${phase === "Final" ? " final" : ""}"><div class="no">${esc(no)}</div>
+          <div>${team(a)}<div class="vs">vs</div>${team(c)}</div></div>`).join("")).join("")}
+    </div>`).join("");
+});
+
+/* Open an accordion (and its parents) when its link is used */
+function openAcc(id, scroll = true) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  for (let d = el; d; d = d.parentElement && d.parentElement.closest("details")) d.open = true;
+  if (scroll) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1600);
+}
+document.addEventListener("click", ev => {
+  const a = ev.target.closest("a[data-open]");
+  if (!a) return;
+  ev.preventDefault();
+  history.replaceState(null, "", "#" + a.dataset.open);
+  openAcc(a.dataset.open);
+});
+if (location.hash) openAcc(location.hash.slice(1));
+
+/* Tournament schedule category chips */
+document.querySelectorAll(".chips").forEach(group => group.addEventListener("click", ev => {
+  const b = ev.target.closest(".chip"); if (!b) return;
+  group.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", c === b));
+  const tbl = group.parentElement.querySelector("table.sched");
+  tbl.querySelectorAll("tbody tr").forEach(tr => tr.hidden = !!b.dataset.cat && tr.dataset.cat !== b.dataset.cat);
+}));
 </script>
 </body>
 </html>
