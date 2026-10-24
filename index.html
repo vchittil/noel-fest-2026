@@ -164,6 +164,14 @@
   .fx .no { color: var(--muted); font-size: 12px; padding-top: 1px; }
   .fx .vs { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
   .fx .tbd { color: var(--muted); font-style: italic; }
+  .rules p.lead { margin: 0 0 4px; }
+  .medals { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .medal { display: flex; align-items: baseline; gap: 6px; padding: 8px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); font-size: 13px; }
+  .medal span { font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; padding: 2px 8px; border-radius: 999px; }
+  .medal strong { font-size: 18px; }
+  .medal.gold span { background: #f6e3a1; color: #6b4e00; }
+  .medal.silver span { background: #e3e6ea; color: #3d4650; }
+  .medal.bronze span { background: #f1d3bb; color: #7a3f12; }
   .sched-note { margin: 4px 0 10px; font-size: 13px; color: var(--muted); }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
   .chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 5px 12px; font: inherit; font-size: 13px; cursor: pointer; }
@@ -366,6 +374,39 @@
         </details>
       </div>
     </details>
+    <details class="acc" id="info-flower">
+      <summary>Flower Arrangement</summary>
+      <div class="acc-body">
+        <details class="acc" id="flower-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Team Composition</h4>
+            <ul><li>Each association may participate with only one team, consisting of 3 members.</li><li>There is no age restriction.</li></ul>
+            <h4>Style &amp; Materials</h4>
+            <ul><li>The arrangement must be freestyle, using fresh flowers and fresh leaves.</li><li>Artificial accessories, fillers and props may be used sparingly.</li></ul>
+            <h4>Preparation</h4>
+            <ul><li>All cutting of flowers and leaves must be done at the venue.</li><li>Participants may soak the Oasis at the venue.</li></ul>
+            <h4>Time Limit</h4>
+            <ul><li>The allotted time for the arrangement is <strong>2 hours</strong>.</li></ul>
+            <h4>Materials Provided</h4>
+            <ul><li>The organisers will provide only the display table.</li><li>Participants must bring all other materials, including a tablecloth, if required.</li></ul>
+            <h4>Reporting</h4>
+            <ul><li>All participants must report to the venue by <strong>1:30 PM</strong>.</li></ul>
+            <h4>Judging Criteria</h4>
+            <p class="lead">Arrangements will be judged on:</p>
+            <ul><li>Creativity and Innovation</li><li>Visual Impact</li><li>Presentation and Neatness</li><li>Harmony of Colours and Design Elements</li></ul>
+            <h4>Final Decision</h4>
+            <ul><li>The decisions of the judges and organisers shall be final.</li></ul>
+            <h4>Points System</h4>
+            <div class="medals">
+              <div class="medal gold"><span>Gold</span><strong>20</strong> points</div>
+              <div class="medal silver"><span>Silver</span><strong>15</strong> points</div>
+              <div class="medal bronze"><span>Bronze</span><strong>10</strong> points</div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </details>
   </section>
 </main>
 
@@ -410,7 +451,9 @@ const EVENTS = [
     info: [["Rules & Guidelines", "pickleball-rules"], ["Fixtures", "pickleball-fixtures"], ["Tournament Schedule", "pickleball-schedule"], ["Parking Guidelines", "pickleball-parking"]] },
 
   { date: "2026-10-25", name: "Flower Arrangement", categories: [OPEN("For Ladies – Open Category", "F")], tags: [T.ladies, T.open],
-    participants: "One team from each association", venue: "Noel Ecotat, Thrikkakara", host: "Ecotat", coord: "Dr. Shine", phone: "94XXX X0755" },
+    participants: "One team from each association", venue: "Noel Ecotat, Thrikkakara", host: "Ecotat", coord: "Dr. Shine", phone: "94XXX X0755",
+    time: "2:00 PM", report: "1:30 PM",
+    info: [["Rules & Guidelines", "flower-rules"]] },
 
   { date: "2026-10-31", name: "Carroms (Doubles)", categories: [C("18 & Below", 0, 18), C("Above 18", 19, MAX)], tags: [T.juniors, T.adults],
     participants: "2 teams in each category from each association", venue: "Noel Ecoden, Thrikkakara", host: "Ecoden", coord: "Sudheer", phone: "94XXX X3688" },
@@ -572,6 +615,8 @@ function card(e, age, g, personal) {
     <dl>
       <dt>Entries</dt><dd>${esc(e.participants)}</dd>
       <dt>Venue</dt><dd>${esc(e.venue)}<br><a class="map" href="${esc(mapUrl(e.venue))}" target="_blank" rel="noopener">📍 Open in Google Maps</a></dd>
+      ${e.time ? `<dt>Time</dt><dd><strong>${esc(e.time)}</strong></dd>` : ""}
+      ${e.report ? `<dt>Reporting</dt><dd><strong>${esc(e.report)}</strong></dd>` : ""}
       <dt>Host</dt><dd>${esc(e.host)}</dd>
       <dt>Coordinator</dt><dd>${esc(e.coord)} · ${esc(e.phone)}</dd>
       ${e.info ? `<dt>More info</dt><dd class="info-links">${e.info.map(([l, id]) => `<a href="#${id}" data-open="${id}">${esc(l)}</a>`).join("")}</dd>` : ""}
