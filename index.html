@@ -152,7 +152,11 @@
   .badge.today { background: var(--red); color: #fff; }
   .badge.next { background: var(--gold); color: #1f1a0b; }
   .badge.done { background: var(--line); color: var(--muted); }
-  .day.past .day-head, .day.past .card { opacity: .6; }
+  .day.past .day-head, .day.past .card > :not(.reel-btn) { opacity: .6; }
+  .reel-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 11px 16px; border-radius: 12px; color: #fff; font-weight: 700; font-size: 15px; text-decoration: none;
+    background: linear-gradient(90deg, #f58529, #dd2a7b 45%, #8134af 75%, #515bd4); box-shadow: 0 4px 14px rgba(221,42,123,.3); transition: transform .15s, box-shadow .15s; }
+  .reel-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(221,42,123,.4); }
+  .reel-btn svg { width: 20px; height: 20px; }
 
   .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
   .card {
@@ -243,6 +247,8 @@
   .fx .no { color: var(--muted); font-size: 12px; padding-top: 1px; }
   .fx .vs { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
   .fx .tbd { color: var(--muted); font-style: italic; }
+  details.acc-general { border-left: 4px solid #00529B; }
+  details.acc-general > summary { color: #00529B; }
   .rules p.lead { margin: 0 0 4px; }
   .medals { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
   .medal { display: flex; align-items: baseline; gap: 6px; padding: 8px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); font-size: 13px; }
@@ -251,6 +257,11 @@
   .medal.gold span { background: #f6e3a1; color: #6b4e00; }
   .medal.silver span { background: #e3e6ea; color: #3d4650; }
   .medal.bronze span { background: #f1d3bb; color: #7a3f12; }
+  .rounds { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px; }
+  .rounds > div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+  .rounds b { display: block; font-size: 14px; }
+  .rounds .tag { display: inline-block; margin: 4px 0 4px; }
+  .rounds p { margin: 0; font-size: 13px; color: var(--muted); }
   .sched-note { margin: 4px 0 10px; font-size: 13px; color: var(--muted); }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
   .chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 5px 12px; font: inherit; font-size: 13px; cursor: pointer; }
@@ -305,7 +316,8 @@
     .hero-row { padding-bottom: 12px; }
     header.hero::after, .filters { display: none; }
     .card, .bracket { break-inside: avoid; box-shadow: none; }
-    .day.past .day-head, .day.past .card { opacity: 1; }
+    .day.past .day-head, .day.past .card > * { opacity: 1; }
+    .reel-btn { display: none; }
   }
 </style>
 </head>
@@ -399,6 +411,25 @@
 
   <section class="info" id="additional-info" aria-labelledby="info-title">
     <h2 id="info-title">Additional Information</h2>
+    <details class="acc acc-general" id="general-rules">
+      <summary>📋 General Rules – All Events</summary>
+      <div class="acc-body rules">
+          <h4>Eligibility</h4>
+          <ul><li>Age as on <strong>1 October 2026</strong> will be used for all categories.</li><li>Age proof must be available at the venue and will be checked by the organisers.</li><li>Residents and owners of the apartments may participate. Outsiders and association staff are not permitted.</li><li>Residents who are professionals or ex-professionals can also participate.</li><li>A player from a lower age group cannot play in an upper age group. In the Above 50 category, if a partner is not available in the same category, the player may play in the 36–50 category.</li></ul>
+          <h4>Registration</h4>
+          <ul><li>Send registrations to the coordinator of the respective hosting association, with a copy to <strong>Jeena (Noel)</strong> – <a href="mailto:admin@noelprojects.com">admin@noelprojects.com</a>, 94XXX X9583.</li><li>A minimum of <strong>5 registrations from different associations</strong> is required to conduct a game or event. If the Core Committee is convinced by an unfortunate situation or injury, the event may be conducted with fewer registrations.</li><li>If a category is played with fewer than 5 registrations for genuine reasons accepted by the Core Committee, the full points for that event will be awarded (not reduced points).</li></ul>
+          <h4>Format &amp; Fixtures</h4>
+          <ul><li>All events are knockouts. Last year's winners and runners-up will be seeded No. 1 and No. 2.</li><li>A losers' final will be held for third place. Prize positions cannot be shared.</li><li>Fixtures will be published well in advance of the game day. A walkover will be given if a player is not available at the scheduled time of their game.</li></ul>
+          <h4>Team Events &amp; Forfeits</h4>
+          <ul><li>Team events such as Water Polo, Cricket and Throw Ball will not have walkovers. A team that forfeits its nomination will be penalised with the points set for second place in that event.</li><li>If the Core Committee considers a forfeit or absence justified by a genuine eventuality – such as a death, or serious injury or illness of a player (e.g. in doubles events) – the Core Committee will make the final, judicious decision.</li></ul>
+          <h4>Judges &amp; Officials</h4>
+          <ul><li>Judges, umpires and referees for all games and events must be neutral and must not be from the association conducting the event.</li><li>Judges for Solo Music, Group Music and Antakshari will be arranged by Noel.</li></ul>
+          <h4>Prizes &amp; Points</h4>
+          <ul><li>Prizes and points cannot be shared for first, second and third places. In a tie, the judge, referee or umpire must decide a single winning person, team or group.</li><li>If players from another association join to make up a doubles team (hybrid team), the points are shared with the other association. In group events, points go to the association with the most players in the group.</li></ul>
+          <h4>Hybrid (Inter-Association) Teams</h4>
+          <ul><li>Mixing players from different associations is allowed as long as the requesting association does not have a primary team. The helping association may have a primary team. Points go to both the requesting association and the donor association, even if the donor already has a primary team.</li><li>Permission or views must be sought from the donating association's representative, and their primary team (if any) should be informed.</li><li>Partner players for hybrid teams are allotted by lot by the Core Team, and hybrid teams are allowed only within the same age category.</li></ul>
+      </div>
+    </details>
 
     <details class="acc" id="info-pickleball">
       <summary>Pickleball</summary>
@@ -525,6 +556,12 @@
         </details>
       </div>
     </details>
+      </div>
+    </details>
+      </div>
+    </details>
+      </div>
+    </details>
     <details class="acc" id="info-carroms">
       <summary>Carroms</summary>
       <div class="acc-body">
@@ -532,31 +569,24 @@
           <summary>Rules &amp; Guidelines</summary>
           <div class="acc-body rules">
             <h4>Objective</h4>
-            <p>Score the maximum aggregate points by pocketing carrom pieces and the queen in accordance with the rules below.</p>
-            <h4>Categories</h4>
-            <ul><li><strong>Under 18 years</strong> – participants who have not turned 18 as of 1 October 2026.</li><li><strong>18 years and above</strong> (open category).</li><li>There are no separate categories based on gender. Each association may enter a maximum of two doubles teams per category.</li><li>Participants must comply with the age requirements and provide proof of age if requested.</li></ul>
+            <p>To be the player who scores the maximum points by pocketing carrom pieces and the queen.</p>
             <h4>Playing Rules</h4>
-            <ol><li>Place all 19 carrom pieces within the centre circle of the board.</li><li>Place the striker between the two striking lines (baseline) on your side. The striker may also be placed within either circle at the ends of the baseline.</li><li>The striker must not “cut the moon” – that is, rest partly within the baseline and partly within the end circle.</li><li>When striking, the player's hand or arm must not cross the diagonal foul lines at either end of the baseline.</li><li>The first player breaks by flicking the striker forward with the index finger towards the centre formation of carrom pieces.</li><li>A player pockets either white or black carrom pieces for the duration of the game.</li><li>If a player pockets a carrom piece, that player plays again. The turn continues until a piece is not pocketed; play then passes to the opponent.</li><li>A piece may be struck directly only if it is not touching or positioned behind the player's baseline.</li><li>If a piece is touching or behind the player's baseline, it must be hit by rebounding the striker off a side of the board or another carrom piece, in a forward direction.</li><li>Side flicks are not permitted. All shots must be taken in the forward direction.</li><li>The queen may be pocketed at any point after the first piece has been pocketed and before the last carrom piece is pocketed.</li><li>To cover the queen, the player must pocket another black or white piece immediately after pocketing the queen. If the player fails, the queen is replaced in the centre of the board.</li><li>Pieces returned to the centre may be placed on top of other pieces within the main circle.</li><li>Pieces resting on their edge or overlapping another piece are left as they are until moved during normal play.</li><li>If the striker comes to rest under another piece, remove it with as little disturbance to the covering piece as possible.</li><li>The winner is the player/team with the highest aggregate points, as calculated under the scoring method.</li><li>A foul is recorded in the circumstances listed below and penalised with negative points. <strong>The referee's decision is final.</strong></li></ol>
+            <ol><li>Place all 19 carrom pieces within the circle in the middle of the board.</li><li>Place your striker between the two striking lines (baseline) on your side. You may also place the striker within the circles at either end of your baseline.</li><li>The striker may not “cut the moon” – be placed partly within the baseline and partly within the circle.</li><li>When striking, the player's hand or arm must not cross the diagonal foul lines at either end of the baseline.</li><li>The first player breaks by flicking the striker forward with the index finger towards the centre formation of carrom pieces.</li><li>Each player pockets either white or black pieces for the duration of the game.</li><li>If a player pockets a piece, they play again. This continues until they fail to pocket a piece; then it is the opponent's turn.</li><li>A piece can be struck directly only if it is not touching the player's baseline or behind it.</li><li>If a piece is behind or touching the player's baseline, it must be hit by rebounding the striker off a side of the board or another piece, in a forward direction.</li><li>The two arrows/circles on the board in front of the player's striking line are treated as the baseline/circle, and pieces there cannot be struck directly.</li><li>No side flicks are permitted. All shots must be in the forward direction.</li><li>The queen may be pocketed at any point after the first piece has been pocketed, but before the last piece is pocketed.</li><li>To cover the queen, the player must pocket another black or white piece immediately after pocketing the queen. If they fail, the queen is returned to the centre of the board.</li><li>Pieces returned to the centre can be placed on top of other pieces within the main circle.</li><li>Pieces resting on their edge or overlapping another piece are left as they are until moved in the normal course of play.</li><li>If the striker comes to rest under another piece, remove it with as little disturbance to the covering piece as possible.</li><li>The winner is the player who scores the maximum points.</li></ol>
             <h4>Fouls</h4>
-            <ul><li>The striker is pocketed.</li><li>A black or white piece is pocketed together with the striker: the piece counts towards the player's score, but a foul is recorded and the turn passes to the opponent.</li><li>The queen is pocketed together with the striker: the queen is replaced at the centre, a foul is recorded and the turn passes to the opponent. No points are granted.</li><li>The striker or any other piece leaves the board.</li><li>A player pockets the final piece before the queen is covered: that piece is returned to the centre and a foul is recorded.</li><li>A player breaks the rules for striking.</li><li>A player touches any piece in play other than the striker.</li><li>A player disturbs the board or pieces.</li></ul>
-            <h4>Scoring Method</h4>
-            <div class="pts">
-              <div><span>White carrom piece</span><strong>+2</strong></div>
-              <div><span>Black carrom piece</span><strong>+1</strong></div>
-              <div><span>Queen (only when successfully covered)</span><strong>+5</strong></div>
-              <div class="neg"><span>Each foul</span><strong>−1</strong></div>
-            </div>
-            <p>Aggregate points are calculated by adding the points for pocketed white pieces, black pieces and any successfully covered queen, then deducting foul penalties. The highest aggregate score wins the game.</p>
+            <p>A foul is penalised with negative points (see Scoring). A foul is recorded when:</p>
+            <ul><li>The striker is pocketed.</li><li>A black or white piece is pocketed together with the striker: the piece is awarded to the player, but a foul is recorded and the turn passes to the opponent.</li><li>The queen is pocketed together with the striker: the queen goes back to the centre, a foul is recorded and the turn passes to the opponent.</li><li>The striker or any other piece leaves the board.</li><li>A player pockets the final piece before the queen has been covered – the pocketed piece is returned to the centre.</li><li>A player breaks the rules for striking.</li><li>A player touches any piece in play other than the striker.</li><li>A player disturbs the board or coins.</li></ul>
+            <p><strong>The decision of the referee is final.</strong></p>
+            <h4>Scoring</h4>
+            <div class="pts"><div><span>White piece</span><strong>+2</strong></div><div><span>Black piece</span><strong>+1</strong></div><div><span>Queen (counted only when covered)</span><strong>+5</strong></div><div class="neg"><span>Each foul</span><strong>−1</strong></div></div>
+            <p>The aggregate is the total for white pieces, black pieces and the queen, less the points for fouls. The player with the maximum aggregate wins the game.</p>
             <h4>Tournament Format</h4>
-            <ol><li>Initial rounds are played on a knockout basis through the quarter-finals.</li><li>From the semi-finals onwards, matches are played as best of three games.</li><li><strong>Time limit:</strong> each game has a maximum duration of <strong>12 minutes</strong> for both the Under 18 and 18 and above categories. If a game is not completed within the allotted time, the player or team with the highest aggregate at the end of the time limit is declared the winner.</li></ol>
-            <h4>Other Rules &amp; Information</h4>
-            <ul><li>All players must report <strong>20 minutes before</strong> the start of the tournament.</li><li>Players are responsible for personal belongings, including wallets and keys. Organisers are not responsible for loss or damage.</li><li>Food is strictly prohibited in the playing area.</li><li>Spectators are welcome to support all teams and are requested to maintain good sportsmanship. However, spectators are not permitted to stand directly next to the carrom board or players during the game. They must keep a safe distance from the playing area to avoid distractions or interference.</li><li>The red (queen) may be pocketed only after your team has pocketed at least one coin.</li></ul>
+            <ul><li>Knockout rounds up to the quarter-finals.</li><li>From the semi-finals onwards, matches are best of 3 games.</li><li>Each match is <strong>15 minutes</strong>.</li></ul>
+            <h4>Entries &amp; Age</h4>
+            <ul><li>There are no separate categories based on gender.</li><li>Each association can enter 2 teams in each category.</li><li>All players must meet the age limits of their category; age is as on 1 October 2026. Proof of age must be shown if asked.</li></ul>
+            <h4>Other Rules</h4>
+            <ul><li>All players must report <strong>20 minutes before</strong> the start of the tournament.</li><li>Players are responsible for their personal belongings (wallets, keys etc.). Organisers are not responsible for any loss or damage.</li><li>Food is strictly not allowed in the playing area.</li><li>Spectators from all communities are welcome to watch and support, whether or not their own team is playing – please cheer in a sporting spirit.</li></ul>
             <h4>Association Points</h4>
-            <div class="medals">
-              <div class="medal gold"><span>Gold</span><strong>10</strong> points</div>
-              <div class="medal silver"><span>Silver</span><strong>8</strong> points</div>
-              <div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div>
-            </div>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
           </div>
         </details>
       </div>
@@ -567,34 +597,30 @@
         <details class="acc" id="pool-rules">
           <summary>Rules &amp; Guidelines</summary>
           <div class="acc-body rules">
-            <h4>1. Objective of the Game</h4>
-            <p>Each player must pocket all balls in their assigned group (solids or stripes) and then legally pocket the 8-ball in the pocket they nominate. A player wins by legally pocketing the 8-ball after clearing their group. A player loses if they illegally pocket the 8-ball or drive it off the table.</p>
-            <h4>2. Setting Up the Rack</h4>
-            <ol><li>Arrange all 15 object balls in a triangle at the foot end of the table. Place the 8-ball in the centre of the third row. The remaining balls may be arranged in any order, subject to any requirement of the table or rack being used.</li><li>The cue ball is placed behind the baulk line (the line at the breaking end of the table) for the break.</li></ol>
-            <h4>3. Order of Play and the Break</h4>
-            <ol><li>For the first game of a match, a toss decides who has the choice to break. In subsequent games, players alternate the break.</li><li>For this tournament, a legal break requires the cue ball to strike the racked balls and either (a) pocket an object ball, or (b) cause at least four object balls to contact a cushion. The cue ball must not be pocketed or driven off the table.</li><li>If the 8-ball is pocketed on the break, the balls are re-racked and the same player breaks again. If the cue ball is pocketed on the break, it is a foul and the opponent receives ball-in-hand anywhere on the table.</li></ol>
-            <h4>4. Assigning Solids and Stripes</h4>
-            <ol><li>The table remains open after the break. Groups (solids or stripes) are assigned only when a player legally pockets an object ball after the break. That player continues with that group; the opponent is assigned the other group.</li><li>If a player pockets balls from both groups on the same shot while the table is open, the table remains open.</li></ol>
-            <h4>5. Continuing Play</h4>
-            <ol><li>A player continues at the table while legally pocketing balls from their assigned group. The turn passes to the opponent when a player fails to pocket a ball legally or commits a foul.</li><li>Players must take turns and must not distract the opponent or interfere with balls in motion.</li></ol>
-            <h4>6. Fouls and Ball-in-Hand</h4>
-            <p class="lead">The following are fouls:</p>
-            <ul><li>Failing to hit a ball from the player's own group first, once groups have been assigned.</li><li>Pocketing the cue ball or driving it off the table.</li><li>Touching or moving a ball with the body, clothing, cue or other object, except as permitted when positioning the cue ball.</li><li>Striking the cue ball twice, or pushing it rather than making a clear stroke.</li><li>Playing before all balls have come to rest, or taking a shot when it is not the player's turn.</li><li>Failing to drive any ball to a cushion or pocket an object ball after the cue ball contacts the legal object ball.</li></ul>
-            <p>After a foul, the opponent receives <strong>ball-in-hand</strong> and may place the cue ball anywhere on the table. If a ball is pocketed illegally, it remains pocketed.</p>
-            <h4>7. Pocketing the 8-Ball</h4>
-            <ol><li>A player may attempt the 8-ball only after all balls in their assigned group have been pocketed.</li><li>Before shooting the 8-ball, the player must clearly nominate the intended pocket. If the 8-ball enters a different pocket, the player loses the game.</li><li>A player loses the game if they pocket the 8-ball before clearing their group, drive the 8-ball off the table, or pocket the 8-ball in the wrong pocket. If the 8-ball is pocketed on the break, the re-rack rule in Section 3 applies.</li></ol>
-            <h4>8. Tournament Format and Time Limit</h4>
-            <ul><li>The tournament will be played on a knockout basis.</li><li>Up to and including the quarter-finals, each match is one game.</li><li>From the semi-finals onwards, each match is best of three games.</li><li>Each game has a maximum duration of <strong>20 minutes</strong>. If a game is unfinished at the time limit, the player with fewer balls remaining in their assigned group wins. The 8-ball is not counted as part of either group.</li><li>If both players have the same number of group balls remaining when time expires, the referee will give 5 minutes of additional time.</li><li>If both players have cleared their groups and the 8-ball is still on the table when time expires, play continues until the 8-ball is legally pocketed.</li></ul>
-            <h4>9. Dress Code</h4>
-            <p>Formal trousers and a shirt, or a collared T-shirt.</p>
-            <h4>10. Tournament Administration</h4>
-            <p>Players are expected to act fairly and respect the opponent and the tournament officials. Any situation not covered in these rules will be decided by the organiser/referee. Any local rule or clarification will be announced to all players before the tournament begins.</p>
+            <h4>Format</h4>
+            <ul><li>Pool is played as <strong>doubles</strong>, with two teams per association.</li><li>The team that breaks first is decided by a toss.</li></ul>
+            <h4>The Balls &amp; Objective</h4>
+            <ul><li>Balls 1–7 are solids (spots) and balls 9–15 are stripes. The white striker ball is the cue ball. The 8-ball is black and is used by each player to finish the game.</li><li>The player who pots their own set of balls, followed by the 8-ball, before the opponent, wins the game.</li></ul>
+            <h4>The Break &amp; Choosing Groups</h4>
+            <ul><li>For a legal break, the player must hit the balls and the cue ball must not go into a pocket.</li><li>If the 8-ball is potted on the break, the player may ask for a re-rack.</li><li>If the break is illegal, the opposing team gets to break.</li><li>The first player to pot an object ball continues with that group (stripes or solids); the opponent takes the other group.</li><li>After potting an object ball, the player must touch a ball of the same group on their next strike, otherwise the table is open for the opponent.</li></ul>
+            <h4>Turns</h4>
+            <p>A player keeps shooting until they foul or fail to pot an object ball. Then it is the opponent's turn, and play continues like this for the rest of the game.</p>
+            <h4>Fouls</h4>
+            <p>After a foul, the opponent may place the cue ball anywhere on the table (ball-in-hand). Common fouls:</p>
+            <ul><li>Failing to hit your own object balls.</li><li>Hitting the cue ball off the table.</li><li>Hitting the cue ball twice.</li><li>Pushing the cue ball rather than striking it.</li><li>Taking a shot when it is not your turn.</li><li>Missing the black ball when playing for the black ball.</li></ul>
+            <h4>Other Playing Rules</h4>
+            <ul><li>The black ball may be potted only in a <strong>corner pocket</strong>. The player must first nominate the pocket. Failing to do so returns the turn to the opponent; potting the 8-ball in any pocket other than the nominated one loses the game.</li><li>If the cue ball is potted at any point, the opponent gets the cue ball in hand and may place it anywhere on the table.</li><li>Players must not touch any ball with their body. A player may lean on the table, but at least one foot must stay on the ground.</li></ul>
+            <h4>Not a Foul</h4>
+            <ul><li>Hitting your own ball but potting an opponent's ball in the same shot.</li><li>Potting an opponent's ball after hitting the black ball, when playing the black ball.</li></ul>
+            <h4>Automatic Loss</h4>
+            <p>The opponent wins if a player:</p>
+            <ul><li>Hits the 8-ball off the table.</li><li>Pots the 8-ball and the cue ball at the same time.</li><li>Accidentally pots the 8-ball before potting all of their own balls.</li><li>Pots the 8-ball in the wrong pocket.</li></ul>
+            <h4>Match Format &amp; Time Limit</h4>
+            <ul><li>Because of time constraints, each round (league or knockout) is a single match of exactly <strong>20 minutes</strong>.</li><li>The team or player that pockets more balls in the 20 minutes wins.</li><li>If both have pocketed the same number of balls, 5 extra minutes are given. If it is still level, the first to pocket any ball wins.</li><li>If the game is tied with the black ball still on the table, time is extended until the black ball is potted.</li><li>Semi-finals and finals are best of 3 frames.</li></ul>
+            <h4>Conduct &amp; Reporting</h4>
+            <ul><li>Only one team representative and the players of the playing teams, the umpire and the organisers are allowed inside the pool room. Spectators can watch from outside.</li><li>For any situation not covered by these rules, the umpire will consult both players and team representatives and seek agreement. If there is a dispute, the organising committee members present will decide.</li><li>Players must report at the venue <strong>15 minutes before</strong> their scheduled match time, otherwise a walkover will be given.</li></ul>
             <h4>Association Points</h4>
-            <div class="medals">
-              <div class="medal gold"><span>Gold</span><strong>10</strong> points</div>
-              <div class="medal silver"><span>Silver</span><strong>8</strong> points</div>
-              <div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div>
-            </div>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
           </div>
         </details>
       </div>
@@ -606,20 +632,259 @@
           <summary>Rules &amp; Guidelines</summary>
           <div class="acc-body rules">
             <h4>Playing Rules</h4>
-            <ul>
-              <li><strong>Touch-move:</strong> if you touch a piece on the board, you must move or capture with that piece, if it is legal to do so.</li>
-              <li><strong>Illegal moves:</strong> the first illegal move gets a warning; a second illegal move loses the game.</li>
-              <li><strong>No take-backs.</strong></li>
-              <li><strong>Repetition of position:</strong> a player may claim a draw if the same position occurs three times.</li>
-            </ul>
+            <ul><li><strong>Touch-move:</strong> if you touch a piece on the board, you must move or capture with that piece, if it is legal to do so.</li><li><strong>Illegal moves:</strong> the first illegal move gets a warning; a second illegal move loses the game.</li><li><strong>No take-backs.</strong></li><li><strong>Repetition of position:</strong> a player may claim a draw if the same position occurs three times.</li></ul>
             <h4>Time Control</h4>
             <ul><li><strong>15 minutes + 5 seconds</strong> increment per move.</li></ul>
             <h4>Tournament Format</h4>
-            <ul>
-              <li><strong>4 or 5 rounds</strong>, depending on the number of participants.</li>
-              <li>No knockout – every player plays all rounds.</li>
-              <li>Pairings will be announced before each round.</li>
-            </ul>
+            <ul><li><strong>4 or 5 rounds</strong>, depending on the number of participants.</li><li>No knockout – every player plays all rounds.</li><li>Pairings will be announced before each round.</li></ul>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-candy">
+      <summary>Candy Picking</summary>
+      <div class="acc-body">
+        <details class="acc" id="candy-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Rules</h4>
+            <ul><li>Participants pick candies and drop them into the bag provided, within a time limit.</li><li>Participants must start and finish in the same lane – no leaving your lane or touching other participants.</li><li>Heats may be held depending on the number of registered participants.</li><li>The participants who pick the most candies within the time limit win.</li></ul>
+            <h4>General Rules for Kids' Events</h4>
+            <ul><li>Spot registration is discouraged.</li><li>All participants must report <strong>20 minutes before</strong> their allotted time.</li><li>Please comply with the age restrictions (age as on 1 October 2026). Age certificates must be shown on request.</li><li>Terms and conditions may be modified at the discretion of the organisers.</li><li>The judges' decision will be final.</li></ul>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-painting">
+      <summary>Painting</summary>
+      <div class="acc-body">
+        <details class="acc" id="painting-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Rules</h4>
+            <ul><li><strong>Medium:</strong> crayons, or oil, water, poster or acrylic paints.</li><li>For the younger category, the topic will be given at least a week before the competition. For 8–12 years, the topic will be given on the spot.</li><li>Painting paper will be provided by the organisers. Participants may bring a cardboard or exam board to use as a support.</li><li>All other materials (crayons, paints, brushes etc.) must be brought by the participants.</li><li>Pencils may be used for drawing.</li><li>Once the topic is given, parents and spectators should not prompt or help the child, so that the child's own creativity can be judged.</li><li>The best paintings will be chosen by a panel of judges.</li></ul>
+            <h4>General Rules for Kids' Events</h4>
+            <ul><li>Spot registration is discouraged.</li><li>All participants must report <strong>20 minutes before</strong> their allotted time.</li><li>Please comply with the age restrictions (age as on 1 October 2026). Age certificates must be shown on request.</li><li>Terms and conditions may be modified at the discretion of the organisers.</li><li>The judges' decision will be final.</li></ul>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-freethrow">
+      <summary>Basketball Free Throw</summary>
+      <div class="acc-body">
+        <details class="acc" id="freethrow-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Rules</h4>
+            <ul><li>Both feet must be behind the free-throw line while shooting.</li><li>The shooter must collect their own rebound.</li><li>Each participant gets <strong>1 minute</strong> of running time.</li><li>1 point for each successful free throw.</li><li>The participants with the most points win.</li></ul>
+            <h4>General Rules for Kids' Events</h4>
+            <ul><li>Spot registration is discouraged.</li><li>All participants must report <strong>20 minutes before</strong> their allotted time.</li><li>Please comply with the age restrictions (age as on 1 October 2026). Age certificates must be shown on request.</li><li>Terms and conditions may be modified at the discretion of the organisers.</li><li>The judges' decision will be final.</li></ul>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-cricket">
+      <summary>Cricket</summary>
+      <div class="acc-body">
+        <details class="acc" id="cricket-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Toss &amp; Team</h4>
+            <ul><li>The toss for the next match takes place during the innings break of the current match. The toss winner must announce their decision immediately and confirm their Playing 9.</li><li>No changes to the team are allowed once the Playing 9 is confirmed.</li><li>An <strong>Impact Player</strong> option is available. It need not be fixed when the Playing 9 is given – any remaining player in the squad can be brought in. The umpires must be informed when the Impact Player comes on.</li></ul>
+            <h4>Overs &amp; Bowling</h4>
+            <ul><li>There is no fixed power play.</li><li>A bowler can bowl a maximum of <strong>2 overs</strong> in a match.</li><li>In a 7-over innings, a minimum of 5 bowlers must be used.</li><li>The maximum time to complete 6 overs is 24 + 4 = <strong>28 minutes</strong>; no extra time will be given.</li><li>If a bowler is called for an illegal action (no-ball) by the umpire, they cannot bowl again in that match. If it happens again in the next match, the bowler will not be allowed to bowl in the league.</li></ul>
+            <h4>Ball</h4>
+            <ul><li>The batting team selects the balls before the match. A new ball is taken only if those balls are defective or lost, as instructed by the umpires.</li><li>If the ball breaks during play, the batter can decide whether to cancel the delivery.</li></ul>
+            <h4>Ties</h4>
+            <ul><li>No super overs in league matches.</li><li>In knockout matches, a maximum of 2 super overs per game. If still tied, the winner is decided by a toss.</li></ul>
+            <h4>General</h4>
+            <ul><li>All new ICC rules will apply.</li><li>In a dispute, only the team captain may come onto the ground to speak to the umpire.</li><li>A team must have at least 7 players to take part. Players not in the team may not field as substitutes.</li><li>If a team is more than 10 minutes late against the fixture time and the opposing team is ready on the ground, the opposing team will be declared the winner.</li><li>If both teams arrive late, the match will be cancelled or the overs reduced.</li><li>Jersey, track lower and shoes are mandatory. Shirts, trousers, jeans, shorts etc. are not allowed.</li><li>Intoxicants must not be used on the ground under any circumstances.</li><li>The umpire's decision will be final.</li><li>The Core Committee has full authority to amend the competition.</li></ul>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>20</strong> points</div><div class="medal silver"><span>Silver</span><strong>15</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>10</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-throwball">
+      <summary>Throw Ball</summary>
+      <div class="acc-body">
+        <details class="acc" id="throwball-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Audience Guidance</h4>
+            <p>The audience may not enter the court. A maximum of 24 people are allowed inside the court while a game is on:</p>
+            <ul><li>Playing teams (6 each)</li><li>Referees (2)</li><li>Scorer (1)</li><li>Organiser (1)</li><li>Coach / team representative (1 per playing team)</li><li>Substitutes (max 2 per team, on rotation)</li><li>Cameraman / commentator (2)</li></ul>
+            <p>Audience and supporters can watch the game from outside the court.</p>
+            <h4>Rules of Throw Ball</h4>
+            <ul><li>Each team has 6 active players. A maximum of 5 substitutions is allowed.</li><li>Games are played with an official throwball (size 5).</li><li>Players must catch the ball with both hands and return it with one hand only.</li><li>The serve must be made within 5 seconds of the whistle.</li><li>The serve must not touch the net. During a rally, the ball may touch the net.</li><li>A player may not take more than 1 step while holding the ball during a rally.</li><li>Double touches are not allowed while receiving the ball.</li><li>The ball must not touch any part of the body other than the palms when catching or throwing.</li><li>The serve must be released from above the shoulder line.</li><li>During a rally, the ball can touch the front box and players can move freely within the court.</li><li>A ball caught during a rally must be released within <strong>3 seconds</strong>.</li><li>Two players may not catch the ball at the same time – the team loses the point.</li><li>A player may jump while throwing, and the ball can touch the net (but not the antenna). Players must be in contact with the ground when catching.</li><li>Front-row players (closest to the net) may not push the ball down into the opposite court – this is a foul.</li><li>Balls landing on the lines are “in” and valid.</li><li>Touching the line while catching or throwing is a foul.</li><li>Players rotate in a “Z” pattern: after a service change (on conceding a point), the player in position 6 moves to position 1, position 1 to position 2, and so on.</li><li>Each team has one 2-minute time-out per match. The coach asks the referee verbally or by signalling a “T” with both hands.</li><li>The referee's decision is final. Disrespect towards the referee or opposing players will lead to disqualification.</li></ul>
+            <h4>Match Format &amp; Court</h4>
+            <ul><li>Net height is 2.2 metres.</li><li>Court dimensions are the same as a standard badminton court.</li><li>All preliminary games are a single set of 21 points. From the semi-finals, the playing teams may choose best of 3 sets or a single set.</li></ul>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>20</strong> points</div><div class="medal silver"><span>Silver</span><strong>15</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>10</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-tabletennis">
+      <summary>Table Tennis</summary>
+      <div class="acc-body">
+        <details class="acc" id="tabletennis-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Match Format</h4>
+            <ul><li>Each game is to <strong>11 points</strong>, with the service changing after every 2 points.</li><li>Matches are best of 3 games.</li></ul>
+            <h4>Entries</h4>
+            <ul><li>Each association may enter 2 teams in the 15 &amp; Below category and one team in every other category.</li><li>A player can take part in only one category (e.g. a gentleman may play either Men's Doubles or Mixed Doubles, not both).</li><li>A minimum of 5 associations and 5 teams are needed in each category; otherwise the category will be cancelled or combined with another to encourage participation.</li><li>Fixtures will be drawn by lots after registration.</li></ul>
+            <h4>Reporting</h4>
+            <ul><li>Players should be available at the court from the start to the end of the schedule, as games may start earlier than scheduled.</li><li>There is no grace time. If a player has not reported <strong>5 minutes before</strong> the scheduled start, a walkover will be given to the opposing team, if they are present.</li></ul>
+            <h4>Decisions</h4>
+            <p>The match referee's decision will be final on all matters.</p>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-badminton">
+      <summary>Badminton</summary>
+      <div class="acc-body">
+        <details class="acc" id="badminton-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Entries &amp; Eligibility</h4>
+            <ul><li>Each association may enter 2 teams in the 15 &amp; Below category and one team in every other category.</li><li>A category will be held only if at least 5 associations enter teams. Otherwise it will be cancelled, or combining categories will be explored to encourage participation.</li><li>Players registered for Men's or Women's Doubles cannot also play Mixed Doubles.</li><li>Players from the Above 50 category may play in the 36–50 category only if they have no partner in their own category from their association. The association's limit of one team in 36–50 still applies.</li><li>Hybrid teams are allowed where associations need partners to form a team. Points won by a hybrid team are shared equally between the partner associations, whether or not the lending association has its own primary team.</li><li>A hybrid team cannot be formed by two associations that both have primary teams. It can be formed only when one association has just one player in that category.</li><li>All players must meet the age limits of their category; age is as on 1 October 2026. Proof of age must be shown if asked.</li><li>Association representatives should submit entries before the cut-off date.</li></ul>
+            <h4>Match Format</h4>
+            <ul><li>Single elimination (knockout) – a team that loses a match is out of the tournament.</li><li>Preliminary matches are a single game of <strong>30 points</strong>.</li><li>Semi-finals and finals are best of 3 games of <strong>21 points</strong> each.</li><li>A losers' final will be played for third place.</li></ul>
+            <h4>Officials</h4>
+            <ul><li>The referee's decision will be final. The referee will be assisted by 4 line umpires in all matches.</li><li>For preliminary matches, the referee will be from a third association. All associations are therefore requested to have at least one referee.</li><li>Semi-finals and finals will have an external referee.</li><li>Players should follow all the official rules of shuttle badminton.</li></ul>
+            <h4>Court &amp; Equipment</h4>
+            <ul><li>Non-marking indoor shoes are compulsory. Outdoor footwear is not allowed inside the hall – players and visitors should change shoes on entering the court.</li><li>Warm-ups must be done outside the court while matches are in progress.</li><li>Shuttles will be provided by the organisers. All matches will use the <strong>Yonex Mavis 350</strong> nylon shuttlecock.</li></ul>
+            <h4>Reporting, Fixtures &amp; Conduct</h4>
+            <ul><li>Players must report <strong>15 minutes before</strong> their scheduled match. Failure to report on time may result in a walkover to the opposing team.</li><li>Fixtures will be shared through the Noel Fest representatives' WhatsApp group, and representatives should pass them on to their players. A printed fixture will also be displayed on the notice board at the venue.</li><li>Players are responsible for their personal belongings (rackets, wallets etc.). Organisers are not responsible for any loss or damage.</li><li>Food is strictly not allowed in the playing area.</li><li>Spectators from all communities are welcome to watch and support, whether or not their own team is playing – please cheer in a sporting spirit.</li></ul>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-solomusic">
+      <summary>Solo Music</summary>
+      <div class="acc-body">
+        <details class="acc" id="solomusic-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Rules</h4>
+            <ul><li>Songs may be in Malayalam, Hindi, Tamil or English.</li><li>Judging will follow the usual yardsticks of Indian music: <strong>Sruthi, Taal, Feel and Overall Presentation</strong>.</li><li>Light music and film songs can be sung.</li><li>Karaoke can be used.</li><li>Singers playing their own musical instrument is discouraged, but is allowed subject to conditions.</li><li>Each song has <strong>5 minutes</strong>, including the time to set up the karaoke.</li><li>Participants or their association representative must bring the karaoke. To avoid confusion when starting, the representative can bring all of the association's karaoke tracks together on one USB pen drive, to be stored on the laptop on stage.</li></ul>
+            <h4>Entries</h4>
+            <p>Two entries per category from each association.</p>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-photography">
+      <summary>Nature Photography</summary>
+      <div class="acc-body">
+        <details class="acc" id="photography-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Timing</h4>
+            <ul><li>The contest runs from <strong>7:00 am to 8:30 am</strong>.</li><li>All participants must report at <strong>6:45 am</strong> at the Club House, Noel Palmdale. Latecomers will be disqualified.</li></ul>
+            <h4>Rules</h4>
+            <ul><li>Pictures must be taken by the participant during the allotted time, while standing within the premises of Noel Palmdale. The subject must also be within the premises.</li><li>Submit <strong>one image</strong> (JPEG) with a caption (the essence of the photograph) to your Association Coordinator's email by <strong>9:00 am</strong>, immediately after the event.</li><li>Images must capture subjects in their natural state. Any attempt to stage a picture or composition will lead to disqualification.</li><li>Mobile phones, tablets or cameras may be used.</li></ul>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-cards">
+      <summary>Cards</summary>
+      <div class="acc-body">
+        <details class="acc" id="cards-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Rummy Rules</h4>
+            <ul><li>A maximum of 6 participants from each association.</li><li>The game is played on a <strong>knock-out</strong> basis (<em>Gund</em> in Malayalam): the winner is the player with the lowest minus points. The player who declares gets zero, and the others get minus points according to the points they lose by. There is no positive scoring.</li><li>Each game is 12 shuffles. The direction of play is reversed after six shuffles.</li><li>Three packs of cards will be used. <em>Thennali</em> is treated as a natural sequence.</li><li>Two sequences are compulsory, one of which must be natural. Players without two sequences lose 100 points. For players with two sequences, their actual points are recorded as minus points.</li><li>Scoot and middle scoot are allowed: scoot is −25 points and middle scoot −50 points.</li><li>A player who reaches <strong>321 points</strong> is out of the competition.</li><li>The declarer must satisfy the other players that the declaration is correct. A false declaration costs the declarer 100 points.</li><li>After a declaration, other players may open their hands only once it has been confirmed. If a declaration turns out to be false, any player who opened their hand early loses 100 points, regardless of their actual points.</li><li>Each round has a maximum time limit of <strong>one hour</strong>. If a table is behind schedule, the points at the end of the hour (after finishing the game in progress) decide the winners. There is no time limit in the final round.</li><li>In case of any dispute, the tournament director's decision is binding on all players.</li><li>The game is common for ladies and gentlemen.</li></ul>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-waterpolo">
+      <summary>Waterpolo</summary>
+      <div class="acc-body">
+        <details class="acc" id="waterpolo-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Format</h4>
+            <ul><li>All games, including the preliminary rounds, are knockout.</li><li>Each team has 4 players including the goalkeeper. There is no limit on substitutions.</li><li>Preliminary games: two halves of <strong>5 minutes</strong> each, with a 2-minute break.</li><li>From the semi-finals: two halves of <strong>7 minutes</strong> each, with a 2-minute break.</li><li>If a game ends in a draw, each team takes 3 penalty shots. If still tied, the winner is decided by a coin toss.</li><li>There is no losers' final. Third place is decided on goal difference in the semi-finals; if there is no clear difference, by a coin toss.</li></ul>
+            <h4>Playing Rules</h4>
+            <ul><li>A player with the ball can pass it forwards, sideways or backwards.</li><li>The ball can be handled with only one hand at a time, except by the goalkeeper, who can use both hands. <strong>In the ladies' format, the ball can be handled with both hands.</strong></li><li>Players may not carry the ball while moving – the ball must stay floating on the water surface.</li><li>Players must not take the ball under water when tackled.</li><li>Players must not impede an opponent who is not holding the ball.</li><li>Pushing off an opponent is not permitted.</li><li>A goal cannot be scored directly from a throw-in.</li><li>Misconduct or disrespect towards the referee will not be tolerated.</li></ul>
+            <h4>Dress &amp; Safety</h4>
+            <ul><li>Ornaments such as neck chains and finger rings are strictly not allowed in the pool.</li><li>Only synthetic swimming trunks are allowed.</li><li>All players of a team must wear caps of a different colour from the opposing team.</li></ul>
+            <h4>Decisions</h4>
+            <p>The referee's decision is final. There is no appeal.</p>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>20</strong> points</div><div class="medal silver"><span>Silver</span><strong>15</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>10</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-groupmusic">
+      <summary>Group Music</summary>
+      <div class="acc-body">
+        <details class="acc" id="groupmusic-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Rules</h4>
+            <ul><li>Only one team per association.</li><li>Each group must have at least 3 members, with no upper limit – boys, girls, elders or all together. Age no bar.</li><li><strong>Duration: 10 minutes</strong> in total, including entry, stage setting, singing and clearing the stage. Exceeding the time limit means a deduction of 3 points from the overall score.</li><li>Songs can be in any language. Classical and semi-classical compositions, Hindustani music, and film or non-film tunes are accepted.</li><li>Up to three instruments are allowed (optional), brought by the participants. No instruments will be provided by the organisers.</li><li>Karaoke can be used and must be handed to the organisers well in advance.</li><li>Profanity or inappropriate lyrics will lead to disqualification.</li><li>A minimum of 5 associations must take part, otherwise the event will be cancelled.</li></ul>
+            <h4>Judging</h4>
+            <p>Teams are judged on music composition, swar, tal, pronunciation and mode of presentation. The judges' decision will be final. Other criteria:</p>
+            <ul><li><strong>Vocal skills:</strong> pitch, breath control, dynamics, phrasing, enunciation and tone.</li><li><strong>Presentation skills:</strong> eye contact, body and facial expression, attire and microphone technique.</li><li><strong>Audience response:</strong> based on the judges' observation.</li><li><strong>Overall impression:</strong> at the judges' discretion.</li></ul>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>20</strong> points</div><div class="medal silver"><span>Silver</span><strong>15</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>10</strong> points</div></div>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="acc" id="info-antakshari">
+      <summary>Antakshari</summary>
+      <div class="acc-body">
+        <details class="acc" id="antakshari-rules">
+          <summary>Rules &amp; Guidelines</summary>
+          <div class="acc-body rules">
+            <h4>Teams</h4>
+            <ul><li>Each association can register a maximum of 1 team, with 2 to 4 members.</li><li>Enjoy every moment and take part in good spirits!</li></ul>
+            <h4>General Rules</h4>
+            <ul><li>There are only two types of rounds: <strong>Direct</strong> and <strong>Passing</strong>.</li><li><strong>Direct round:</strong> the question is not passed on and there are no bonus points. A direct round scores 10 points.</li><li><strong>Passing round:</strong> if a team cannot answer, the question passes to the other teams, and the team that answers gets 5 bonus points.</li><li>Only Malayalam and Hindi film songs from <strong>1960 to 2024</strong> will be accepted.</li><li>The anchor/judge's decision is final. The anchor may choose the rounds and amend the rules as needed.</li><li>Not all of the round types below will be used on the day – the anchor will choose a few.</li></ul>
+            <h4>Types of Rounds</h4>
+            <div class="rounds">
+              <div><b>Regular Antakshari</b><span class="tag">Direct · 10 pts</span><p>The anchor sings a song; the team must sing a song starting with the first letter of the last word of that song.</p></div>
+              <div><b>Anupallavi / Pallavi</b><span class="tag">Passing · 10 + 5 bonus</span><p>The anchor sings the second stanza (Anupallavi/Antara); the team sings the first stanza (Pallavi/Mukhda).</p></div>
+              <div><b>Visual</b><span class="tag">Passing · 10 + 5 bonus</span><p>A muted video clip of a film song is shown; the team identifies the song and sings it.</p></div>
+              <div><b>Audio</b><span class="tag">Passing · 10 + 5 bonus</span><p>The opening background music of a film song is played; the team identifies the song and sings it.</p></div>
+              <div><b>Humming</b><span class="tag">Passing · 10 + 5 bonus</span><p>The anchor hums a song; the team identifies it and sings the Pallavi.</p></div>
+              <div><b>Word</b><span class="tag">Direct · 5 pts per song · 30 sec</span><p>The anchor gives a word; the team sings as many songs as possible with that word in the Pallavi.</p></div>
+              <div><b>Twister</b><span class="tag">Direct · 10 pts each song</span><p>The anchor sings the lyrics of one song to the tune of another; the team identifies both songs.</p></div>
+              <div><b>Matchmaking</b><span class="tag">Passing · 10 pts per song · 30 sec</span><p>The anchor sings a hit song from a film; the team sings other songs from the same film.</p></div>
+              <div><b>Translation</b><span class="tag">Direct · 10 pts</span><p>The anchor reads a word-for-word translation of a song; the team identifies it and sings it.</p></div>
+              <div><b>Rapid Fire</b><span class="tag">Direct · 5 pts per song · 30 sec</span><p>The anchor gives a letter; the team sings as many songs as possible starting with it.</p></div>
+              <div><b>Situation</b><span class="tag">Direct · 10 pts</span><p>The anchor gives a situation or mood (e.g. a romantic song, a college-day song); the team sings a matching song.</p></div>
+              <div><b>Dumb Charades</b><span class="tag">Passing · 10 + 5 bonus</span><p>A team member picks a song and mimes it without sound or lip movement; the team identifies it and sings it within a minute.</p></div>
+            </div>
+            <h4>Association Points</h4>
+            <div class="medals"><div class="medal gold"><span>Gold</span><strong>20</strong> points</div><div class="medal silver"><span>Silver</span><strong>15</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>10</strong> points</div></div>
           </div>
         </details>
       </div>
@@ -657,22 +922,22 @@ const RACKET_CATS = [
 ];
 
 const EVENTS = [
-  { date: "2026-10-17", name: "Inauguration – Noel Fest 2026", categories: [OPEN("Retro Theme Performance")], tags: [T.retro],
+  { date: "2026-10-17", name: "Inauguration – Noel Fest 2026", reel: "https://www.instagram.com/reel/Deq3yz5OrOG/?vrfl=anZ1eTh0cGQxMm9h", categories: [OPEN("Retro Theme Performance")], tags: [T.retro],
     participants: "One team from each association", venue: "Noel Tall Terrace, Edappally", host: "Tallterrace", coord: "Safeera", phone: "95XXX X0887" },
 
-  { date: "2026-10-24", name: "Pickleball",
+  { date: "2026-10-24", name: "Pickleball", reel: "https://www.instagram.com/reel/De_IwcaOZR0/?xtok=MXRxYWh3ZHFmZTNtbA==",
     categories: [C("Men (Doubles) – 19 & Below", 0, 19, "M"), C("Men (Doubles) – 20 to 49", 20, 49, "M"), C("Men (Doubles) – 50 & Above", 50, MAX, "M"),
       OPEN("Women (Doubles) – Open Category", "F"), OPEN("Mixed Doubles – Open Category")],
     tags: [T.men, T.women, T.mixed, T.open, T.juniors, T.adults, T.seniors],
     participants: "For each category, 1 team per association", venue: "PickleBots, Kollamkodimugal", host: "Core Team", coord: "George", phone: "98XXX X2159",
     info: [["Rules & Guidelines", "pickleball-rules"], ["Fixtures", "pickleball-fixtures"], ["Tournament Schedule", "pickleball-schedule"], ["Parking Guidelines", "pickleball-parking"]] },
 
-  { date: "2026-10-25", name: "Flower Arrangement", categories: [OPEN("For Ladies – Open Category", "F")], tags: [T.ladies, T.open],
+  { date: "2026-10-25", name: "Flower Arrangement", reel: "https://www.instagram.com/reel/DfCQ9vbOj8H/?exln=cXdhOTUzNHZkNmQx", categories: [OPEN("For Ladies – Open Category", "F")], tags: [T.ladies, T.open],
     participants: "One team from each association", venue: "Noel Ecotat, Thrikkakara", host: "Ecotat", coord: "Dr. Shine", phone: "94XXX X0755",
     time: "2:00 PM", report: "1:30 PM",
     info: [["Rules & Guidelines", "flower-rules"]] },
 
-  { date: "2026-10-31", name: "Carroms (Doubles)", categories: [C("Under 18", 0, 17), C("18 & Above", 18, MAX)], tags: [T.juniors, T.adults],
+  { date: "2026-10-31", name: "Carroms (Doubles)", categories: [C("18 & Below", 0, 18), C("Above 18", 19, MAX)], tags: [T.juniors, T.adults],
     participants: "2 teams in each category from each association", venue: "Noel Ecoden, Thrikkakara", host: "Ecoden", coord: "Sudheer", phone: "94XXX X3688",
     time: "2:30 PM", report: "2:10 PM", info: [["Rules & Guidelines", "carrom-rules"]] },
 
@@ -684,50 +949,63 @@ const EVENTS = [
     participants: "2 participants in each category from each association", venue: "Noel Touch Stone, Vazhakkala", host: "Touchstone", coord: "Raina", phone: "97XXX X7700",
     time: "2:00 PM", info: [["Rules & Guidelines", "chess-rules"]] },
 
-  { date: "2026-11-14", name: "Candy Picking", categories: [C("Below 4 Years – Open Category", 0, 3), C("4 to 7 Years – Open Category", 4, 7)], tags: [T.kids, T.open], ...GREEN },
-  { date: "2026-11-14", name: "Painting", categories: [C("4 to 7 Years – Open Category", 4, 7), C("8 to 12 Years – Open Category", 8, 12)], tags: [T.kids, T.open], ...GREEN },
+  { date: "2026-11-14", name: "Candy Picking", categories: [C("Below 4 Years – Open Category", 0, 3), C("4 to 7 Years – Open Category", 4, 7)], tags: [T.kids, T.open], ...GREEN,
+    time: "4:00 PM – 5:00 PM", info: [["Rules & Guidelines", "candy-rules"]] },
+  { date: "2026-11-14", name: "Painting", categories: [C("4 to 7 Years – Open Category", 4, 7), C("8 to 12 Years – Open Category", 8, 12)], tags: [T.kids, T.open], ...GREEN,
+    time: "2:30 PM – 3:30 PM", info: [["Rules & Guidelines", "painting-rules"]] },
   { date: "2026-11-14", name: "Bucket Throw", categories: [C("4 to 7 Years – Open Category", 4, 7)], tags: [T.kids, T.open], ...GREEN },
   { date: "2026-11-14", name: "Goal (Free Kick)", categories: [C("8 to 12 Years (Boys)", 8, 12, "M"), C("8 to 12 Years (Girls)", 8, 12, "F")], tags: [T.kids, T.boys, T.girls], ...GREEN },
-  { date: "2026-11-14", name: "Basketball Free Throw", categories: [C("8 to 12 Years (Boys)", 8, 12, "M"), C("8 to 12 Years (Girls)", 8, 12, "F")], tags: [T.kids, T.boys, T.girls], ...GREEN },
+  { date: "2026-11-14", name: "Basketball Free Throw", categories: [C("8 to 12 Years (Boys)", 8, 12, "M"), C("8 to 12 Years (Girls)", 8, 12, "F")], tags: [T.kids, T.boys, T.girls], ...GREEN,
+    time: "5:00 PM – 6:30 PM", info: [["Rules & Guidelines", "freethrow-rules"]] },
   { date: "2026-11-14", name: "Freestyle Group Dance", categories: [OPEN()], tags: [T.open], nonCompetitive: true, ...GREEN,
     participants: "No entry restrictions – any number of participants" },
 
   { date: "2026-11-15", name: "Cricket", categories: [OPEN()], tags: [T.open],
-    participants: "One team from each association", venue: "Parkway, Kakkanad", host: "Core Team", coord: "Jai", phone: "95XXX X6660" },
+    participants: "One team from each association", venue: "Parkway, Kakkanad", host: "Core Team", coord: "Jai", phone: "95XXX X6660",
+    info: [["Rules & Guidelines", "cricket-rules"]] },
   { date: "2026-11-15", name: "Throw Ball", categories: [OPEN("For Ladies – Open Category", "F")], tags: [T.ladies, T.open],
-    participants: "One team from each association", venue: "Noel Ivy Creek, Chittethukara", host: "Noel Ivycreek", coord: "Jai", phone: "95XXX X6660" },
+    participants: "One team from each association", venue: "Noel Ivy Creek, Chittethukara", host: "Noel Ivycreek", coord: "Jai", phone: "95XXX X6660",
+    info: [["Rules & Guidelines", "throwball-rules"]] },
 
   { date: "2026-11-21", name: "Table Tennis – Doubles", categories: RACKET_CATS,
     tags: [T.boys, T.girls, T.juniors, T.men, T.women, T.mixed, T.adults, T.seniors],
-    participants: "15 & Below – 2 teams; other categories – 1 team from each association", venue: "Noel Earth Song, Kadavanthra", host: "Earthsong", coord: "Chandramohan", phone: "94XXX X1525" },
+    participants: "15 & Below – 2 teams; other categories – 1 team from each association", venue: "Noel Earth Song, Kadavanthra", host: "Earthsong", coord: "Chandramohan", phone: "94XXX X1525",
+    info: [["Rules & Guidelines", "tabletennis-rules"]] },
 
   { date: "2026-11-22", name: "Badminton – Doubles", categories: RACKET_CATS,
     tags: [T.boys, T.girls, T.juniors, T.men, T.women, T.mixed, T.adults, T.seniors],
-    participants: "15 & Below – 2 teams; other categories – 1 team from each association", venue: "Bright Sports Center, Kangarapady", host: "Ecoden & Core Team", coord: "Manu Abraham", phone: "99XXX X2431" },
+    participants: "15 & Below – 2 teams; other categories – 1 team from each association", venue: "Bright Sports Center, Kangarapady", host: "Ecoden & Core Team", coord: "Manu Abraham", phone: "99XXX X2431",
+    info: [["Rules & Guidelines", "badminton-rules"]] },
 
   { date: "2026-11-28", name: "Solo Music",
     categories: [C("Below 12 – Boys & Girls together", 0, 11), C("12 to 18 – Boys, Girls", 12, 18), C("19 to 59 – Men, Women", 19, 59), C("60 & Above – Men, Women", 60, MAX)],
     tags: [T.kids, T.boys, T.girls, T.juniors, T.men, T.women, T.adults, T.seniors],
-    participants: "2 entries per category: Below 12 · 12–18 (B) · 12–18 (G) · 19–59 (M) · 19–59 (W) · 60+ (M) · 60+ (W)", venue: "Noel Serenia, Thrikkakara", host: "Serenia", coord: "Radhika", phone: "81XXX X6700" },
+    participants: "2 entries per category: Below 12 · 12–18 (B) · 12–18 (G) · 19–59 (M) · 19–59 (W) · 60+ (M) · 60+ (W)", venue: "Noel Serenia, Thrikkakara", host: "Serenia", coord: "Radhika", phone: "81XXX X6700",
+    info: [["Rules & Guidelines", "solomusic-rules"]] },
 
   { date: "2026-11-29", name: "Nature Photography", categories: [OPEN()], tags: [T.open],
-    participants: "4 participants from each association", venue: "Noel Palmdale, Kakkanad", host: "Palmdale", coord: "Roy John", phone: "76XXX X6777" },
+    participants: "4 participants from each association", venue: "Noel Palmdale, Kakkanad", host: "Palmdale", coord: "Roy John", phone: "76XXX X6777",
+    time: "7:00 AM – 8:30 AM", report: "6:45 AM", info: [["Rules & Guidelines", "photography-rules"]] },
 
   { date: "2026-12-05", name: "Cards", categories: [OPEN()], tags: [T.open],
-    participants: "6 participants from each association", venue: "Noel Poetry, Kakkanad", host: "Poetry", coord: "Shiju", phone: "99XXX X0101" },
+    participants: "6 participants from each association", venue: "Noel Poetry, Kakkanad", host: "Poetry", coord: "Shiju", phone: "99XXX X0101",
+    info: [["Rules & Guidelines", "cards-rules"]] },
 
   { date: "2026-12-06", name: "Quiz", categories: [OPEN()], tags: [T.open],
     participants: "One team from each association (3 members)", venue: "Noel Arcadia, Vazhakkala", host: "Arcadia", coord: "Joe Joseph", phone: "95XXX X5479" },
   { date: "2026-12-06", name: "Waterpolo",
-    categories: [C("Men – 30 & Below", 0, 30, "M"), C("Men – 31 to 49", 31, 49, "M"), C("Men – 50 & Above", 50, MAX, "M"), OPEN("Women – Open Category", "F")],
-    tags: [T.men, T.women, T.open, T.adults, T.seniors],
-    participants: "One team for each category", venue: "Noel Arcadia, Vazhakkala", host: "Arcadia", coord: "Joe Joseph", phone: "95XXX X5479" },
+    categories: [C("Men – 30 & Below", 0, 30, "M"), C("Men – Above 30", 31, MAX, "M"), OPEN("Women – Open Category", "F")],
+    tags: [T.men, T.women, T.open, T.adults],
+    participants: "One team for each category", venue: "Noel Arcadia, Vazhakkala", host: "Arcadia", coord: "Joe Joseph", phone: "95XXX X5479",
+    info: [["Rules & Guidelines", "waterpolo-rules"]] },
 
   { date: "2026-12-12", name: "Group Music", categories: [OPEN()], tags: [T.open],
-    participants: "One team from each association", venue: "Noel Fragranz, Thrikkakara", host: "Fragranz", coord: "Rosemary", phone: "96XXX X5133" },
+    participants: "One team from each association", venue: "Noel Fragranz, Thrikkakara", host: "Fragranz", coord: "Rosemary", phone: "96XXX X5133",
+    info: [["Rules & Guidelines", "groupmusic-rules"]] },
 
   { date: "2026-12-19", name: "Antakshari", categories: [OPEN()], tags: [T.open],
-    participants: "One team from each association", venue: "Noel CloudWalk, Maradu", host: "Cloudwalk", coord: "Sreejith", phone: "70XXX X3456" }
+    participants: "One team from each association", venue: "Noel CloudWalk, Maradu", host: "Cloudwalk", coord: "Sreejith", phone: "70XXX X3456",
+    info: [["Rules & Guidelines", "antakshari-rules"]] }
 ];
 
 /* Google Maps link for each venue. Leave "" to use a Google Maps search for the venue name,
@@ -872,8 +1150,11 @@ function card(e, age, g, personal) {
       ${e.report ? `<dt>Reporting</dt><dd><strong>${esc(e.report)}</strong></dd>` : ""}
       <dt>Host</dt><dd>${esc(e.host)}</dd>
       <dt>Coordinator</dt><dd>${esc(e.coord)} · ${esc(e.phone)}</dd>
-      ${e.info ? `<dt>More info</dt><dd class="info-links">${e.info.map(([l, id]) => `<a href="#${id}" data-open="${id}">${esc(l)}</a>`).join("")}</dd>` : ""}
+      <dt>More info</dt><dd class="info-links">${(e.info || []).map(([l, id]) => `<a href="#${id}" data-open="${id}">${esc(l)}</a>`).join("")}<a href="#general-rules" data-open="general-rules">General Rules</a></dd>
     </dl>
+    ${e.reel ? `<a class="reel-btn" href="${esc(e.reel)}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="#fff" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.25" fill="#fff"/></svg>
+      <span>▶ Watch Highlights</span></a>` : ""}
   </article>`;
 }
 
