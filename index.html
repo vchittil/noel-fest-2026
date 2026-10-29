@@ -262,6 +262,38 @@
   .rounds b { display: block; font-size: 14px; }
   .rounds .tag { display: inline-block; margin: 4px 0 4px; }
   .rounds p { margin: 0; font-size: 13px; color: var(--muted); }
+  .fx-find { margin: 0 0 10px; }
+  .fx-find input { width: 100%; max-width: 420px; padding: 9px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: 14px; }
+  .fx-cat { margin-bottom: 14px; }
+  .fx-cat h4 { margin: 10px 0 6px; font-size: 15px; color: #00529B; }
+  .fx-count { font-weight: 500; font-size: 12px; color: var(--muted); margin-left: 6px; }
+  table.fx-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  table.fx-table th { text-align: left; background: #00529B; color: #fff; font-weight: 600; font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; padding: 8px 10px; }
+  table.fx-table td { padding: 8px 10px; border-top: 1px solid var(--line); vertical-align: top; }
+  table.fx-table tbody tr:nth-child(even) td { background: var(--bg); }
+  table.fx-table .td-no { font-weight: 700; white-space: nowrap; }
+  table.fx-table .td-time, table.fx-table .td-board, table.fx-table .td-round { white-space: nowrap; }
+  table.fx-table .td-fmt { color: var(--muted); font-size: 12.5px; white-space: nowrap; }
+  table.fx-table em { font-style: normal; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin: 0 4px; }
+  table.fx-table .tm { font-weight: 600; }
+  table.fx-table .tbd { color: var(--muted); font-style: italic; }
+  table.fx-table tr.final td { background: var(--gold-soft) !important; }
+  .fx-byes { font-size: 13px; color: var(--muted); margin: 6px 2px 0; }
+  .fx-none { color: var(--muted); font-size: 14px; }
+  @media (max-width: 640px) {
+    table.fx-table thead { display: none; }
+    table.fx-table, table.fx-table tbody { display: block; }
+    table.fx-table tr { display: grid; grid-template-columns: auto 1fr auto; gap: 3px 10px; padding: 10px 12px; border-top: 1px solid var(--line); }
+    table.fx-table tbody tr:nth-child(even) { background: var(--bg); }
+    table.fx-table tr.final { background: var(--gold-soft); }
+    table.fx-table td { padding: 0; border: 0; background: none !important; }
+    table.fx-table .td-no { grid-column: 1; } table.fx-table .td-round { grid-column: 2; color: var(--muted); }
+    table.fx-table .td-time { grid-column: 3; text-align: right; font-weight: 600; }
+    table.fx-table .td-mu { grid-column: 1 / -1; font-size: 14px; }
+    table.fx-table .td-board { grid-column: 1; font-size: 12px; color: var(--muted); }
+    table.fx-table .td-fmt { grid-column: 2 / -1; font-size: 12px; white-space: normal; }
+    table.fx-table.noboard .td-fmt { grid-column: 1 / -1; }
+  }
   .sched-note { margin: 4px 0 10px; font-size: 13px; color: var(--muted); }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
   .chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 5px 12px; font: inherit; font-size: 13px; cursor: pointer; }
@@ -589,6 +621,10 @@
             <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
           </div>
         </details>
+        <details class="acc" id="carrom-fixtures">
+          <summary>Fixtures</summary>
+          <div class="acc-body"><div class="fx-wrap" data-fx="carrom"></div></div>
+        </details>
       </div>
     </details>
     <details class="acc" id="info-pool">
@@ -622,6 +658,10 @@
             <h4>Association Points</h4>
             <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
           </div>
+        </details>
+        <details class="acc" id="pool-fixtures">
+          <summary>Fixtures</summary>
+          <div class="acc-body"><div class="fx-wrap" data-fx="pool"></div></div>
         </details>
       </div>
     </details>
@@ -939,11 +979,11 @@ const EVENTS = [
 
   { date: "2026-10-31", name: "Carroms (Doubles)", categories: [C("18 & Below", 0, 18), C("Above 18", 19, MAX)], tags: [T.juniors, T.adults],
     participants: "2 teams in each category from each association", venue: "Noel Ecoden, Thrikkakara", host: "Ecoden", coord: "Sudheer", phone: "94XXX X3688",
-    time: "2:30 PM", report: "2:10 PM", info: [["Rules & Guidelines", "carrom-rules"]] },
+    time: "2:30 PM", report: "2:10 PM", info: [["Rules & Guidelines", "carrom-rules"], ["Fixtures", "carrom-fixtures"]] },
 
   { date: "2026-10-31", name: "8 Ball Pool", categories: [OPEN()], tags: [T.open],
     participants: "2 teams from each association", venue: "Noel Ecoden, Thrikkakara", host: "Ecoden", coord: "Sudheer", phone: "94XXX X3688",
-    time: "2:30 PM", info: [["Rules & Guidelines", "pool-rules"]] },
+    time: "2:30 PM", info: [["Rules & Guidelines", "pool-rules"], ["Fixtures", "pool-fixtures"]] },
 
   { date: "2026-11-07", name: "Chess", categories: [C("18 & Below", 0, 18), C("Above 18", 19, MAX)], tags: [T.juniors, T.adults],
     participants: "2 participants in each category from each association", venue: "Noel Touch Stone, Vazhakkala", host: "Touchstone", coord: "Raina", phone: "97XXX X7700",
@@ -1233,6 +1273,591 @@ document.getElementById("socialLinks").innerHTML = SOCIAL.filter(([, , url]) => 
     history.replaceState(null, "", "#" + a.dataset.ev);
     card.scrollIntoView({ behavior: "smooth", block: "center" });
     card.classList.add("flash"); setTimeout(() => card.classList.remove("flash"), 1800);
+  });
+})();
+
+/* ---------- Match fixtures (Carroms, 8 Ball Pool) ---------- */
+const FIXTURE_TABLES = {
+ "carrom": {
+  "note": "Saturday, 31 October 2026 · 4 boards · Carrom starts 3:00 pm",
+  "label": "Board",
+  "cats": [
+   {
+    "cat": "Under 18",
+    "teams": 12,
+    "byes": "Arcadia - Jake & George, Tall Terrace - Team 1, Touchstone - Kurien Thomas Ambat & Thomas T Ambat, Noel Signature - Team 1",
+    "rows": [
+     [
+      "C2",
+      "Round of 16",
+      "3:00 pm",
+      "3:15 pm",
+      "Board 2",
+      "Noel Serenia - Team 1",
+      "Noel Poetry - Kenneth & Arjun",
+      "Single game (12 min)"
+     ],
+     [
+      "C4",
+      "Round of 16",
+      "3:05 pm",
+      "3:20 pm",
+      "Board 4",
+      "Noel Serenia - Team 2",
+      "Noel Greenature - Team 1",
+      "Single game (12 min)"
+     ],
+     [
+      "C7",
+      "Round of 16",
+      "3:20 pm",
+      "3:35 pm",
+      "Board 3",
+      "Noel Ecoden - Team 1",
+      "Arcadia - Ephraim & Ousu",
+      "Single game (12 min)"
+     ],
+     [
+      "C8",
+      "Round of 16",
+      "3:20 pm",
+      "3:35 pm",
+      "Board 4",
+      "Noel Ecoden - Team 2",
+      "Noel Poetry - Nividth & George",
+      "Single game (12 min)"
+     ],
+     [
+      "C10",
+      "Quarter-final",
+      "3:35 pm",
+      "3:50 pm",
+      "Board 2",
+      "Winner of C7",
+      "Tall Terrace - Team 1",
+      "Single game (12 min)"
+     ],
+     [
+      "C11",
+      "Quarter-final",
+      "3:35 pm",
+      "3:50 pm",
+      "Board 3",
+      "Winner of C8",
+      "Arcadia - Jake & George",
+      "Single game (12 min)"
+     ],
+     [
+      "C14",
+      "Quarter-final",
+      "4:40 pm",
+      "4:55 pm",
+      "Board 3",
+      "Winner of C2",
+      "Touchstone - Kurien Thomas Ambat & Thomas T Ambat",
+      "Single game (12 min)"
+     ],
+     [
+      "C15",
+      "Quarter-final",
+      "4:40 pm",
+      "4:55 pm",
+      "Board 4",
+      "Winner of C4",
+      "Noel Signature - Team 1",
+      "Single game (12 min)"
+     ],
+     [
+      "C18",
+      "Semi-final",
+      "6:05 pm",
+      "6:45 pm",
+      "Board 3",
+      "Winner of C10",
+      "Winner of C14",
+      "Best of 3 (12 min/game)"
+     ],
+     [
+      "C19",
+      "Semi-final",
+      "6:05 pm",
+      "6:45 pm",
+      "Board 4",
+      "Winner of C11",
+      "Winner of C15",
+      "Best of 3 (12 min/game)"
+     ],
+     [
+      "C24",
+      "3rd place",
+      "6:45 pm",
+      "7:00 pm",
+      "Board 3",
+      "Loser of C18",
+      "Loser of C19",
+      "Single game (12 min)"
+     ],
+     [
+      "C25",
+      "Final",
+      "6:45 pm",
+      "7:25 pm",
+      "Board 4",
+      "Winner of C18",
+      "Winner of C19",
+      "Best of 3 (12 min/game)"
+     ]
+    ]
+   },
+   {
+    "cat": "18 & Above",
+    "teams": 15,
+    "byes": "Arcadia - Leena & Brill",
+    "rows": [
+     [
+      "C1",
+      "Round of 16",
+      "3:00 pm",
+      "3:15 pm",
+      "Board 1",
+      "Noel Serenia - Team 1",
+      "Noel Poetry - Team 1",
+      "Single game (12 min)"
+     ],
+     [
+      "C3",
+      "Round of 16",
+      "3:05 pm",
+      "3:20 pm",
+      "Board 3",
+      "Noel Serenia - Team 2",
+      "Noel Greenature - Team 2",
+      "Single game (12 min)"
+     ],
+     [
+      "C5",
+      "Round of 16",
+      "3:15 pm",
+      "3:30 pm",
+      "Board 1",
+      "Noel Ecoden - Team 1",
+      "Noel Earth Song - Vijayakumar Pillai & Paul Abraham",
+      "Single game (12 min)"
+     ],
+     [
+      "C6",
+      "Round of 16",
+      "3:15 pm",
+      "3:30 pm",
+      "Board 2",
+      "Noel Ecoden - Team 2",
+      "Touchstone - Swathy & Tinza",
+      "Single game (12 min)"
+     ],
+     [
+      "C9",
+      "Round of 16",
+      "3:30 pm",
+      "3:45 pm",
+      "Board 1",
+      "Noel Greenature - Team 1",
+      "Arcadia - Manoj & Vivek",
+      "Single game (12 min)"
+     ],
+     [
+      "C16",
+      "Round of 16",
+      "6:05 pm",
+      "6:20 pm",
+      "Board 1",
+      "Tall Terrace - Team 1",
+      "Noel Ecotat - Rahul & Delsa",
+      "Single game (12 min)"
+     ],
+     [
+      "C17",
+      "Round of 16",
+      "6:05 pm",
+      "6:20 pm",
+      "Board 2",
+      "Tall Terrace - Team 2",
+      "Noel Ivy Creek - Manoj Kumar & Rajesh",
+      "Single game (12 min)"
+     ],
+     [
+      "C12",
+      "Quarter-final",
+      "4:40 pm",
+      "4:55 pm",
+      "Board 1",
+      "Winner of C1",
+      "Winner of C9",
+      "Single game (12 min)"
+     ],
+     [
+      "C13",
+      "Quarter-final",
+      "4:40 pm",
+      "4:55 pm",
+      "Board 2",
+      "Winner of C3",
+      "Arcadia - Leena & Brill",
+      "Single game (12 min)"
+     ],
+     [
+      "C20",
+      "Quarter-final",
+      "6:20 pm",
+      "6:35 pm",
+      "Board 1",
+      "Winner of C16",
+      "Winner of C5",
+      "Single game (12 min)"
+     ],
+     [
+      "C21",
+      "Quarter-final",
+      "6:20 pm",
+      "6:35 pm",
+      "Board 2",
+      "Winner of C17",
+      "Winner of C6",
+      "Single game (12 min)"
+     ],
+     [
+      "C22",
+      "Semi-final",
+      "6:35 pm",
+      "7:15 pm",
+      "Board 1",
+      "Winner of C20",
+      "Winner of C12",
+      "Best of 3 (12 min/game)"
+     ],
+     [
+      "C23",
+      "Semi-final",
+      "6:35 pm",
+      "7:15 pm",
+      "Board 2",
+      "Winner of C21",
+      "Winner of C13",
+      "Best of 3 (12 min/game)"
+     ],
+     [
+      "C26",
+      "3rd place",
+      "7:15 pm",
+      "7:30 pm",
+      "Board 1",
+      "Loser of C22",
+      "Loser of C23",
+      "Single game (12 min)"
+     ],
+     [
+      "C27",
+      "Final",
+      "7:15 pm",
+      "7:55 pm",
+      "Board 2",
+      "Winner of C22",
+      "Winner of C23",
+      "Best of 3 (12 min/game)"
+     ]
+    ]
+   }
+  ]
+ },
+ "pool": {
+  "note": "Saturday, 31 October 2026 · 1 pool table · 8 Ball Pool starts 2:05 pm",
+  "label": "Table",
+  "cats": [
+   {
+    "cat": "Open",
+    "teams": 17,
+    "byes": "",
+    "rows": [
+     [
+      "P6",
+      "Preliminary",
+      "3:15 pm",
+      "3:29 pm",
+      "Pool Table",
+      "Cloudwalk - Shreejith & partner",
+      "Noel Palmdale - Koshy & Vincent",
+      "Single game (12 min)"
+     ],
+     [
+      "P2",
+      "Round of 16",
+      "2:19 pm",
+      "2:33 pm",
+      "Pool Table",
+      "Noel Ecoden - Mathew & Venu",
+      "Noel Poetry - Team 1",
+      "Single game (12 min)"
+     ],
+     [
+      "P3",
+      "Round of 16",
+      "2:33 pm",
+      "2:47 pm",
+      "Pool Table",
+      "Noel Ecoden - Team 2",
+      "Fragranz - Deepak & Viraj",
+      "Single game (12 min)"
+     ],
+     [
+      "P4",
+      "Round of 16",
+      "2:47 pm",
+      "3:01 pm",
+      "Pool Table",
+      "Arcadia - Steve & Abel",
+      "Noel Greenature - Team 2",
+      "Single game (12 min)"
+     ],
+     [
+      "P7",
+      "Round of 16",
+      "3:29 pm",
+      "3:43 pm",
+      "Pool Table",
+      "Noel Serenia - Chacko & Thomas",
+      "Noel Signature - Team 1",
+      "Single game (12 min)"
+     ],
+     [
+      "P8",
+      "Round of 16",
+      "3:43 pm",
+      "3:57 pm",
+      "Pool Table",
+      "Noel Serenia - Team 2",
+      "Winner of P6",
+      "Single game (12 min)"
+     ],
+     [
+      "P9",
+      "Round of 16",
+      "3:57 pm",
+      "4:11 pm",
+      "Pool Table",
+      "Arcadia - Manoj & Isaac",
+      "Noel Greenature - Team 1",
+      "Single game (12 min)"
+     ],
+     [
+      "P13",
+      "Round of 16",
+      "4:53 pm",
+      "5:07 pm",
+      "Pool Table",
+      "Tall Terrace - Team 2",
+      "Noel Earth Song - Ryan J Anup & Vedanth Anup Krishnan",
+      "Single game (12 min)"
+     ],
+     [
+      "P14",
+      "Round of 16",
+      "5:07 pm",
+      "5:21 pm",
+      "Pool Table",
+      "Tall Terrace - Team 1",
+      "Fragranz - Paul & Rohith",
+      "Single game (12 min)"
+     ],
+     [
+      "P10",
+      "Quarter-final",
+      "4:11 pm",
+      "4:25 pm",
+      "Pool Table",
+      "Winner of P7",
+      "Winner of P9",
+      "Single game (12 min)"
+     ],
+     [
+      "P11",
+      "Quarter-final",
+      "4:25 pm",
+      "4:39 pm",
+      "Pool Table",
+      "Winner of P8",
+      "Winner of P4",
+      "Single game (12 min)"
+     ],
+     [
+      "P15",
+      "Quarter-final",
+      "5:21 pm",
+      "5:35 pm",
+      "Pool Table",
+      "Winner of P14",
+      "Winner of P2",
+      "Single game (12 min)"
+     ],
+     [
+      "P16",
+      "Quarter-final",
+      "5:35 pm",
+      "5:49 pm",
+      "Pool Table",
+      "Winner of P13",
+      "Winner of P3",
+      "Single game (12 min)"
+     ],
+     [
+      "P17",
+      "Semi-final",
+      "6:05 pm",
+      "6:19 pm",
+      "Pool Table",
+      "Winner of P16",
+      "Winner of P11",
+      "Single game (12 min)"
+     ],
+     [
+      "P18",
+      "Semi-final",
+      "6:19 pm",
+      "6:33 pm",
+      "Pool Table",
+      "Winner of P15",
+      "Winner of P10",
+      "Single game (12 min)"
+     ],
+     [
+      "P21",
+      "3rd place",
+      "7:01 pm",
+      "7:15 pm",
+      "Pool Table",
+      "Loser of P18",
+      "Loser of P17",
+      "Single game (12 min)"
+     ],
+     [
+      "P24",
+      "Final",
+      "7:43 pm",
+      "7:57 pm",
+      "Pool Table",
+      "Winner of P18",
+      "Winner of P17",
+      "Single game (12 min)"
+     ]
+    ]
+   },
+   {
+    "cat": "Women",
+    "teams": 7,
+    "byes": "Tall Terrace - Team 2",
+    "rows": [
+     [
+      "P1",
+      "Quarter-final",
+      "2:05 pm",
+      "2:19 pm",
+      "Pool Table",
+      "Noel Ecoden - Team 2",
+      "Noel Serenia - Team 1",
+      "Single game (12 min)"
+     ],
+     [
+      "P5",
+      "Quarter-final",
+      "3:01 pm",
+      "3:15 pm",
+      "Pool Table",
+      "Noel Ecoden - Team 1",
+      "Noel Signature - Team 1",
+      "Single game (12 min)"
+     ],
+     [
+      "P12",
+      "Quarter-final",
+      "4:39 pm",
+      "4:53 pm",
+      "Pool Table",
+      "Tall Terrace - Team 1",
+      "Fragranz - Priya & Rosemary",
+      "Single game (12 min)"
+     ],
+     [
+      "P19",
+      "Semi-final",
+      "6:33 pm",
+      "6:47 pm",
+      "Pool Table",
+      "Winner of P5",
+      "Winner of P12",
+      "Single game (12 min)"
+     ],
+     [
+      "P20",
+      "Semi-final",
+      "6:47 pm",
+      "7:01 pm",
+      "Pool Table",
+      "Winner of P1",
+      "Tall Terrace - Team 2",
+      "Single game (12 min)"
+     ],
+     [
+      "P22",
+      "3rd place",
+      "7:15 pm",
+      "7:29 pm",
+      "Pool Table",
+      "Loser of P19",
+      "Loser of P20",
+      "Single game (12 min)"
+     ],
+     [
+      "P23",
+      "Final",
+      "7:29 pm",
+      "7:43 pm",
+      "Pool Table",
+      "Winner of P19",
+      "Winner of P20",
+      "Single game (12 min)"
+     ]
+    ]
+   }
+  ]
+ }
+};
+(function renderFixtures() {
+  const tbd = t => /^(Winner|Loser) of /.test(t);
+  const team = t => `<span class="${tbd(t) ? "tbd" : "tm"}">${esc(t)}</span>`;
+  document.querySelectorAll("[data-fx]").forEach(box => {
+    const F = FIXTURE_TABLES[box.dataset.fx]; if (!F) return;
+    const showBoard = F.cats.some(c => new Set(c.rows.map(r => r[4])).size > 1);
+    box.innerHTML = `<p class="sched-note">${esc(F.note)}</p>
+      <div class="fx-find"><input type="search" placeholder="Find your team or association…" aria-label="Find your team"></div>` +
+      F.cats.map(c => `<div class="fx-cat">
+        <h4>${esc(c.cat)} <span class="fx-count">${c.teams} teams</span></h4>
+        <div class="table-wrap"><table class="fx-table${showBoard ? "" : " noboard"}">
+          <thead><tr><th>Match</th><th>Round</th><th>Time</th>${showBoard ? `<th>${F.label}</th>` : ""}<th>Teams</th><th>Format</th></tr></thead>
+          <tbody>${c.rows.map(([no, rd, st, en, bd, a, b, fm]) => `<tr class="${rd === "Final" ? "final" : ""}" data-q="${esc((a + " " + b + " " + no).toLowerCase())}">
+            <td class="td-no">${esc(no)}</td><td class="td-round">${esc(rd)}</td><td class="td-time">${esc(st)} – ${esc(en)}</td>
+            ${showBoard ? `<td class="td-board">${esc(bd)}</td>` : ""}
+            <td class="td-mu">${team(a)} <em>vs</em> ${team(b)}</td><td class="td-fmt">${esc(fm)}</td></tr>`).join("")}</tbody>
+        </table></div>
+        ${c.byes ? `<p class="fx-byes"><strong>Byes to next round:</strong> ${esc(c.byes)}</p>` : ""}
+      </div>`).join("") + `<p class="fx-none" hidden>No matches found for that name.</p>`;
+    const inp = box.querySelector(".fx-find input");
+    inp.addEventListener("input", () => {
+      const q = inp.value.trim().toLowerCase(); let any = false;
+      box.querySelectorAll(".fx-cat").forEach(cat => {
+        let n = 0;
+        cat.querySelectorAll("tbody tr").forEach(tr => { const ok = !q || tr.dataset.q.includes(q); tr.hidden = !ok; if (ok) n++; });
+        cat.hidden = !n; if (n) any = true;
+      });
+      box.querySelector(".fx-none").hidden = any;
+    });
   });
 })();
 
