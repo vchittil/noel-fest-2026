@@ -213,6 +213,17 @@
   .ev-photos .tile img { width: 40px; height: 40px; }
   .ev-photos .nm { font-weight: 600; color: #00529B; }
   .ev-div { flex: 0 0 1px; align-self: stretch; margin: 6px 6px 20px; background: var(--line); }
+  .ev .tile { position: relative; }
+  .ev.live .tile { box-shadow: 0 0 0 3px #e53935; animation: liveRing 1.6s ease-in-out infinite; }
+  .ev.live .nm { color: #c62828; font-weight: 700; }
+  .live-tag { position: absolute; bottom: -7px; left: 50%; transform: translateX(-50%); background: #e53935; color: #fff; font-size: 9.5px; font-weight: 800; letter-spacing: .08em; padding: 1px 6px; border-radius: 6px; line-height: 1.4; }
+  @keyframes liveRing { 0%, 100% { box-shadow: 0 0 0 3px rgba(229,57,53,1); } 50% { box-shadow: 0 0 0 3px rgba(229,57,53,.3); } }
+  .card.is-live { border-color: #e53935; border-top-color: #e53935; box-shadow: 0 0 0 2px rgba(229,57,53,.22), var(--shadow); }
+  .live-badge { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; background: #e53935; color: #fff; font-size: 11.5px; font-weight: 800; letter-spacing: .08em; padding: 3px 9px; border-radius: 999px; margin-bottom: 4px; }
+  .live-badge i, .badge.live i { width: 7px; height: 7px; border-radius: 50%; background: #fff; display: inline-block; animation: liveDot 1.2s ease-in-out infinite; }
+  .badge.live { background: #e53935; color: #fff; display: inline-flex; align-items: center; gap: 6px; }
+  @keyframes liveDot { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+  @media (prefers-reduced-motion: reduce) { .ev.live .tile, .live-badge i, .badge.live i { animation: none; } }
   .ev.done .tile { opacity: .55; filter: saturate(.55); }
   .ev.done .nm { color: var(--muted); }
   .ev-arrow { position: absolute; top: 50%; transform: translateY(-60%); z-index: 2; width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
@@ -262,6 +273,39 @@
   .rounds b { display: block; font-size: 14px; }
   .rounds .tag { display: inline-block; margin: 4px 0 4px; }
   .rounds p { margin: 0; font-size: 13px; color: var(--muted); }
+  /* Bracket */
+  .bk-cat { margin-bottom: 18px; }
+  .bk-cat h4 { margin: 10px 0 8px; font-size: 15px; color: #00529B; }
+  .bk-hint { white-space: nowrap; }
+  .bk-scroll { overflow-x: auto; padding: 6px 2px 10px; -webkit-overflow-scrolling: touch; }
+  .bk-tree { display: inline-flex; min-width: max-content; }
+  .bn { display: flex; align-items: center; }
+  .kids { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; padding-right: 26px; position: relative; }
+  .kids > .bn { position: relative; }
+  .kids > .bn::after { content: ""; position: absolute; top: 50%; right: -13px; width: 13px; border-top: 2px solid #b9c7d6; }
+  .kids > .bn::before { content: ""; position: absolute; right: -13px; top: -6px; bottom: -6px; border-right: 2px solid #b9c7d6; }
+  .kids > .bn:first-child::before { top: 50%; }
+  .kids > .bn:last-child::before { bottom: 50%; }
+  .kids > .bn:only-child::before { display: none; }
+  .kids::after { content: ""; position: absolute; top: 50%; right: 0; width: 13px; border-top: 2px solid #b9c7d6; }
+  .mbox { width: 170px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid #00529B; border-radius: 10px; padding: 6px 9px 7px; font-size: 12.5px; box-shadow: var(--shadow); }
+  .mbox.final { border-left-color: var(--gold); background: var(--gold-soft); }
+  .mh { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 3px; }
+  .mh b { color: var(--ink); font-size: 12px; }
+  .bk-team { font-weight: 600; line-height: 1.3; padding: 2px 0; }
+  .bk-team + .bk-team { border-top: 1px dashed var(--line); }
+  .bk-team.tbd { font-weight: 400; font-style: italic; color: var(--muted); }
+  .mt { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .bk-third { font-size: 13px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; display: inline-flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
+  .bk-third em { font-style: normal; font-size: 11px; color: var(--muted); text-transform: uppercase; }
+  .bk-third span { color: var(--muted); font-size: 12px; }
+  /* Schedule status */
+  .st-badge { font-size: 10.5px; font-weight: 800; letter-spacing: .05em; padding: 1px 7px; border-radius: 999px; margin-left: 4px; white-space: nowrap; }
+  .st-badge.now { background: #e53935; color: #fff; }
+  .st-badge.next { background: #00529B; color: #fff; }
+  table.fx-table tr.st-now td { background: #fdecec !important; }
+  table.fx-table tr.st-next td { background: #e6f0fa !important; }
+  @media (max-width: 640px) { table.fx-table tr.st-now { background: #fdecec; } table.fx-table tr.st-next { background: #e6f0fa; } .mbox { width: 160px; } }
   .fx-find { margin: 0 0 10px; }
   .fx-find input { width: 100%; max-width: 420px; padding: 9px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: 14px; }
   .fx-cat { margin-bottom: 14px; }
@@ -293,6 +337,8 @@
     table.fx-table .td-board { grid-column: 1; font-size: 12px; color: var(--muted); }
     table.fx-table .td-fmt { grid-column: 2 / -1; font-size: 12px; white-space: normal; }
     table.fx-table.noboard .td-fmt { grid-column: 1 / -1; }
+    table.fx-table .td-no, table.fx-table .td-round, table.fx-table .td-time { grid-row: 1; }
+    table.fx-table .td-mu { grid-row: 2; } table.fx-table .td-board, table.fx-table .td-fmt { grid-row: 3; }
   }
   .sched-note { margin: 4px 0 10px; font-size: 13px; color: var(--muted); }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
@@ -330,7 +376,7 @@
   .soc:hover { transform: translateY(-2px); }
   .soc svg { width: 22px; height: 22px; }
   .soc.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-  .soc.facebook { background: #1877F2; } .soc.linkedin { background: #0A66C2; } .soc.website { background: #00529B; }
+  .soc.facebook { background: #1877F2; } .soc.youtube { background: #FF0000; } .soc.linkedin { background: #0A66C2; } .soc.website { background: #00529B; }
   @media print { .social, .ig-mini { display: none; } }
   footer { padding: 32px 0 40px; color: var(--muted); font-size: 13px; }
   footer p { margin: 4px 0; }
@@ -623,7 +669,11 @@
         </details>
         <details class="acc" id="carrom-fixtures">
           <summary>Fixtures</summary>
-          <div class="acc-body"><div class="fx-wrap" data-fx="carrom"></div></div>
+          <div class="acc-body"><div class="bk-wrap" data-bracket="carrom"></div></div>
+        </details>
+        <details class="acc" id="carrom-schedule">
+          <summary>Match Schedule</summary>
+          <div class="acc-body"><div class="fx-wrap" data-fxsched="carrom"></div></div>
         </details>
       </div>
     </details>
@@ -661,7 +711,11 @@
         </details>
         <details class="acc" id="pool-fixtures">
           <summary>Fixtures</summary>
-          <div class="acc-body"><div class="fx-wrap" data-fx="pool"></div></div>
+          <div class="acc-body"><div class="bk-wrap" data-bracket="pool"></div></div>
+        </details>
+        <details class="acc" id="pool-schedule">
+          <summary>Match Schedule</summary>
+          <div class="acc-body"><div class="fx-wrap" data-fxsched="pool"></div></div>
         </details>
       </div>
     </details>
@@ -962,7 +1016,7 @@ const RACKET_CATS = [
 ];
 
 const EVENTS = [
-  { date: "2026-10-17", name: "Inauguration – Noel Fest 2026", reel: "https://www.instagram.com/reel/Deq3yz5OrOG/?vrfl=anZ1eTh0cGQxMm9h", categories: [OPEN("Retro Theme Performance")], tags: [T.retro],
+  { date: "2026-10-17", name: "Inauguration & Retro Theme Performance", reel: "https://www.instagram.com/reel/Deq3yz5OrOG/?vrfl=anZ1eTh0cGQxMm9h", categories: [OPEN()], tags: [T.open],
     participants: "One team from each association", venue: "Noel Tall Terrace, Edappally", host: "Tallterrace", coord: "Safeera", phone: "95XXX X0887" },
 
   { date: "2026-10-24", name: "Pickleball", reel: "https://www.instagram.com/reel/De_IwcaOZR0/?xtok=MXRxYWh3ZHFmZTNtbA==",
@@ -977,25 +1031,25 @@ const EVENTS = [
     time: "2:00 PM", report: "1:30 PM",
     info: [["Rules & Guidelines", "flower-rules"]] },
 
-  { date: "2026-10-31", name: "Carroms (Doubles)", categories: [C("18 & Below", 0, 18), C("Above 18", 19, MAX)], tags: [T.juniors, T.adults],
+  { date: "2026-10-31", name: "Carroms (Doubles)", live: ["15:00", "20:00"], categories: [C("18 & Below", 0, 18), C("Above 18", 19, MAX)], tags: [T.juniors, T.adults],
     participants: "2 teams in each category from each association", venue: "Noel Ecoden, Thrikkakara", host: "Ecoden", coord: "Sudheer", phone: "94XXX X3688",
-    time: "2:30 PM", report: "2:10 PM", info: [["Rules & Guidelines", "carrom-rules"], ["Fixtures", "carrom-fixtures"]] },
+    time: "3:00 PM – 8:00 PM", report: "2:40 PM", info: [["Rules & Guidelines", "carrom-rules"], ["Fixtures", "carrom-fixtures"], ["Match Schedule", "carrom-schedule"]] },
 
-  { date: "2026-10-31", name: "8 Ball Pool", categories: [OPEN()], tags: [T.open],
+  { date: "2026-10-31", name: "8 Ball Pool", live: ["14:05", "20:25"], categories: [OPEN()], tags: [T.open],
     participants: "2 teams from each association", venue: "Noel Ecoden, Thrikkakara", host: "Ecoden", coord: "Sudheer", phone: "94XXX X3688",
-    time: "2:30 PM", info: [["Rules & Guidelines", "pool-rules"], ["Fixtures", "pool-fixtures"]] },
+    time: "2:05 PM – 8:25 PM", report: "15 min before your match", info: [["Rules & Guidelines", "pool-rules"], ["Fixtures", "pool-fixtures"], ["Match Schedule", "pool-schedule"]] },
 
-  { date: "2026-11-07", name: "Chess", categories: [C("18 & Below", 0, 18), C("Above 18", 19, MAX)], tags: [T.juniors, T.adults],
+  { date: "2026-11-07", name: "Chess", live: ["14:00", "18:00"], categories: [C("18 & Below", 0, 18), C("Above 18", 19, MAX)], tags: [T.juniors, T.adults],
     participants: "2 participants in each category from each association", venue: "Noel Touch Stone, Vazhakkala", host: "Touchstone", coord: "Raina", phone: "97XXX X7700",
     time: "2:00 PM", info: [["Rules & Guidelines", "chess-rules"]] },
 
-  { date: "2026-11-14", name: "Candy Picking", categories: [C("Below 4 Years – Open Category", 0, 3), C("4 to 7 Years – Open Category", 4, 7)], tags: [T.kids, T.open], ...GREEN,
+  { date: "2026-11-14", name: "Candy Picking", live: ["16:00", "17:00"], categories: [C("Below 4 Years – Open Category", 0, 3), C("4 to 7 Years – Open Category", 4, 7)], tags: [T.kids, T.open], ...GREEN,
     time: "4:00 PM – 5:00 PM", info: [["Rules & Guidelines", "candy-rules"]] },
-  { date: "2026-11-14", name: "Painting", categories: [C("4 to 7 Years – Open Category", 4, 7), C("8 to 12 Years – Open Category", 8, 12)], tags: [T.kids, T.open], ...GREEN,
+  { date: "2026-11-14", name: "Painting", live: ["14:30", "15:30"], categories: [C("4 to 7 Years – Open Category", 4, 7), C("8 to 12 Years – Open Category", 8, 12)], tags: [T.kids, T.open], ...GREEN,
     time: "2:30 PM – 3:30 PM", info: [["Rules & Guidelines", "painting-rules"]] },
   { date: "2026-11-14", name: "Bucket Throw", categories: [C("4 to 7 Years – Open Category", 4, 7)], tags: [T.kids, T.open], ...GREEN },
   { date: "2026-11-14", name: "Goal (Free Kick)", categories: [C("8 to 12 Years (Boys)", 8, 12, "M"), C("8 to 12 Years (Girls)", 8, 12, "F")], tags: [T.kids, T.boys, T.girls], ...GREEN },
-  { date: "2026-11-14", name: "Basketball Free Throw", categories: [C("8 to 12 Years (Boys)", 8, 12, "M"), C("8 to 12 Years (Girls)", 8, 12, "F")], tags: [T.kids, T.boys, T.girls], ...GREEN,
+  { date: "2026-11-14", name: "Basketball Free Throw", live: ["17:00", "18:30"], categories: [C("8 to 12 Years (Boys)", 8, 12, "M"), C("8 to 12 Years (Girls)", 8, 12, "F")], tags: [T.kids, T.boys, T.girls], ...GREEN,
     time: "5:00 PM – 6:30 PM", info: [["Rules & Guidelines", "freethrow-rules"]] },
   { date: "2026-11-14", name: "Freestyle Group Dance", categories: [OPEN()], tags: [T.open], nonCompetitive: true, ...GREEN,
     participants: "No entry restrictions – any number of participants" },
@@ -1023,7 +1077,7 @@ const EVENTS = [
     participants: "2 entries per category: Below 12 · 12–18 (B) · 12–18 (G) · 19–59 (M) · 19–59 (W) · 60+ (M) · 60+ (W)", venue: "Noel Serenia, Thrikkakara", host: "Serenia", coord: "Radhika", phone: "81XXX X6700",
     info: [["Rules & Guidelines", "solomusic-rules"]] },
 
-  { date: "2026-11-29", name: "Nature Photography", categories: [OPEN()], tags: [T.open],
+  { date: "2026-11-29", name: "Nature Photography", live: ["07:00", "08:30"], categories: [OPEN()], tags: [T.open],
     participants: "4 participants from each association", venue: "Noel Palmdale, Kakkanad", host: "Palmdale", coord: "Roy John", phone: "76XXX X6777",
     time: "7:00 AM – 8:30 AM", report: "6:45 AM", info: [["Rules & Guidelines", "photography-rules"]] },
 
@@ -1072,7 +1126,7 @@ const MAPS = {
 const mapUrl = v => MAPS[v] || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(v + ", Kochi, Kerala");
 
 const ICONS = {
-  "Inauguration – Noel Fest 2026": '<path d="M13 43h22l-3-5H16z" fill="#d99a1e"/><rect x="22" y="22" width="4" height="16" fill="#f2b632"/><ellipse cx="24" cy="30" rx="4.5" ry="2" fill="#f2b632"/><path d="M11 19h26c0 4.5-5.8 7-13 7s-13-2.5-13-7z" fill="#f2b632"/><rect x="22.5" y="15" width="3" height="4" fill="#d99a1e"/><path d="M24 3c3.4 4.4 4.6 7 4.6 9a4.6 4.6 0 0 1-9.2 0c0-2 1.2-4.6 4.6-9z" fill="#ff8a1f"/><path d="M24 7.5c1.6 2.2 2.2 3.4 2.2 4.4a2.2 2.2 0 0 1-4.4 0c0-1 .6-2.2 2.2-4.4z" fill="#ffd84a" stroke="none"/>',
+  "Inauguration & Retro Theme Performance": '<path d="M13 43h22l-3-5H16z" fill="#d99a1e"/><rect x="22" y="22" width="4" height="16" fill="#f2b632"/><ellipse cx="24" cy="30" rx="4.5" ry="2" fill="#f2b632"/><path d="M11 19h26c0 4.5-5.8 7-13 7s-13-2.5-13-7z" fill="#f2b632"/><rect x="22.5" y="15" width="3" height="4" fill="#d99a1e"/><path d="M24 3c3.4 4.4 4.6 7 4.6 9a4.6 4.6 0 0 1-9.2 0c0-2 1.2-4.6 4.6-9z" fill="#ff8a1f"/><path d="M24 7.5c1.6 2.2 2.2 3.4 2.2 4.4a2.2 2.2 0 0 1-4.4 0c0-1 .6-2.2 2.2-4.4z" fill="#ffd84a" stroke="none"/>',
   "Pickleball": '<g transform="rotate(-22 18 17)"><rect x="15.5" y="27" width="5" height="14" rx="2" fill="#444"/><rect x="7" y="3" width="22" height="26" rx="10" fill="#3aa6e0"/><rect x="10.5" y="6.5" width="15" height="19" rx="7" fill="#6cc3f0" stroke="none"/></g><circle cx="36" cy="36" r="7.5" fill="#e3f14d"/><circle cx="33.6" cy="33.4" r="1.1" fill="#7d8c16" stroke="none"/><circle cx="38.4" cy="34" r="1.1" fill="#7d8c16" stroke="none"/><circle cx="34.6" cy="38.4" r="1.1" fill="#7d8c16" stroke="none"/><circle cx="39" cy="38.6" r="1.1" fill="#7d8c16" stroke="none"/>',
   "Flower Arrangement": '<path d="M24 29V14M24 29 15.5 17M24 29l8.5-12" fill="none" stroke="#2f7d32" stroke-width="1.8"/><path d="M24 24c-4.5-.6-7-3-7.8-6.6 4.4.3 6.9 2.6 7.8 6.6z" fill="#5cb85c"/><path d="M24 25c4.5-.6 7-3 7.8-6.6-4.4.3-6.9 2.6-7.8 6.6z" fill="#5cb85c"/><circle cx="15" cy="15" r="4.6" fill="#ff9ec7"/><circle cx="15" cy="15" r="1.6" fill="#ffd23f" stroke="none"/><circle cx="33" cy="15" r="4.6" fill="#ffcc33"/><circle cx="33" cy="15" r="1.6" fill="#e67e22" stroke="none"/><circle cx="24" cy="10.5" r="5.6" fill="#ef4f6b"/><circle cx="24" cy="10.5" r="2" fill="#ffd23f" stroke="none"/><path d="M17.5 31h13l-2 13h-9z" fill="#4a90d9"/><rect x="16" y="28.5" width="16" height="3.4" rx="1.2" fill="#3a74b8"/>',
   "Carroms (Doubles)": '<rect x="4" y="4" width="40" height="40" rx="3.5" fill="#8b5a2b"/><rect x="8.5" y="8.5" width="31" height="31" fill="#f5deb0"/><circle cx="11.2" cy="11.2" r="2.6" fill="#222"/><circle cx="36.8" cy="11.2" r="2.6" fill="#222"/><circle cx="11.2" cy="36.8" r="2.6" fill="#222"/><circle cx="36.8" cy="36.8" r="2.6" fill="#222"/><circle cx="24" cy="24" r="7" fill="none" stroke="#c0392b" stroke-width="1.2"/><path d="M15 34.5h18M15 13.5h18" stroke="#8b5a2b" stroke-width="1"/><circle cx="24" cy="24" r="2.2" fill="#e74c3c"/><circle cx="19.6" cy="22" r="2.1" fill="#fff"/><circle cx="28.4" cy="22" r="2.1" fill="#333"/><circle cx="21.6" cy="28" r="2.1" fill="#333"/><circle cx="26.6" cy="28" r="2.1" fill="#fff"/>',
@@ -1098,6 +1152,21 @@ const ICONS = {
 };
 
 const $ = id => document.getElementById(id);
+// the Host line is shown only when the host differs from the venue community
+const hostKey = x => x.split(",")[0].toLowerCase().replace(/^noel\s+/, "").replace(/[^a-z]/g, "");
+const hostIsVenue = e => hostKey(e.venue) === hostKey(e.host);
+
+/* ---------- LIVE indicator ----------
+   An event is LIVE between live[0] and live[1] (24h, Indian time) on its date.
+   Add ?livetest=2026-10-31T15:10 to the page address to preview. */
+const istNow = () => {
+  const t = new URLSearchParams(location.search).get("livetest");
+  if (t && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(t)) return { date: t.slice(0, 10), min: +t.slice(11, 13) * 60 + +t.slice(14, 16) };
+  const d = new Date(Date.now() + (330 + new Date().getTimezoneOffset()) * 60000), p = n => String(n).padStart(2, "0");
+  return { date: `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`, min: d.getHours() * 60 + d.getMinutes() };
+};
+const hm = s => { const [a, b] = s.split(":").map(Number); return a * 60 + b; };
+const isLive = e => { if (!e.live) return false; const n = istNow(); return n.date === e.date && n.min >= hm(e.live[0]) && n.min < hm(e.live[1]); };
 const evId = e => "ev-" + e.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const parse = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
 const fmtDate = s => parse(s).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
@@ -1161,7 +1230,8 @@ function render() {
 
   $("list").innerHTML = Object.keys(byDate).sort().map(d => {
     const past = d < todayISO;
-    const badge = d === todayISO ? `<span class="badge today">Today</span>`
+    const badge = byDate[d].some(isLive) ? `<span class="badge live"><i></i>Happening now</span>`
+      : d === todayISO ? `<span class="badge today">Today</span>`
       : d === nextDate ? `<span class="badge next">Next up</span>`
       : past ? `<span class="badge done">Completed</span>` : "";
     return `<section class="day${past ? " past" : ""}">
@@ -1173,22 +1243,22 @@ function render() {
 
 function card(e, age, g, personal) {
   const cls = c => !personal ? "" : (fits(c, age, g) ? "match" : "nomatch");
-  return `<article class="card${e.nonCompetitive ? " nc" : ""}" id="${evId(e)}">
+  const live = isLive(e);
+  return `<article class="card${e.nonCompetitive ? " nc" : ""}${live ? " is-live" : ""}" id="${evId(e)}">
     <div class="card-head">
       ${ICONS[e.name] ? `<span class="card-ico"><svg viewBox="0 0 48 48" stroke="#2d2d2d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[e.name]}</svg></span>` : ""}
       <div>
-        <h3>${esc(e.name)}${e.nonCompetitive ? " **" : ""}</h3>
+        ${live ? `<span class="live-badge"><i></i>LIVE NOW</span>` : ""}<h3>${esc(e.name)}${e.nonCompetitive ? " **" : ""}</h3>
         ${e.nonCompetitive ? `<div class="note">Not a competition item – no points awarded</div>` : ""}
       </div>
     </div>
     <ul class="cats">${e.categories.map(c => `<li class="${cls(c)}">${esc(c.t)}</li>`).join("")}</ul>
-    <div class="tags">${e.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div>
     <dl>
       <dt>Entries</dt><dd>${esc(e.participants)}</dd>
       <dt>Venue</dt><dd>${esc(e.venue)}<br><a class="map" href="${esc(mapUrl(e.venue))}" target="_blank" rel="noopener">📍 Open in Google Maps</a></dd>
       ${e.time ? `<dt>Time</dt><dd><strong>${esc(e.time)}</strong></dd>` : ""}
       ${e.report ? `<dt>Reporting</dt><dd><strong>${esc(e.report)}</strong></dd>` : ""}
-      <dt>Host</dt><dd>${esc(e.host)}</dd>
+      ${hostIsVenue(e) ? "" : `<dt>Host</dt><dd>${esc(e.host)}</dd>`}
       <dt>Coordinator</dt><dd>${esc(e.coord)} · ${esc(e.phone)}</dd>
       <dt>More info</dt><dd class="info-links">${(e.info || []).map(([l, id]) => `<a href="#${id}" data-open="${id}">${esc(l)}</a>`).join("")}<a href="#general-rules" data-open="general-rules">General Rules</a></dd>
     </dl>
@@ -1223,12 +1293,14 @@ render();
 const SOCIAL = [
   ["instagram", "Instagram", "https://www.instagram.com/noelbuilders/"],
   ["facebook",  "Facebook",  "https://www.facebook.com/noelprojects/"],
+  ["youtube",   "YouTube",   "https://www.youtube.com/@noelprojects47"],
   ["linkedin",  "LinkedIn",  "https://www.linkedin.com/company/noel-villas-and-apartments"],
   ["website",   "Website",   "https://www.noelprojects.com"]
 ];
 const SOC_SVG = {
   instagram: '<rect x="3" y="3" width="18" height="18" rx="5.2" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="#fff" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.25" fill="#fff"/>',
   facebook: '<path fill="#fff" d="M13.4 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.7v3h2.6V21z"/>',
+  youtube: '<rect x="2.5" y="5.5" width="19" height="13" rx="3.6" fill="none" stroke="#fff" stroke-width="1.9"/><path d="M10 9.2v5.6l4.8-2.8z" fill="#fff"/>',
   linkedin: '<circle cx="6.6" cy="6.4" r="1.9" fill="#fff"/><rect x="4.9" y="9.2" width="3.4" height="10.3" fill="#fff"/><path fill="#fff" d="M10.6 9.2h3.3v1.4c.5-.9 1.6-1.7 3.3-1.7 3.4 0 4 2.2 4 5.1v5.5h-3.4v-4.9c0-1.2 0-2.7-1.6-2.7s-1.9 1.3-1.9 2.6v5h-3.4z"/>',
   website: '<circle cx="12" cy="12" r="8.5" fill="none" stroke="#fff" stroke-width="1.8"/><ellipse cx="12" cy="12" rx="3.7" ry="8.5" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M3.5 12h17M5 7.5h14M5 16.5h14" stroke="#fff" stroke-width="1.4"/>'
 };
@@ -1239,18 +1311,21 @@ document.getElementById("socialLinks").innerHTML = SOCIAL.filter(([, , url]) => 
 (function buildStrip() {
   const track = document.getElementById("evTrack");
   if (!track) return;
-  // upcoming events first (by date), completed events at the end
+  // live events first, then upcoming (by date), completed events at the end
   const past = e => e.date < todayISO ? 1 : 0;
-  const list = EVENTS.map((e, i) => [e, i]).sort((a, b) => past(a[0]) - past(b[0]) || a[0].date.localeCompare(b[0].date) || a[1] - b[1]).map(x => x[0]);
+  window.fillStrip = () => {
+  const list = EVENTS.map((e, i) => [e, i]).sort((a, b) => (isLive(b[0]) - isLive(a[0])) || past(a[0]) - past(b[0]) || a[0].date.localeCompare(b[0].date) || a[1] - b[1]).map(x => x[0]);
   const photosTile = `<a class="ev ev-photos" href="https://www.noelprojects.com/gallery" target="_blank" rel="noopener" title="View photos">
       <span class="tile"><img src="data:image/png;base64,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" alt="" width="40" height="40"></span><span class="nm">Photos</span></a><span class="ev-div" aria-hidden="true"></span>`;
   track.innerHTML = photosTile + list.map(e => {
     const svg = ICONS[e.name] || '<circle cx="24" cy="24" r="16" fill="#ddd"/>';
     const when = parse(e.date).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
-    return `<a class="ev${e.date < todayISO ? " done" : ""}" href="#${evId(e)}" data-ev="${evId(e)}" title="${esc(e.name)} · ${when}">
-      <span class="tile"><svg viewBox="0 0 48 48" stroke="#2d2d2d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${svg}</svg></span>
-      <span class="nm">${esc(e.name.replace(" – Noel Fest 2026", "").replace(/\s*(\(Doubles\)|– Doubles)$/, ""))}</span></a>`;
+    return `<a class="ev${e.date < todayISO ? " done" : ""}${isLive(e) ? " live" : ""}" href="#${evId(e)}" data-ev="${evId(e)}" title="${esc(e.name)} · ${when}">
+      <span class="tile"><svg viewBox="0 0 48 48" stroke="#2d2d2d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${svg}</svg>${isLive(e) ? `<b class="live-tag">LIVE</b>` : ""}</span>
+      <span class="nm">${esc(e.name.replace(" & Retro Theme Performance", "").replace(/\s*(\(Doubles\)|– Doubles)$/, ""))}</span></a>`;
   }).join("");
+  };
+  fillStrip();
 
   const prev = document.querySelector(".ev-arrow.prev"), next = document.querySelector(".ev-arrow.next");
   const upd = () => { prev.disabled = track.scrollLeft < 4; next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4; };
@@ -1276,10 +1351,13 @@ document.getElementById("socialLinks").innerHTML = SOCIAL.filter(([, , url]) => 
   });
 })();
 
-/* ---------- Match fixtures (Carroms, 8 Ball Pool) ---------- */
+/* ---------- Match fixtures (Carroms, 8 Ball Pool) ----------
+   One data set drives both views: the bracket (Fixtures) and the time-ordered Match Schedule.
+   rows: [match no, round, start, end, board/table, team A, team B, format] */
 const FIXTURE_TABLES = {
  "carrom": {
-  "note": "Saturday, 31 October 2026 · 4 boards · Carrom starts 3:00 pm",
+  "date": "2026-10-31",
+  "note": "Saturday, 31 October 2026 · 4 boards · starts 3:00 pm",
   "label": "Board",
   "cats": [
    {
@@ -1288,123 +1366,123 @@ const FIXTURE_TABLES = {
     "byes": "Arcadia - Jake & George, Tall Terrace - Team 1, Touchstone - Kurien Thomas Ambat & Thomas T Ambat, Noel Signature - Team 1",
     "rows": [
      [
-      "C2",
+      "C3",
       "Round of 16",
       "3:00 pm",
       "3:15 pm",
-      "Board 2",
-      "Noel Serenia - Team 1",
-      "Noel Poetry - Kenneth & Arjun",
-      "Single game (12 min)"
-     ],
-     [
-      "C4",
-      "Round of 16",
-      "3:05 pm",
-      "3:20 pm",
-      "Board 4",
+      "Board 3",
       "Noel Serenia - Team 2",
       "Noel Greenature - Team 1",
       "Single game (12 min)"
      ],
      [
-      "C7",
+      "C6",
       "Round of 16",
-      "3:20 pm",
-      "3:35 pm",
-      "Board 3",
+      "3:15 pm",
+      "3:30 pm",
+      "Board 2",
       "Noel Ecoden - Team 1",
       "Arcadia - Ephraim & Ousu",
       "Single game (12 min)"
      ],
      [
-      "C8",
+      "C7",
       "Round of 16",
-      "3:20 pm",
-      "3:35 pm",
-      "Board 4",
+      "3:15 pm",
+      "3:30 pm",
+      "Board 3",
       "Noel Ecoden - Team 2",
       "Noel Poetry - Nividth & George",
       "Single game (12 min)"
      ],
      [
-      "C10",
+      "C14",
+      "Round of 16",
+      "4:40 pm",
+      "4:55 pm",
+      "Board 4",
+      "Noel Serenia - Team 1",
+      "Noel Poetry - Kenneth & Arjun",
+      "Single game (12 min)"
+     ],
+     [
+      "C9",
       "Quarter-final",
-      "3:35 pm",
-      "3:50 pm",
-      "Board 2",
-      "Winner of C7",
+      "3:30 pm",
+      "3:45 pm",
+      "Board 1",
+      "Winner of C6",
       "Tall Terrace - Team 1",
       "Single game (12 min)"
      ],
      [
-      "C11",
+      "C10",
       "Quarter-final",
-      "3:35 pm",
-      "3:50 pm",
-      "Board 3",
-      "Winner of C8",
+      "3:30 pm",
+      "3:45 pm",
+      "Board 2",
+      "Winner of C7",
       "Arcadia - Jake & George",
       "Single game (12 min)"
      ],
      [
-      "C14",
+      "C13",
       "Quarter-final",
       "4:40 pm",
       "4:55 pm",
       "Board 3",
-      "Winner of C2",
+      "Winner of C3",
+      "Noel Signature - Team 1",
+      "Single game (12 min)"
+     ],
+     [
+      "C16",
+      "Quarter-final",
+      "5:25 pm",
+      "5:40 pm",
+      "Board 2",
+      "Winner of C14",
       "Touchstone - Kurien Thomas Ambat & Thomas T Ambat",
       "Single game (12 min)"
      ],
      [
       "C15",
-      "Quarter-final",
-      "4:40 pm",
-      "4:55 pm",
-      "Board 4",
-      "Winner of C4",
-      "Noel Signature - Team 1",
-      "Single game (12 min)"
-     ],
-     [
-      "C18",
       "Semi-final",
-      "6:05 pm",
-      "6:45 pm",
-      "Board 3",
+      "4:55 pm",
+      "5:35 pm",
+      "Board 1",
       "Winner of C10",
-      "Winner of C14",
+      "Winner of C13",
       "Best of 3 (12 min/game)"
      ],
      [
-      "C19",
+      "C17",
       "Semi-final",
-      "6:05 pm",
-      "6:45 pm",
-      "Board 4",
-      "Winner of C11",
-      "Winner of C15",
+      "5:40 pm",
+      "6:20 pm",
+      "Board 1",
+      "Winner of C9",
+      "Winner of C16",
       "Best of 3 (12 min/game)"
      ],
      [
       "C24",
       "3rd place",
-      "6:45 pm",
-      "7:00 pm",
+      "6:20 pm",
+      "6:35 pm",
       "Board 3",
-      "Loser of C18",
-      "Loser of C19",
+      "Loser of C17",
+      "Loser of C15",
       "Single game (12 min)"
      ],
      [
       "C25",
       "Final",
-      "6:45 pm",
-      "7:25 pm",
-      "Board 4",
-      "Winner of C18",
-      "Winner of C19",
+      "7:15 pm",
+      "7:55 pm",
+      "Board 1",
+      "Winner of C17",
+      "Winner of C15",
       "Best of 3 (12 min/game)"
      ]
     ]
@@ -1420,18 +1498,28 @@ const FIXTURE_TABLES = {
       "3:00 pm",
       "3:15 pm",
       "Board 1",
-      "Noel Serenia - Team 1",
-      "Noel Poetry - Team 1",
+      "Noel Greenature - Team 1",
+      "Arcadia - Manoj & Vivek",
       "Single game (12 min)"
      ],
      [
-      "C3",
+      "C2",
+      "Round of 16",
+      "3:00 pm",
+      "3:15 pm",
+      "Board 2",
+      "Noel Serenia - Team 2",
+      "Noel Greenature - Team 2",
+      "Single game (12 min)"
+     ],
+     [
+      "C4",
       "Round of 16",
       "3:05 pm",
       "3:20 pm",
-      "Board 3",
-      "Noel Serenia - Team 2",
-      "Noel Greenature - Team 2",
+      "Board 4",
+      "Noel Serenia - Team 1",
+      "Noel Poetry - Team 1",
       "Single game (12 min)"
      ],
      [
@@ -1440,48 +1528,48 @@ const FIXTURE_TABLES = {
       "3:15 pm",
       "3:30 pm",
       "Board 1",
-      "Noel Ecoden - Team 1",
-      "Noel Earth Song - Vijayakumar Pillai & Paul Abraham",
-      "Single game (12 min)"
-     ],
-     [
-      "C6",
-      "Round of 16",
-      "3:15 pm",
-      "3:30 pm",
-      "Board 2",
       "Noel Ecoden - Team 2",
       "Touchstone - Swathy & Tinza",
       "Single game (12 min)"
      ],
      [
-      "C9",
+      "C8",
       "Round of 16",
-      "3:30 pm",
-      "3:45 pm",
-      "Board 1",
-      "Noel Greenature - Team 1",
-      "Arcadia - Manoj & Vivek",
+      "3:20 pm",
+      "3:35 pm",
+      "Board 4",
+      "Noel Ecoden - Team 1",
+      "Noel Earth Song - Vijayakumar Pillai & Paul Abraham",
       "Single game (12 min)"
      ],
      [
-      "C16",
+      "C18",
       "Round of 16",
+      "5:50 pm",
       "6:05 pm",
-      "6:20 pm",
-      "Board 1",
+      "Board 2",
       "Tall Terrace - Team 1",
       "Noel Ecotat - Rahul & Delsa",
       "Single game (12 min)"
      ],
      [
-      "C17",
+      "C19",
       "Round of 16",
+      "5:50 pm",
       "6:05 pm",
-      "6:20 pm",
-      "Board 2",
+      "Board 3",
       "Tall Terrace - Team 2",
       "Noel Ivy Creek - Manoj Kumar & Rajesh",
+      "Single game (12 min)"
+     ],
+     [
+      "C11",
+      "Quarter-final",
+      "4:40 pm",
+      "4:55 pm",
+      "Board 1",
+      "Winner of C4",
+      "Winner of C1",
       "Single game (12 min)"
      ],
      [
@@ -1489,76 +1577,66 @@ const FIXTURE_TABLES = {
       "Quarter-final",
       "4:40 pm",
       "4:55 pm",
-      "Board 1",
-      "Winner of C1",
-      "Winner of C9",
-      "Single game (12 min)"
-     ],
-     [
-      "C13",
-      "Quarter-final",
-      "4:40 pm",
-      "4:55 pm",
       "Board 2",
-      "Winner of C3",
+      "Winner of C2",
       "Arcadia - Leena & Brill",
       "Single game (12 min)"
      ],
      [
       "C20",
       "Quarter-final",
+      "6:05 pm",
       "6:20 pm",
-      "6:35 pm",
-      "Board 1",
-      "Winner of C16",
-      "Winner of C5",
+      "Board 2",
+      "Winner of C18",
+      "Winner of C8",
       "Single game (12 min)"
      ],
      [
       "C21",
       "Quarter-final",
+      "6:05 pm",
       "6:20 pm",
-      "6:35 pm",
-      "Board 2",
-      "Winner of C17",
-      "Winner of C6",
+      "Board 3",
+      "Winner of C19",
+      "Winner of C5",
       "Single game (12 min)"
      ],
      [
       "C22",
       "Semi-final",
-      "6:35 pm",
-      "7:15 pm",
-      "Board 1",
+      "6:20 pm",
+      "7:00 pm",
+      "Board 2",
       "Winner of C20",
-      "Winner of C12",
+      "Winner of C11",
       "Best of 3 (12 min/game)"
      ],
      [
       "C23",
       "Semi-final",
-      "6:35 pm",
-      "7:15 pm",
-      "Board 2",
+      "6:20 pm",
+      "7:00 pm",
+      "Board 3",
       "Winner of C21",
-      "Winner of C13",
+      "Winner of C12",
       "Best of 3 (12 min/game)"
      ],
      [
-      "C26",
+      "C27",
       "3rd place",
-      "7:15 pm",
       "7:30 pm",
-      "Board 1",
+      "7:45 pm",
+      "Board 3",
       "Loser of C22",
       "Loser of C23",
       "Single game (12 min)"
      ],
      [
-      "C27",
+      "C26",
       "Final",
-      "7:15 pm",
-      "7:55 pm",
+      "7:20 pm",
+      "8:00 pm",
       "Board 2",
       "Winner of C22",
       "Winner of C23",
@@ -1569,7 +1647,8 @@ const FIXTURE_TABLES = {
   ]
  },
  "pool": {
-  "note": "Saturday, 31 October 2026 · 1 pool table · 8 Ball Pool starts 2:05 pm",
+  "date": "2026-10-31",
+  "note": "Saturday, 31 October 2026 · 1 pool table · starts 2:05 pm",
   "label": "Table",
   "cats": [
    {
@@ -1588,13 +1667,13 @@ const FIXTURE_TABLES = {
       "Single game (12 min)"
      ],
      [
-      "P2",
+      "P1",
       "Round of 16",
+      "2:05 pm",
       "2:19 pm",
-      "2:33 pm",
       "Pool Table",
-      "Noel Ecoden - Mathew & Venu",
-      "Noel Poetry - Team 1",
+      "Noel Ecoden - Team 2",
+      "Fragranz - Deepak & Viraj",
       "Single game (12 min)"
      ],
      [
@@ -1603,8 +1682,8 @@ const FIXTURE_TABLES = {
       "2:33 pm",
       "2:47 pm",
       "Pool Table",
-      "Noel Ecoden - Team 2",
-      "Fragranz - Deepak & Viraj",
+      "Arcadia - Steve & Abel",
+      "Noel Greenature - Team 2",
       "Single game (12 min)"
      ],
      [
@@ -1613,8 +1692,8 @@ const FIXTURE_TABLES = {
       "2:47 pm",
       "3:01 pm",
       "Pool Table",
-      "Arcadia - Steve & Abel",
-      "Noel Greenature - Team 2",
+      "Noel Ecoden - Mathew & Venu",
+      "Noel Poetry - Team 1",
       "Single game (12 min)"
      ],
      [
@@ -1648,6 +1727,16 @@ const FIXTURE_TABLES = {
       "Single game (12 min)"
      ],
      [
+      "P12",
+      "Round of 16",
+      "4:39 pm",
+      "4:53 pm",
+      "Pool Table",
+      "Tall Terrace - Team 1",
+      "Fragranz - Paul & Rohith",
+      "Single game (12 min)"
+     ],
+     [
       "P13",
       "Round of 16",
       "4:53 pm",
@@ -1658,23 +1747,13 @@ const FIXTURE_TABLES = {
       "Single game (12 min)"
      ],
      [
-      "P14",
-      "Round of 16",
-      "5:07 pm",
-      "5:21 pm",
-      "Pool Table",
-      "Tall Terrace - Team 1",
-      "Fragranz - Paul & Rohith",
-      "Single game (12 min)"
-     ],
-     [
       "P10",
       "Quarter-final",
       "4:11 pm",
       "4:25 pm",
       "Pool Table",
-      "Winner of P7",
-      "Winner of P9",
+      "Winner of P8",
+      "Winner of P3",
       "Single game (12 min)"
      ],
      [
@@ -1683,18 +1762,18 @@ const FIXTURE_TABLES = {
       "4:25 pm",
       "4:39 pm",
       "Pool Table",
-      "Winner of P8",
-      "Winner of P4",
+      "Winner of P7",
+      "Winner of P9",
       "Single game (12 min)"
      ],
      [
-      "P15",
+      "P14",
       "Quarter-final",
+      "5:07 pm",
       "5:21 pm",
-      "5:35 pm",
       "Pool Table",
-      "Winner of P14",
-      "Winner of P2",
+      "Winner of P12",
+      "Winner of P4",
       "Single game (12 min)"
      ],
      [
@@ -1704,61 +1783,61 @@ const FIXTURE_TABLES = {
       "5:49 pm",
       "Pool Table",
       "Winner of P13",
-      "Winner of P3",
-      "Single game (12 min)"
-     ],
-     [
-      "P17",
-      "Semi-final",
-      "6:05 pm",
-      "6:19 pm",
-      "Pool Table",
-      "Winner of P16",
-      "Winner of P11",
+      "Winner of P1",
       "Single game (12 min)"
      ],
      [
       "P18",
       "Semi-final",
-      "6:19 pm",
-      "6:33 pm",
+      "6:03 pm",
+      "6:17 pm",
       "Pool Table",
-      "Winner of P15",
+      "Winner of P16",
       "Winner of P10",
       "Single game (12 min)"
      ],
      [
-      "P21",
-      "3rd place",
-      "7:01 pm",
-      "7:15 pm",
+      "P19",
+      "Semi-final",
+      "6:17 pm",
+      "6:31 pm",
       "Pool Table",
-      "Loser of P18",
-      "Loser of P17",
+      "Winner of P14",
+      "Winner of P11",
       "Single game (12 min)"
      ],
      [
-      "P24",
-      "Final",
+      "P22",
+      "3rd place",
+      "7:29 pm",
       "7:43 pm",
-      "7:57 pm",
       "Pool Table",
+      "Loser of P19",
+      "Loser of P18",
+      "Single game (12 min)"
+     ],
+     [
+      "P25",
+      "Final",
+      "8:11 pm",
+      "8:25 pm",
+      "Pool Table",
+      "Winner of P19",
       "Winner of P18",
-      "Winner of P17",
       "Single game (12 min)"
      ]
     ]
    },
    {
     "cat": "Women",
-    "teams": 7,
-    "byes": "Tall Terrace - Team 2",
+    "teams": 8,
+    "byes": "",
     "rows": [
      [
-      "P1",
+      "P2",
       "Quarter-final",
-      "2:05 pm",
       "2:19 pm",
+      "2:33 pm",
       "Pool Table",
       "Noel Ecoden - Team 2",
       "Noel Serenia - Team 1",
@@ -1775,53 +1854,63 @@ const FIXTURE_TABLES = {
       "Single game (12 min)"
      ],
      [
-      "P12",
+      "P15",
       "Quarter-final",
-      "4:39 pm",
-      "4:53 pm",
+      "5:21 pm",
+      "5:35 pm",
+      "Pool Table",
+      "Tall Terrace - Team 2",
+      "Arcadia - Leen & Jincy",
+      "Single game (12 min)"
+     ],
+     [
+      "P20",
+      "Quarter-final",
+      "6:31 pm",
+      "6:45 pm",
       "Pool Table",
       "Tall Terrace - Team 1",
       "Fragranz - Priya & Rosemary",
       "Single game (12 min)"
      ],
      [
-      "P19",
+      "P17",
       "Semi-final",
-      "6:33 pm",
-      "6:47 pm",
+      "5:49 pm",
+      "6:03 pm",
       "Pool Table",
-      "Winner of P5",
-      "Winner of P12",
+      "Winner of P2",
+      "Winner of P15",
       "Single game (12 min)"
      ],
      [
-      "P20",
+      "P21",
       "Semi-final",
-      "6:47 pm",
-      "7:01 pm",
-      "Pool Table",
-      "Winner of P1",
-      "Tall Terrace - Team 2",
-      "Single game (12 min)"
-     ],
-     [
-      "P22",
-      "3rd place",
       "7:15 pm",
       "7:29 pm",
       "Pool Table",
-      "Loser of P19",
-      "Loser of P20",
+      "Winner of P5",
+      "Winner of P20",
       "Single game (12 min)"
      ],
      [
       "P23",
-      "Final",
-      "7:29 pm",
+      "3rd place",
       "7:43 pm",
+      "7:57 pm",
       "Pool Table",
-      "Winner of P19",
-      "Winner of P20",
+      "Loser of P21",
+      "Loser of P17",
+      "Single game (12 min)"
+     ],
+     [
+      "P24",
+      "Final",
+      "7:57 pm",
+      "8:11 pm",
+      "Pool Table",
+      "Winner of P21",
+      "Winner of P17",
       "Single game (12 min)"
      ]
     ]
@@ -1829,36 +1918,86 @@ const FIXTURE_TABLES = {
   ]
  }
 };
-(function renderFixtures() {
-  const tbd = t => /^(Winner|Loser) of /.test(t);
-  const team = t => `<span class="${tbd(t) ? "tbd" : "tm"}">${esc(t)}</span>`;
-  document.querySelectorAll("[data-fx]").forEach(box => {
-    const F = FIXTURE_TABLES[box.dataset.fx]; if (!F) return;
-    const showBoard = F.cats.some(c => new Set(c.rows.map(r => r[4])).size > 1);
-    box.innerHTML = `<p class="sched-note">${esc(F.note)}</p>
-      <div class="fx-find"><input type="search" placeholder="Find your team or association…" aria-label="Find your team"></div>` +
-      F.cats.map(c => `<div class="fx-cat">
-        <h4>${esc(c.cat)} <span class="fx-count">${c.teams} teams</span></h4>
-        <div class="table-wrap"><table class="fx-table${showBoard ? "" : " noboard"}">
-          <thead><tr><th>Match</th><th>Round</th><th>Time</th>${showBoard ? `<th>${F.label}</th>` : ""}<th>Teams</th><th>Format</th></tr></thead>
-          <tbody>${c.rows.map(([no, rd, st, en, bd, a, b, fm]) => `<tr class="${rd === "Final" ? "final" : ""}" data-q="${esc((a + " " + b + " " + no).toLowerCase())}">
-            <td class="td-no">${esc(no)}</td><td class="td-round">${esc(rd)}</td><td class="td-time">${esc(st)} – ${esc(en)}</td>
-            ${showBoard ? `<td class="td-board">${esc(bd)}</td>` : ""}
-            <td class="td-mu">${team(a)} <em>vs</em> ${team(b)}</td><td class="td-fmt">${esc(fm)}</td></tr>`).join("")}</tbody>
-        </table></div>
-        ${c.byes ? `<p class="fx-byes"><strong>Byes to next round:</strong> ${esc(c.byes)}</p>` : ""}
-      </div>`).join("") + `<p class="fx-none" hidden>No matches found for that name.</p>`;
-    const inp = box.querySelector(".fx-find input");
-    inp.addEventListener("input", () => {
-      const q = inp.value.trim().toLowerCase(); let any = false;
-      box.querySelectorAll(".fx-cat").forEach(cat => {
-        let n = 0;
-        cat.querySelectorAll("tbody tr").forEach(tr => { const ok = !q || tr.dataset.q.includes(q); tr.hidden = !ok; if (ok) n++; });
-        cat.hidden = !n; if (n) any = true;
+const isRef = t => /^(Winner|Loser) of /.test(t);
+const t2m = t => { const [hm, ap] = t.split(" "); let [a, b] = hm.split(":").map(Number); if (ap === "pm" && a !== 12) a += 12; return a * 60 + b; };
+const shortRound = r => ({ "Round of 16": "R16", "Quarter-final": "QF", "Semi-final": "SF", "Preliminary": "Prelim", "3rd place": "3rd place", "Final": "Final" })[r] || r;
+
+/* Bracket (Fixtures) */
+function bracketNode(byId, no) {
+  const r = byId[no]; if (!r) return "";
+  const [, rd, st, en, bd, a, b, fm] = r;
+  const kids = [a, b].filter(s => /^Winner of /.test(s)).map(s => bracketNode(byId, s.slice(10)));
+  const side = s => `<div class="bk-team${isRef(s) ? " tbd" : ""}">${esc(s)}</div>`;
+  return `<div class="bn">${kids.length ? `<div class="kids">${kids.join("")}</div>` : ""}
+    <div class="mbox${rd === "Final" ? " final" : ""}" data-no="${no}">
+      <div class="mh"><b>${esc(no)}</b><span>${esc(shortRound(rd))}</span></div>
+      ${side(a)}${side(b)}
+      <div class="mt">${esc(st.replace(" pm", ""))}–${esc(en)}${bd !== "Pool Table" ? " · " + esc(bd.replace("Board ", "B")) : ""}${/Best of 3/.test(fm) ? " · Bo3" : ""}</div>
+    </div></div>`;
+}
+document.querySelectorAll("[data-bracket]").forEach(box => {
+  const F = FIXTURE_TABLES[box.dataset.bracket]; if (!F) return;
+  box.innerHTML = `<p class="sched-note">${esc(F.note)} · <span class="bk-hint">Swipe or scroll sideways to follow each round</span></p>` +
+    F.cats.map(c => {
+      const byId = Object.fromEntries(c.rows.map(r => [r[0], r]));
+      const fin = c.rows.find(r => r[1] === "Final"), third = c.rows.find(r => r[1] === "3rd place");
+      return `<div class="bk-cat"><h4>${esc(c.cat)} <span class="fx-count">${c.teams} teams</span></h4>
+        <div class="bk-scroll"><div class="bk-tree">${bracketNode(byId, fin[0])}</div></div>
+        ${third ? `<div class="bk-third"><b>${esc(third[0])} · 3rd place</b> ${esc(third[5])} <em>vs</em> ${esc(third[6])} <span>${esc(third[2])} – ${esc(third[3])}${third[4] !== "Pool Table" ? " · " + esc(third[4]) : ""}</span></div>` : ""}
+        ${c.byes ? `<p class="fx-byes"><strong>Byes to the quarter-finals:</strong> ${esc(c.byes)}</p>` : ""}</div>`;
+    }).join("");
+});
+
+/* Match Schedule (time-ordered, all categories) */
+function renderSchedules() {
+  document.querySelectorAll("[data-fxsched]").forEach(box => {
+    const F = FIXTURE_TABLES[box.dataset.fxsched]; if (!F) return;
+    const rows = F.cats.flatMap(c => c.rows.map(r => ({ cat: c.cat, r }))).sort((x, y) => t2m(x.r[2]) - t2m(y.r[2]) || x.r[4].localeCompare(y.r[4]));
+    const showBoard = new Set(rows.map(x => x.r[4])).size > 1;
+    const n = istNow(), today = n.date === F.date;
+    const status = {}; // per board: the match now on, and the next one
+    if (today) {
+      const boards = [...new Set(rows.map(x => x.r[4]))];
+      boards.forEach(bd => {
+        const list = rows.filter(x => x.r[4] === bd);
+        const nowR = list.find(x => n.min >= t2m(x.r[2]) && n.min < t2m(x.r[3]));
+        const nextR = list.find(x => t2m(x.r[2]) > n.min);
+        if (nowR) status[nowR.r[0]] = "now";
+        if (nextR) status[nextR.r[0]] = "next";
       });
+    }
+    const keep = box.querySelector(".fx-find input"), q0 = keep ? keep.value : "", cat0 = (box.querySelector(".chip.on") || {}).dataset?.cat || "";
+    const team = t => `<span class="${isRef(t) ? "tbd" : "tm"}">${esc(t)}</span>`;
+    box.innerHTML = `<p class="sched-note">${esc(F.note)}</p>
+      <div class="chips">${["", ...F.cats.map(c => c.cat)].map(c => `<button type="button" class="chip${c === cat0 ? " on" : ""}" data-cat="${esc(c)}">${c ? esc(c) : "All"}</button>`).join("")}</div>
+      <div class="fx-find"><input type="search" placeholder="Find your team or association…" aria-label="Find your team" value="${esc(q0)}"></div>
+      <div class="table-wrap"><table class="fx-table sched-table${showBoard ? "" : " noboard"}">
+        <thead><tr><th>Time</th>${showBoard ? `<th>${F.label}</th>` : ""}<th>Match</th><th>Category · Round</th><th>Teams</th><th>Format</th></tr></thead>
+        <tbody>${rows.map(({ cat, r: [no, rd, st, en, bd, a, b, fm] }) => `<tr class="${rd === "Final" ? "final" : ""}${status[no] ? " st-" + status[no] : ""}" data-cat="${esc(cat)}" data-q="${esc((a + " " + b + " " + no + " " + cat).toLowerCase())}">
+          <td class="td-time">${esc(st)} – ${esc(en)}</td>${showBoard ? `<td class="td-board">${esc(bd)}</td>` : ""}
+          <td class="td-no">${esc(no)}${status[no] === "now" ? ` <span class="st-badge now">● Now</span>` : status[no] === "next" ? ` <span class="st-badge next">Next</span>` : ""}</td>
+          <td class="td-round">${esc(cat)} · ${esc(shortRound(rd))}</td>
+          <td class="td-mu">${team(a)} <em>vs</em> ${team(b)}</td><td class="td-fmt">${esc(fm)}</td></tr>`).join("")}</tbody>
+      </table></div><p class="fx-none" hidden>No matches found.</p>`;
+    const inp = box.querySelector(".fx-find input");
+    const apply = () => {
+      const q = inp.value.trim().toLowerCase(), cat = (box.querySelector(".chip.on") || {}).dataset.cat || ""; let any = false;
+      box.querySelectorAll("tbody tr").forEach(tr => { const ok = (!cat || tr.dataset.cat === cat) && (!q || tr.dataset.q.includes(q)); tr.hidden = !ok; if (ok) any = true; });
       box.querySelector(".fx-none").hidden = any;
-    });
+    };
+    inp.addEventListener("input", apply);
+    box.querySelector(".chips").addEventListener("click", ev => { const c = ev.target.closest(".chip"); if (!c) return; box.querySelectorAll(".chip").forEach(x => x.classList.toggle("on", x === c)); apply(); });
+    apply();
   });
+}
+renderSchedules();
+setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the day
+
+/* Re-check every 30 seconds; redraw only when an event goes live or ends */
+(function liveTicker() {
+  const sig = () => EVENTS.filter(isLive).map(e => e.name).join("|");
+  let last = sig();
+  setInterval(() => { const s = sig(); if (s !== last) { last = s; render(); fillStrip(); } }, 30000);
 })();
 
 /* ---------- Fixtures (Additional Information) ---------- */
