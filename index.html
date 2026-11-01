@@ -2057,10 +2057,10 @@ setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the
 /* ---------- Results ticker ----------
    Add results here. Each result shows in the ticker for 7 days after its date. */
 const RESULTS = [
-  { date: "2026-10-31", event: "Carroms (Doubles)", cat: "Carroms – Under 18",    gold: "Ecoden", silver: "Ecoden", bronze: "Serenia" },
-  { date: "2026-10-31", event: "Carroms (Doubles)", cat: "Carroms – 18 & Above",  gold: "Ecoden", silver: "Ecoden", bronze: "Serenia" },
-  { date: "2026-10-31", event: "8 Ball Pool",       cat: "8 Ball Pool – Open",    gold: "Ecoden (Anoop & Sabarish)", silver: "Ecoden (Mathew & Venu)", bronze: "Serenia (Chacko & Thomas)" },
-  { date: "2026-10-31", event: "8 Ball Pool",       cat: "8 Ball Pool – Women",   gold: "Tall Terrace (Nuzrth & Murna)", silver: "Arcadia (Leen & Renu)", bronze: "Ecoden (Sajitha & Alphonsa)" }
+  { date: "2026-10-31", event: "Carroms", cat: "Carroms (Under 18)",    gold: "Ecoden", silver: "Ecoden", bronze: "Serenia" },
+  { date: "2026-10-31", event: "Carroms", cat: "Carroms (18 & Above)",  gold: "Ecoden", silver: "Ecoden", bronze: "Serenia" },
+  { date: "2026-10-31", event: "8 Ball Pool",       cat: "8 Ball Pool (Open)",    gold: "Ecoden (Anoop & Sabarish)", silver: "Ecoden (Mathew & Venu)", bronze: "Serenia (Chacko & Thomas)" },
+  { date: "2026-10-31", event: "8 Ball Pool",       cat: "8 Ball Pool (Women)",   gold: "Tall Terrace (Nusrath & Meera)", silver: "Arcadia (Leen & Renu)", bronze: "Ecoden (Sajitha & Alphonsa)" }
 ];
 function renderResults() {
   const bar = document.getElementById("resultsBar"), track = document.getElementById("rbTrack");
