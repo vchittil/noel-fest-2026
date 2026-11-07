@@ -2327,10 +2327,10 @@ setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the
    Use "ev" to jump to an event card, or "open" to open a section in Additional Information.
    RESULTS: each result also shows in the ticker for 7 days after its date. */
 const ALERTS = [
-  { from: "2026-11-06", until: "2026-11-07T18:00", text: "Chess Round 1 pairings are out", sub: "Sat, 7 Nov · 2:00 PM · Touchstone", open: "chess-pairings" },
-  { from: "2026-11-03", until: "2026-11-03T21:00", text: "Chess registration closes TODAY at 9:00 PM", sub: "Association coordinators only", ev: "Chess" },
-  { from: "2026-11-06", until: "2026-11-14T14:00", text: "Children’s Day (14 Nov) registration is open", sub: "Register from the event cards", ev: "Candy Picking" },
-  { from: "2026-11-03", until: "2026-11-14", text: "Children’s Day (14 Nov) rules updated", sub: "Tap to read", open: "info-candy" }
+  { from: "2026-11-07", until: "2026-11-07T19:00", text: "Chess today: report by 1:45 PM", sub: "Starts 2:00 PM · ends by 7:00 PM · Touchstone", ev: "Chess" },
+  { from: "2026-11-07", until: "2026-11-07T19:00", text: "Limited parking at Touchstone", sub: "Please carpool or take an Uber", ev: "Chess" },
+  { from: "2026-11-06", until: "2026-11-07T14:00", text: "Chess Round 1 pairings are out", sub: "Tap to view", open: "chess-pairings" },
+  { from: "2026-11-03", until: "2026-11-03T21:00", text: "Chess registration closes TODAY at 9:00 PM", sub: "Association coordinators only", ev: "Chess" }
 ];
 const RESULTS = [
   { date: "2026-10-31", event: "Carroms (Doubles)", cat: "Carroms – Under 18",    gold: "Ecoden", silver: "Ecoden", bronze: "Serenia" },
