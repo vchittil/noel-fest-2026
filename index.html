@@ -1325,7 +1325,8 @@ const EVENTS = [
     participants: "One team from each association", venue: "Parkway, Kakkanad", host: "Core Team", coord: "Jai", phone: "95XXX X6660", pk: "gigwlesuhu",
     info: [["Rules & Guidelines", "cricket-rules"]] },
   { date: "2026-11-15", name: "Throw Ball", categories: [OPEN("For Ladies – Open Category", "F")], tags: [T.ladies, T.open],
-    participants: "One team from each association", venue: "Noel Ivy Creek, Chittethukara", host: "Noel Ivycreek", coord: "Manoj", phone: "",
+    participants: "One team from each association", venue: "Noel Ivy Creek, Chittethukara", host: "Noel Ivycreek", time: "3:00 PM", coord: "Manoj", phone: "93XXX X5532", pk: "jtfqdygwfu",
+    reg: { url: "https://docs.google.com/forms/d/e/1FAIpQLSdbSxALwKevn8rk9RvuPizE_ojulo7Uul6cT5G622U2DfAACA/viewform?usp=dialog", closes: "2026-11-15T15:00", who: "One team per association" },
     info: [["Rules & Guidelines", "throwball-rules"]] },
 
   { date: "2026-11-21", name: "Table Tennis – Doubles", categories: RACKET_CATS,
@@ -2330,6 +2331,8 @@ const ALERTS = [
   { from: "2026-11-07", until: "2026-11-07T19:00", text: "Chess today: report by 1:45 PM", sub: "Starts 2:00 PM · ends by 7:00 PM · Touchstone", ev: "Chess" },
   { from: "2026-11-07", until: "2026-11-07T19:00", text: "Limited parking at Touchstone", sub: "Please carpool or take an Uber", ev: "Chess" },
   { from: "2026-11-06", until: "2026-11-07T14:00", text: "Chess Round 1 pairings are out", sub: "Tap to view", open: "chess-pairings" },
+  { from: "2026-11-07T19:00", until: "2026-11-15T15:00", text: "Throw Ball (15 Nov) registration is open", sub: "One team per association", ev: "Throw Ball" },
+  { from: "2026-11-07T19:00", until: "2026-11-14T14:00", text: "Children’s Day (14 Nov) registration is open", sub: "Register from the event cards", ev: "Candy Picking" },
   { from: "2026-11-03", until: "2026-11-03T21:00", text: "Chess registration closes TODAY at 9:00 PM", sub: "Association coordinators only", ev: "Chess" }
 ];
 const RESULTS = [
@@ -2347,7 +2350,9 @@ function renderResults() {
   const recent = SHOW_RESULTS ? RESULTS.filter(r => r.date <= today && today <= addDays(r.date, 7)) : [];
   const now = istNow(), nowMin = now.min;
   const active = ALERTS.filter(a => {
-    if (now.date < a.from) return false;
+    const fd = a.from.slice(0, 10);
+    if (now.date < fd) return false;
+    if (now.date === fd && a.from.length > 10 && nowMin < hm(a.from.slice(11, 16))) return false;
     const d = a.until.slice(0, 10);
     if (now.date < d) return true;
     if (now.date > d) return false;
