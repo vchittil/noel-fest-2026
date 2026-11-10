@@ -917,7 +917,7 @@
           <summary>Rules &amp; Guidelines</summary>
           <div class="acc-body rules">
             <h4>Rules</h4>
-            <ul><li><strong>Medium:</strong> crayons, or oil, water, poster or acrylic paints.</li><li>For 7 years &amp; below, the topic will be given at least <strong>3 days before</strong> the competition.</li><li>For 8–12 years, the topic will be given on the spot.</li><li>Painting paper will be provided by the organisers. Participants may bring a cardboard or exam board to use as a support while painting.</li><li>All other materials (crayons, paints, brushes etc.) must be brought by the participants.</li><li>Pencils may be used for drawing.</li><li>Only participants, organisers and judges will be allowed inside the hall.</li><li>Paintings will be judged and prizes decided by a panel of judges.</li></ul>
+            <ul><li><strong>Medium:</strong> crayons, or oil, water, poster or acrylic paints.</li><li>For 7 years &amp; below, the topic is <strong>‘My Birthday Celebration’</strong>.</li><li>For 8–12 years, the topic will be given on the spot.</li><li>Painting paper will be provided by the organisers. Participants may bring a cardboard or exam board to use as a support while painting.</li><li>All other materials (crayons, paints, brushes etc.) must be brought by the participants.</li><li>Pencils may be used for drawing.</li><li>Only participants, organisers and judges will be allowed inside the hall.</li><li>Paintings will be judged and prizes decided by a panel of judges.</li></ul>
             <h4>Common Rules for Kids' Events</h4>
             <ul><li>No limit on the number of participants from each association.</li><li>Register online using the <strong>Register now</strong> button on the event card – one form covers all Children’s Day events.</li><li>Spot registration is discouraged.</li><li>All participants must report <strong>20 minutes before</strong> their allotted time.</li><li>Please comply with the age restrictions (age as on <strong>1 November 2026</strong>). Age certificates must be shown on request.</li><li>Terms and conditions may be modified at the discretion of the organisers.</li><li>The judges' decision will be final.</li></ul>
             <h4>Association Points</h4>
@@ -1334,7 +1334,8 @@ const EVENTS = [
   { date: "2026-11-14", name: "Candy Picking", live: ["16:00", "17:00"], categories: [C("4 Years & Below – Boys & Girls together", 0, 4), C("5 to 7 Years – Boys & Girls together", 5, 7)], tags: [T.kids, T.open], ...GREEN, reg: KIDREG,
     time: "4:00 PM – 5:00 PM", info: [["Rules & Guidelines", "candy-rules"]] },
   { date: "2026-11-14", name: "Painting", live: ["14:30", "15:30"], categories: [C("7 Years & Below – Boys & Girls together", 0, 7), C("8 to 12 Years – Boys & Girls together", 8, 12)], tags: [T.kids, T.open], ...GREEN, reg: KIDREG,
-    time: "2:30 PM – 3:30 PM", info: [["Rules & Guidelines", "painting-rules"]] },
+    time: "2:30 PM – 3:30 PM", note: "Topic for 7 Years & Below: ‘My Birthday Celebration’. The 8–12 topic will be given on the spot.",
+    info: [["Rules & Guidelines", "painting-rules"]] },
   { date: "2026-11-14", name: "Bucket Throw", categories: [C("7 Years & Below – Boys & Girls together", 0, 7)], tags: [T.kids, T.open], ...GREEN, reg: KIDREG,
     info: [["Rules & Guidelines", "bucket-rules"]] },
   { date: "2026-11-14", name: "Goal (Free Kick)", categories: [C("8 to 12 Years (Boys)", 8, 12, "M"), C("8 to 12 Years (Girls)", 8, 12, "F")], tags: [T.kids, T.boys, T.girls], ...GREEN, reg: KIDREG,
@@ -2363,6 +2364,7 @@ setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the
    Use "ev" to jump to an event card, or "open" to open a section in Additional Information.
    RESULTS: each result also shows in the ticker for 7 days after its date. */
 const ALERTS = [
+  { from: "2026-11-10T12:00", until: "2026-11-14T14:30", text: "Painting (7 & below) topic: ‘My Birthday Celebration’", sub: "Children’s Day, 14 Nov", ev: "Painting" },
   { from: "2026-11-07T19:00", until: "2026-11-08T21:00", text: "Chess 18 & Below winners", sub: "🥇 Aditya Suhas Nair, Ecotat · 🥈 Aravind Pradeepkumar Nair, Ivy Creek · 🥉 Joseph Tom, Tall Terrace", ev: "Chess" },
   { from: "2026-11-07T19:00", until: "2026-11-08T21:00", text: "Chess Above 18 winners", sub: "🥇 Mathew Abraham T., Cloudwalk · 🥈 Suhail Rasheed, Arcadia · 🥉 Manoj Kumar T., Ivy Creek", ev: "Chess" },
   { from: "2026-11-07", until: "2026-11-07T19:00", text: "Chess today: report by 1:45 PM", sub: "Starts 2:00 PM · ends by 7:00 PM · Touchstone", ev: "Chess" },
