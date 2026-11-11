@@ -1094,7 +1094,7 @@
           <summary>Rules &amp; Guidelines</summary>
           <div class="acc-body rules">
             <h4>Entries &amp; Eligibility</h4>
-            <ul><li>Each association may enter 2 teams in the 15 &amp; Below category and one team in every other category.</li><li>A category will be held only if at least 5 associations enter teams. Otherwise it will be cancelled, or combining categories will be explored to encourage participation.</li><li>Players registered for Men's or Women's Doubles cannot also play Mixed Doubles.</li><li>Players from the Above 50 category may play in the 36–50 category only if they have no partner in their own category from their association. The association's limit of one team in 36–50 still applies.</li><li>Hybrid teams are allowed where associations need partners to form a team. Points won by a hybrid team are shared equally between the partner associations, whether or not the lending association has its own primary team.</li><li>A hybrid team cannot be formed by two associations that both have primary teams. It can be formed only when one association has just one player in that category.</li><li>All players must meet the age limits of their category; age is as on 1 October 2026. Proof of age must be shown if asked.</li><li>Association representatives should submit entries before the cut-off date.</li></ul>
+            <ul><li>Each association may enter 2 teams in the 15 &amp; Below category and one team in every other category.</li><li>A category will be held only if at least 5 associations enter teams. Otherwise it will be cancelled, or combining categories will be explored to encourage participation.</li><li>Players registered for Men's or Women's Doubles cannot also play Mixed Doubles.</li><li>Players from the Above 50 category may play in the 36–50 category only if they have no partner in their own category from their association. The association's limit of one team in 36–50 still applies.</li><li>Hybrid teams are allowed where associations need partners to form a team. Points won by a hybrid team are shared equally between the partner associations, whether or not the lending association has its own primary team.</li><li>A hybrid team cannot be formed by two associations that both have primary teams. It can be formed only when one association has just one player in that category.</li><li>All players must meet the age limits of their category; age is as on 1 October 2026. Proof of age must be shown if asked.</li><li>Association coordinators must register using the <strong>Register now</strong> button on the event card before <strong>5:00 PM, Tuesday, 17 November 2026</strong>.</li></ul>
             <h4>Match Format</h4>
             <ul><li>Single elimination (knockout) – a team that loses a match is out of the tournament.</li><li>Preliminary matches are a single game of <strong>30 points</strong>.</li><li>Semi-finals and finals are best of 3 games of <strong>21 points</strong> each.</li><li>A losers' final will be played for third place.</li></ul>
             <h4>Officials</h4>
@@ -1432,6 +1432,7 @@ const EVENTS = [
   { date: "2026-11-22", name: "Badminton – Doubles", categories: RACKET_CATS,
     tags: [T.boys, T.girls, T.juniors, T.men, T.women, T.mixed, T.adults, T.seniors],
     participants: "15 & Below – 2 teams; other categories – 1 team from each association", venue: "Bright Sports Center, Kangarapady", host: "Ecoden & Core Team", coord: "Manu Abraham", phone: "99XXX X2431", pk: "htdiarkpzu",
+    reg: { url: "https://docs.google.com/forms/d/e/1FAIpQLSchiE5hAntW-nmdDoS_4magSVJzTNHmHvooQcYDyelmMIAaaw/viewform?usp=sharing&ouid=116573784664578770255", closes: "2026-11-17T17:00", who: "Association coordinators" },
     info: [["Rules & Guidelines", "badminton-rules"]] },
 
   { date: "2026-11-28", name: "Solo Music",
@@ -2452,6 +2453,7 @@ setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the
    Use "ev" to jump to an event card, or "open" to open a section in Additional Information.
    RESULTS: each result also shows in the ticker for 7 days after its date. */
 const ALERTS = [
+  { from: "2026-11-11T09:00", until: "2026-11-17T17:00", text: "Badminton (22 Nov): register by Tue, 17 Nov, 5 PM", sub: "Association coordinators", ev: "Badminton – Doubles" },
   { from: "2026-11-10T12:00", until: "2026-11-14T14:30", text: "Painting (7 & below) topic: ‘My Birthday Celebration’", sub: "Children’s Day, 14 Nov", ev: "Painting" },
   { from: "2026-11-07T19:00", until: "2026-11-08T21:00", text: "Chess 18 & Below winners", sub: "🥇 Aditya Suhas Nair, Ecotat · 🥈 Aravind Pradeepkumar Nair, Ivy Creek · 🥉 Joseph Tom, Tall Terrace", ev: "Chess" },
   { from: "2026-11-07T19:00", until: "2026-11-08T21:00", text: "Chess Above 18 winners", sub: "🥇 Mathew Abraham T., Cloudwalk · 🥈 Suhail Rasheed, Arcadia · 🥉 Manoj Kumar T., Ivy Creek", ev: "Chess" },
