@@ -1060,11 +1060,12 @@
           <div class="acc-body"><div class="fx-wrap" data-fxsched="cricket"></div>
             <h4 class="cr-h">How the fixture works</h4>
             <ul class="cr-notes">
-              <li><b>Overs:</b> preliminary, quarter-final and 3rd-place matches are <strong>4 overs a side</strong> (35-minute slot); semi-finals and the final are <strong>6 overs a side</strong> (50–55-minute slot), so that all 11 matches fit on one pitch by 5:55 pm. <em>Subject to Core Committee approval.</em></li>
-              <li><b>Byes:</b> 11 teams need 8 quarter-finalists, so 3 preliminary matches are played and 5 teams go straight through. Holders Noel Tall Terrace take a bye; the other four byes and all pairings were drawn at random.</li>
+              <li><b>Overs:</b> <strong>every match is 6 overs a side</strong>. Preliminary, quarter-final and 3rd-place matches have a 35-minute slot; the semi-finals and final have 50–55 minutes.</li>
+              <li><b>Tight time slots</b> (approved by the Core Committee): the innings time limits are shorter than the 28 minutes in the rules, so that all 11 matches finish by 5:55 pm. Fielding sides must keep the over rate up – the over-rate and stop-clock penalties apply.</li>
+              <li><b>Byes:</b> 11 teams need 8 quarter-finalists, so 3 preliminary matches are played and 5 teams go straight through. Holders Noel Tall Terrace take a bye. Pairings were drawn at random, with Noel Tall Terrace and Noel Greenature placed in opposite halves so they can only meet in the final.</li>
               <li><b>Report times:</b> the next two teams must be at the ground by the innings break of the match before, when their toss is held. Report times are shown with each match.</li>
-              <li><b>Innings time:</b> 4-over innings – 16 minutes (14 + 2 allowance); 6-over innings – 28 minutes. Stop clock (60 s) and timed-out (90 s) apply.</li>
-              <li><b>Bowling in 4-over games:</b> at least 4 bowlers, i.e. one over per bowler.</li>
+              <li><b>Innings time:</b> 35-minute matches – <strong>16 minutes</strong> per innings; semi-finals – <strong>23 minutes</strong>; final – <strong>25 minutes</strong>. Stop clock (60 s) and timed-out (90 s) apply.</li>
+              <li><b>Bowling:</b> a bowler may bowl at most 2 overs, and a full 6-over innings needs at least 4 different bowlers.</li>
               <li><b>Ties:</b> every match is a knockout, so a tie goes to a super over (up to two), then a toss.</li>
               <li><b>Late teams:</b> more than 10 minutes late against the fixture time, with the opponent ready, forfeits the match.</li>
               <li><b>Food:</b> the Story Box food stall is open at the turf all day. The 2:35–2:45 pm break before the semi-finals is the best time for a meal.</li>
@@ -1820,7 +1821,7 @@ const FIXTURE_TABLES = {
   {
    "cat": "Open",
    "teams": 11,
-   "byes": "Noel Tall Terrace (holders), Noel Greenature, Noel Poetry, Noel Arcadia, Noel Ecoden",
+   "byes": "Noel Tall Terrace (holders), Noel Poetry, Noel Ecoden, Noel Greenature, Noel Arcadia",
    "rows": [
     [
      "M1",
@@ -1828,9 +1829,9 @@ const FIXTURE_TABLES = {
      "10:30 am",
      "11:05 am",
      "Turf",
+     "Noel Signature",
      "Noel Serenia",
-     "Noel Cloudwalk",
-     "4 overs · report by 10:15 am"
+     "6 overs · report by 10:15 am"
     ],
     [
      "M2",
@@ -1839,8 +1840,8 @@ const FIXTURE_TABLES = {
      "11:40 am",
      "Turf",
      "Noel House",
-     "Noel Signature",
-     "4 overs · report by 10:45 am"
+     "Noel Fragranz",
+     "6 overs · report by 10:45 am"
     ],
     [
      "M3",
@@ -1848,9 +1849,9 @@ const FIXTURE_TABLES = {
      "11:40 am",
      "12:15 pm",
      "Turf",
-     "Noel Greenature",
      "Noel Poetry",
-     "4 overs · report by 11:20 am"
+     "Noel Ecoden",
+     "6 overs · report by 11:20 am"
     ],
     [
      "M4",
@@ -1858,9 +1859,9 @@ const FIXTURE_TABLES = {
      "12:15 pm",
      "12:50 pm",
      "Turf",
+     "Noel Cloudwalk",
      "Noel Earth Song",
-     "Noel Fragranz",
-     "4 overs · report by 11:55 am"
+     "6 overs · report by 11:55 am"
     ],
     [
      "M5",
@@ -1870,7 +1871,7 @@ const FIXTURE_TABLES = {
      "Turf",
      "Noel Tall Terrace (holders)",
      "Winner of M1",
-     "4 overs · report by 12:30 pm"
+     "6 overs · report by 12:30 pm"
     ],
     [
      "M6",
@@ -1878,9 +1879,9 @@ const FIXTURE_TABLES = {
      "1:25 pm",
      "2:00 pm",
      "Turf",
-     "Noel Arcadia",
+     "Noel Greenature",
      "Winner of M2",
-     "4 overs · report by 1:05 pm"
+     "6 overs · report by 1:05 pm"
     ],
     [
      "M7",
@@ -1888,9 +1889,9 @@ const FIXTURE_TABLES = {
      "2:00 pm",
      "2:35 pm",
      "Turf",
-     "Noel Ecoden",
+     "Noel Arcadia",
      "Winner of M4",
-     "4 overs · report by 1:40 pm"
+     "6 overs · report by 1:40 pm"
     ],
     [
      "M8",
@@ -1920,7 +1921,7 @@ const FIXTURE_TABLES = {
      "Turf",
      "Loser of M8",
      "Loser of M9",
-     "4 overs · report by 4:00 pm"
+     "6 overs · report by 4:00 pm"
     ],
     [
      "M11",
