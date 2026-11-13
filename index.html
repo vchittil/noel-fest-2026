@@ -572,6 +572,12 @@
 .quick.pills { position:relative; }
 @media (min-width: 481px) { .quick.pills .qt#openApp { position:absolute; right:0; top:50%; transform:translateY(-50%); } }
 @media (max-width: 480px) { .quick.pills { justify-content:flex-start; } .quick.pills .qt#openApp { margin-left:auto; } }
+.cr-h { margin:16px 0 8px; font-size:15px; color:#00529B; }
+.cr-notes { margin:0; padding-left:18px; display:grid; gap:6px; font-size:14px; line-height:1.45; }
+.cr-notes em { color:var(--muted); }
+.cr-caps { list-style:none; margin:0 0 8px; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:6px 20px; font-size:14px; }
+.cr-caps li { display:flex; justify-content:space-between; gap:10px; border-bottom:1px dashed var(--line); padding:4px 0; }
+.cr-caps span { color:var(--muted); text-align:right; }
 </style>
 </head>
 <body>
@@ -1045,6 +1051,29 @@
             <div class="medals"><div class="medal gold"><span>Gold</span><strong>20</strong> points</div><div class="medal silver"><span>Silver</span><strong>15</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>10</strong> points</div></div>
           </div>
         </details>
+        <details class="acc" id="cricket-fixtures">
+          <summary>Fixtures</summary>
+          <div class="acc-body"><div class="bk-wrap" data-bracket="cricket"></div></div>
+        </details>
+        <details class="acc" id="cricket-schedule">
+          <summary>Match Schedule</summary>
+          <div class="acc-body"><div class="fx-wrap" data-fxsched="cricket"></div>
+            <h4 class="cr-h">How the fixture works</h4>
+            <ul class="cr-notes">
+              <li><b>Overs:</b> preliminary, quarter-final and 3rd-place matches are <strong>4 overs a side</strong> (35-minute slot); semi-finals and the final are <strong>6 overs a side</strong> (50–55-minute slot), so that all 11 matches fit on one pitch by 5:55 pm. <em>Subject to Core Committee approval.</em></li>
+              <li><b>Byes:</b> 11 teams need 8 quarter-finalists, so 3 preliminary matches are played and 5 teams go straight through. Holders Noel Tall Terrace take a bye; the other four byes and all pairings were drawn at random.</li>
+              <li><b>Report times:</b> the next two teams must be at the ground by the innings break of the match before, when their toss is held. Report times are shown with each match.</li>
+              <li><b>Innings time:</b> 4-over innings – 16 minutes (14 + 2 allowance); 6-over innings – 28 minutes. Stop clock (60 s) and timed-out (90 s) apply.</li>
+              <li><b>Bowling in 4-over games:</b> at least 4 bowlers, i.e. one over per bowler.</li>
+              <li><b>Ties:</b> every match is a knockout, so a tie goes to a super over (up to two), then a toss.</li>
+              <li><b>Late teams:</b> more than 10 minutes late against the fixture time, with the opponent ready, forfeits the match.</li>
+              <li><b>Food:</b> the Story Box food stall is open at the turf all day. The 2:35–2:45 pm break before the semi-finals is the best time for a meal.</li>
+            </ul>
+            <h4 class="cr-h">Teams &amp; Captains</h4>
+            <ul class="cr-caps"><li><b>Noel Tall Terrace</b><span>Tom</span></li><li><b>Noel Cloudwalk</b><span>John Mathew Sebastian</span></li><li><b>Noel House</b><span>Akhil Ambikesan</span></li><li><b>Noel Fragranz</b><span>Paul</span></li><li><b>Noel Signature</b><span>Aaron Bejoy</span></li><li><b>Noel Poetry</b><span>Neeraj Joseph</span></li><li><b>Noel Serenia</b><span>Vimal Raghunath</span></li><li><b>Noel Greenature</b><span>George</span></li><li><b>Noel Arcadia</b><span>Brilliant Kurien</span></li><li><b>Noel Earth Song</b><span>Chandramohan T</span></li><li><b>Noel Ecoden</b><span>Manu</span></li></ul>
+            <p class="fx-byes">Fixture subject to change by the Core Committee. Umpire’s decision is final.</p>
+          </div>
+        </details>
       </div>
     </details>
     <details class="acc" id="info-throwball">
@@ -1413,11 +1442,11 @@ const EVENTS = [
     participants: "Multiple entries allowed from each association – minimum 2 per group", note: "Up to 5 minutes per performance. Followed by a DJ Party!",
     info: [["Rules & Guidelines", "dance-rules"]] },
 
-  { date: "2026-11-15", name: "Cricket", live: ["10:00", "15:00"], categories: [OPEN()], tags: [T.open],
-    participants: "One team from each association", venue: "Parkway, Kakkanad", host: "Core Committee", time: "10:00 AM – 3:00 PM", coord: "Jai", phone: "95XXX X6660", pk: "gigwlesuhu",
+  { date: "2026-11-15", name: "Cricket", live: ["10:30", "17:55"], categories: [OPEN()], tags: [T.open],
+    participants: "One team from each association", venue: "Parkway Turf, Kakkanad", host: "Core Committee", time: "10:30 AM – 5:55 PM", coord: "Jai", phone: "95XXX X6660", pk: "gigwlesuhu",
     reg: { url: "https://forms.gle/xkzWX3nWBraZtBLBA", closes: "2026-11-11T17:00", who: "One team per association" },
-    note: "6 overs per innings · 8 players a side. First match 10:30 AM sharp – first two teams report by 10:15 AM.",
-    info: [["Rules & Guidelines", "cricket-rules"]] },
+    note: "11 teams · knockout · 8 a side. First ball 10:30 AM sharp – first two teams report by 10:15 AM. Final ends 5:55 PM, followed by prizes.",
+    info: [["Fixtures", "cricket-fixtures"], ["Match Schedule", "cricket-schedule"], ["Rules & Guidelines", "cricket-rules"]] },
   { date: "2026-11-15", name: "Throw Ball", categories: [OPEN("For Ladies – Open Category", "F")], tags: [T.ladies, T.open],
     participants: "One team from each association", venue: "Noel Ivy Creek, Chittethukara", host: "Noel Ivycreek", time: "5:00 PM", coord: "Manoj", phone: "93XXX X5532", pk: "jtfqdygwfu",
     reg: { url: "https://docs.google.com/forms/d/e/1FAIpQLSdbSxALwKevn8rk9RvuPizE_ojulo7Uul6cT5G622U2DfAACA/viewform?usp=dialog", closes: "2026-11-11T23:59", who: "One team per association" },
@@ -1783,6 +1812,130 @@ function regBlock(r) {
    One data set drives both views: the bracket (Fixtures) and the time-ordered Match Schedule.
    rows: [match no, round, start, end, board/table, team A, team B, format] */
 const FIXTURE_TABLES = {
+ "cricket": {
+ "date": "2026-11-15",
+ "note": "Sunday, 15 November 2026 · Parkway Turf, Kakkanad · first ball 10:30 am · break 2:35–2:45 pm · prize presentation 5:55 pm",
+ "label": "Ground",
+ "cats": [
+  {
+   "cat": "Open",
+   "teams": 11,
+   "byes": "Noel Tall Terrace (holders), Noel Greenature, Noel Poetry, Noel Arcadia, Noel Ecoden",
+   "rows": [
+    [
+     "M1",
+     "Preliminary",
+     "10:30 am",
+     "11:05 am",
+     "Turf",
+     "Noel Serenia",
+     "Noel Cloudwalk",
+     "4 overs · report by 10:15 am"
+    ],
+    [
+     "M2",
+     "Preliminary",
+     "11:05 am",
+     "11:40 am",
+     "Turf",
+     "Noel House",
+     "Noel Signature",
+     "4 overs · report by 10:45 am"
+    ],
+    [
+     "M3",
+     "Quarter-final",
+     "11:40 am",
+     "12:15 pm",
+     "Turf",
+     "Noel Greenature",
+     "Noel Poetry",
+     "4 overs · report by 11:20 am"
+    ],
+    [
+     "M4",
+     "Preliminary",
+     "12:15 pm",
+     "12:50 pm",
+     "Turf",
+     "Noel Earth Song",
+     "Noel Fragranz",
+     "4 overs · report by 11:55 am"
+    ],
+    [
+     "M5",
+     "Quarter-final",
+     "12:50 pm",
+     "1:25 pm",
+     "Turf",
+     "Noel Tall Terrace (holders)",
+     "Winner of M1",
+     "4 overs · report by 12:30 pm"
+    ],
+    [
+     "M6",
+     "Quarter-final",
+     "1:25 pm",
+     "2:00 pm",
+     "Turf",
+     "Noel Arcadia",
+     "Winner of M2",
+     "4 overs · report by 1:05 pm"
+    ],
+    [
+     "M7",
+     "Quarter-final",
+     "2:00 pm",
+     "2:35 pm",
+     "Turf",
+     "Noel Ecoden",
+     "Winner of M4",
+     "4 overs · report by 1:40 pm"
+    ],
+    [
+     "M8",
+     "Semi-final",
+     "2:45 pm",
+     "3:35 pm",
+     "Turf",
+     "Winner of M3",
+     "Winner of M5",
+     "6 overs · report by 2:15 pm"
+    ],
+    [
+     "M9",
+     "Semi-final",
+     "3:35 pm",
+     "4:25 pm",
+     "Turf",
+     "Winner of M6",
+     "Winner of M7",
+     "6 overs · report by 3:10 pm"
+    ],
+    [
+     "M10",
+     "3rd place",
+     "4:25 pm",
+     "5:00 pm",
+     "Turf",
+     "Loser of M8",
+     "Loser of M9",
+     "4 overs · report by 4:00 pm"
+    ],
+    [
+     "M11",
+     "Final",
+     "5:00 pm",
+     "5:55 pm",
+     "Turf",
+     "Winner of M8",
+     "Winner of M9",
+     "6 overs · report by 4:40 pm"
+    ]
+   ]
+  }
+ ]
+},
  "carrom": {
   "date": "2026-10-31",
   "note": "Saturday, 31 October 2026 · 4 boards · starts 3:00 pm",
@@ -2360,7 +2513,7 @@ function bracketNode(byId, no) {
     <div class="mbox${rd === "Final" ? " final" : ""}" data-no="${no}">
       <div class="mh"><b>${esc(no)}</b><span>${esc(shortRound(rd))}</span></div>
       ${side(a)}${side(b)}
-      <div class="mt">${esc(st.replace(" pm", ""))}–${esc(en)}${bd !== "Pool Table" ? " · " + esc(bd.replace("Board ", "B")) : ""}${/Best of 3/.test(fm) ? " · Bo3" : ""}</div>
+      <div class="mt">${esc(st.replace(" pm", ""))}–${esc(en)}${!/^(Pool Table|Turf)$/.test(bd) ? " · " + esc(bd.replace("Board ", "B")) : ""}${/Best of 3/.test(fm) ? " · Bo3" : ""}</div>
     </div></div>`;
 }
 document.querySelectorAll("[data-bracket]").forEach(box => {
@@ -2371,7 +2524,7 @@ document.querySelectorAll("[data-bracket]").forEach(box => {
       const fin = c.rows.find(r => r[1] === "Final"), third = c.rows.find(r => r[1] === "3rd place");
       return `<div class="bk-cat"><h4>${esc(c.cat)} <span class="fx-count">${c.teams} teams</span></h4>
         <div class="bk-scroll"><div class="bk-tree">${bracketNode(byId, fin[0])}</div></div>
-        ${third ? `<div class="bk-third"><b>${esc(third[0])} · 3rd place</b> ${esc(third[5])} <em>vs</em> ${esc(third[6])} <span>${esc(third[2])} – ${esc(third[3])}${third[4] !== "Pool Table" ? " · " + esc(third[4]) : ""}</span></div>` : ""}
+        ${third ? `<div class="bk-third"><b>${esc(third[0])} · 3rd place</b> ${esc(third[5])} <em>vs</em> ${esc(third[6])} <span>${esc(third[2])} – ${esc(third[3])}${!/^(Pool Table|Turf)$/.test(third[4]) ? " · " + esc(third[4]) : ""}</span></div>` : ""}
         ${c.byes ? `<p class="fx-byes"><strong>Byes to the quarter-finals:</strong> ${esc(c.byes)}</p>` : ""}</div>`;
     }).join("");
 });
@@ -2454,6 +2607,7 @@ setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the
    Use "ev" to jump to an event card, or "open" to open a section in Additional Information.
    RESULTS: each result also shows in the ticker for 7 days after its date. */
 const ALERTS = [
+  { from: "2026-11-13T13:00", until: "2026-11-15T10:30", text: "Cricket fixtures are out", sub: "Sun, 15 Nov · first ball 10:30 AM · Parkway Turf", open: "cricket-fixtures" },
   { from: "2026-11-11T10:30", until: "2026-11-21T00:00", text: "Table Tennis (21 Nov) registration is open", sub: "Association coordinators", ev: "Table Tennis – Doubles" },
   { from: "2026-11-11T09:00", until: "2026-11-17T17:00", text: "Badminton (22 Nov): register by Tue, 17 Nov, 5 PM", sub: "Association coordinators", ev: "Badminton – Doubles" },
   { from: "2026-11-10T12:00", until: "2026-11-14T14:30", text: "Painting (7 & below) topic: ‘My Birthday Celebration’", sub: "Children’s Day, 14 Nov", ev: "Painting" },
