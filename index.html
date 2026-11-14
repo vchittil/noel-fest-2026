@@ -1106,7 +1106,7 @@
             <h4>Match Format</h4>
             <ul><li>Each game is to <strong>11 points</strong>, with the service changing after every 2 points.</li><li>Matches are best of 3 games.</li></ul>
             <h4>Entries</h4>
-            <ul><li>Each association may enter 2 teams in the 15 &amp; Below category and one team in every other category.</li><li>A player can take part in only one category (e.g. a gentleman may play either Men's Doubles or Mixed Doubles, not both).</li><li>A minimum of 5 associations and 5 teams are needed in each category; otherwise the category will be cancelled or combined with another to encourage participation.</li><li>Association coordinators register teams using the <strong>Register now</strong> button on the event card.</li><li>Fixtures will be drawn by lots after registration.</li></ul>
+            <ul><li>Each association may enter 2 teams in the 15 &amp; Below category and one team in every other category.</li><li>A player can take part in only one category (e.g. a gentleman may play either Men's Doubles or Mixed Doubles, not both).</li><li>A minimum of 5 associations and 5 teams are needed in each category; otherwise the category will be cancelled or combined with another to encourage participation.</li><li>Association coordinators register teams using the <strong>Register now</strong> button on the event card by <strong>Sunday, 15 November 2026</strong>.</li><li>Fixtures will be drawn by lots after registration.</li></ul>
             <h4>Reporting</h4>
             <ul><li>Players should be available at the court from the start to the end of the schedule, as games may start earlier than scheduled.</li><li>There is no grace time. If a player has not reported <strong>5 minutes before</strong> the scheduled start, a walkover will be given to the opposing team, if they are present.</li></ul>
             <h4>Decisions</h4>
@@ -1457,7 +1457,7 @@ const EVENTS = [
   { date: "2026-11-21", name: "Table Tennis – Doubles", categories: RACKET_CATS,
     tags: [T.boys, T.girls, T.juniors, T.men, T.women, T.mixed, T.adults, T.seniors],
     participants: "15 & Below – 2 teams; other categories – 1 team from each association", venue: "Noel Earth Song, Kadavanthra", host: "Earthsong", coord: "Chandramohan", phone: "94XXX X1525", pk: "zrfusygigu",
-    reg: { url: "https://forms.gle/ZEcWTt1PDJT7B5K57", closes: "2026-11-21T00:00", who: "Association coordinators", note: "Please register early" },
+    reg: { url: "https://forms.gle/ZEcWTt1PDJT7B5K57", closes: "2026-11-15T23:59", who: "Association coordinators" },
     info: [["Rules & Guidelines", "tabletennis-rules"]] },
 
   { date: "2026-11-22", name: "Badminton – Doubles", categories: RACKET_CATS,
@@ -2609,7 +2609,7 @@ setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the
    RESULTS: each result also shows in the ticker for 7 days after its date. */
 const ALERTS = [
   { from: "2026-11-13T13:00", until: "2026-11-15T10:30", text: "Cricket fixtures are out", sub: "Sun, 15 Nov · first ball 10:30 AM · Parkway Turf", open: "cricket-fixtures" },
-  { from: "2026-11-11T10:30", until: "2026-11-21T00:00", text: "Table Tennis (21 Nov) registration is open", sub: "Association coordinators", ev: "Table Tennis – Doubles" },
+  { from: "2026-11-11T10:30", until: "2026-11-15T23:59", text: "Table Tennis (21 Nov): register by Sun, 15 Nov", sub: "Association coordinators", ev: "Table Tennis – Doubles" },
   { from: "2026-11-11T09:00", until: "2026-11-17T17:00", text: "Badminton (22 Nov): register by Tue, 17 Nov, 5 PM", sub: "Association coordinators", ev: "Badminton – Doubles" },
   { from: "2026-11-10T12:00", until: "2026-11-14T14:30", text: "Painting (7 & below) topic: ‘My Birthday Celebration’", sub: "Children’s Day, 14 Nov", ev: "Painting" },
   { from: "2026-11-07T19:00", until: "2026-11-08T21:00", text: "Chess 18 & Below winners", sub: "🥇 Aditya Suhas Nair, Ecotat · 🥈 Aravind Pradeepkumar Nair, Ivy Creek · 🥉 Joseph Tom, Tall Terrace", ev: "Chess" },
