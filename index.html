@@ -1095,6 +1095,26 @@
             <div class="medals"><div class="medal gold"><span>Gold</span><strong>20</strong> points</div><div class="medal silver"><span>Silver</span><strong>15</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>10</strong> points</div></div>
           </div>
         </details>
+        <details class="acc" id="throwball-fixtures">
+          <summary>Fixtures</summary>
+          <div class="acc-body"><div class="bk-wrap" data-bracket="throwball"></div>
+            <p class="fx-byes">The <strong>Hybrid Team</strong> is a combined team of Noel Arcadia and Noel Ivy Creek players. It is a separate team from Noel Arcadia.</p>
+          </div>
+        </details>
+        <details class="acc" id="throwball-schedule">
+          <summary>Match Schedule</summary>
+          <div class="acc-body"><div class="fx-wrap" data-fxsched="throwball"></div>
+            <h4 class="cr-h">How the fixture works</h4>
+            <ul class="cr-notes">
+              <li><b>Straight to the semi-finals:</b> last year’s top two, Noel Poetry (champions) and Noel Tall Terrace (runners-up).</li>
+              <li><b>Qualifiers:</b> two single-match qualifiers. The winner of M1 plays Noel Poetry in SF1, and the winner of M2 plays Noel Tall Terrace in SF2. Poetry and Tall Terrace are in opposite semi-finals, so they can only meet in the final.</li>
+              <li><b>Losers Final:</b> the two losing semi-finalists play each other before the Final. Every team is encouraged to take part.</li>
+              <li><b>Rest:</b> the Hybrid Team (M1) and Noel Arcadia (M2) share players, so those players play back to back. The 15-minute break before the semi-finals gives everyone a rest.</li>
+              <li><b>Reporting:</b> be at the court 15 minutes before your match, as shown in the “report by” times, so that the final finishes by 8:15 pm.</li>
+            </ul>
+            <p class="fx-byes">Fixture subject to change by the Core Committee. Referee’s decision is final.</p>
+          </div>
+        </details>
       </div>
     </details>
     <details class="acc" id="info-tabletennis">
@@ -1448,11 +1468,11 @@ const EVENTS = [
     reg: { url: "https://forms.gle/xkzWX3nWBraZtBLBA", closes: "2026-11-11T17:00", who: "One team per association" },
     note: "11 teams · knockout · 8 a side. First ball 10:30 AM sharp – first two teams report by 10:15 AM. Final ends 5:55 PM, followed by prizes.",
     info: [["Fixtures", "cricket-fixtures"], ["Match Schedule", "cricket-schedule"], ["Rules & Guidelines", "cricket-rules"]] },
-  { date: "2026-11-15", name: "Throw Ball", categories: [OPEN("For Ladies – Open Category", "F")], tags: [T.ladies, T.open],
-    participants: "One team from each association", venue: "Noel Ivy Creek, Chittethukara", host: "Noel Ivycreek", time: "5:00 PM", coord: "Manoj", phone: "93XXX X5532", pk: "jtfqdygwfu",
+  { date: "2026-11-15", name: "Throw Ball", live: ["17:00", "20:15"], categories: [OPEN("For Ladies – Open Category", "F")], tags: [T.ladies, T.open],
+    participants: "One team from each association", venue: "Noel Ivy Creek, Chittethukara", host: "Noel Ivycreek", time: "5:00 PM – 8:15 PM", coord: "Manoj", phone: "93XXX X5532", pk: "jtfqdygwfu",
     reg: { url: "https://docs.google.com/forms/d/e/1FAIpQLSdbSxALwKevn8rk9RvuPizE_ojulo7Uul6cT5G622U2DfAACA/viewform?usp=dialog", closes: "2026-11-11T23:59", who: "One team per association" },
-    note: "Time changed to 5:00 PM because of the Cricket. Followed by dinner and a Musical Night!",
-    info: [["Rules & Guidelines", "throwball-rules"]] },
+    note: "6 teams · qualifiers, semi-finals, Losers Final and Final. First match 5:00 PM – report by 4:45 PM. Followed by dinner and a Musical Night!",
+    info: [["Fixtures", "throwball-fixtures"], ["Match Schedule", "throwball-schedule"], ["Rules & Guidelines", "throwball-rules"]] },
 
   { date: "2026-11-21", name: "Table Tennis – Doubles", categories: RACKET_CATS,
     tags: [T.boys, T.girls, T.juniors, T.men, T.women, T.mixed, T.adults, T.seniors],
@@ -1813,6 +1833,81 @@ function regBlock(r) {
    One data set drives both views: the bracket (Fixtures) and the time-ordered Match Schedule.
    rows: [match no, round, start, end, board/table, team A, team B, format] */
 const FIXTURE_TABLES = {
+ "throwball": {
+ "date": "2026-11-15",
+ "note": "Sunday, 15 November 2026 · Noel Ivy Creek · first match 5:00 pm · break 6:00–6:15 pm · prize presentation 8:15 pm",
+ "label": "Court",
+ "cats": [
+  {
+   "cat": "Women",
+   "teams": 6,
+   "byesLabel": "Straight to the semi-finals",
+   "byes": "Noel Poetry (holders), Noel Tall Terrace (runners-up)",
+   "rows": [
+    [
+     "M1",
+     "Qualifier",
+     "5:00 pm",
+     "5:30 pm",
+     "Court",
+     "Hybrid Team (Noel Arcadia & Ivy Creek)",
+     "Noel Ecoden",
+     "30 min · report by 4:45 pm"
+    ],
+    [
+     "M2",
+     "Qualifier",
+     "5:30 pm",
+     "6:00 pm",
+     "Court",
+     "Noel Arcadia",
+     "Noel Serenia",
+     "30 min · report by 5:15 pm"
+    ],
+    [
+     "SF1",
+     "Semi-final",
+     "6:15 pm",
+     "6:45 pm",
+     "Court",
+     "Noel Poetry (holders)",
+     "Winner of M1",
+     "30 min · report by 6:00 pm"
+    ],
+    [
+     "SF2",
+     "Semi-final",
+     "6:45 pm",
+     "7:15 pm",
+     "Court",
+     "Noel Tall Terrace (runners-up)",
+     "Winner of M2",
+     "30 min · report by 6:30 pm"
+    ],
+    [
+     "LF",
+     "Losers Final",
+     "7:15 pm",
+     "7:45 pm",
+     "Court",
+     "Loser of SF1",
+     "Loser of SF2",
+     "30 min · report by 7:00 pm"
+    ],
+    [
+     "F",
+     "Final",
+     "7:45 pm",
+     "8:15 pm",
+     "Court",
+     "Winner of SF1",
+     "Winner of SF2",
+     "30 min · report by 7:30 pm"
+    ]
+   ]
+  }
+ ]
+},
  "cricket": {
  "date": "2026-11-15",
  "note": "Sunday, 15 November 2026 · Parkway Turf, Kakkanad · first ball 10:30 am · break 2:35–2:45 pm · prize presentation 5:55 pm",
@@ -2514,7 +2609,7 @@ function bracketNode(byId, no) {
     <div class="mbox${rd === "Final" ? " final" : ""}" data-no="${no}">
       <div class="mh"><b>${esc(no)}</b><span>${esc(shortRound(rd))}</span></div>
       ${side(a)}${side(b)}
-      <div class="mt">${esc(st.replace(" pm", ""))}–${esc(en)}${!/^(Pool Table|Turf)$/.test(bd) ? " · " + esc(bd.replace("Board ", "B")) : ""}${/Best of 3/.test(fm) ? " · Bo3" : ""}</div>
+      <div class="mt">${esc(st.replace(" pm", ""))}–${esc(en)}${!/^(Pool Table|Turf|Court)$/.test(bd) ? " · " + esc(bd.replace("Board ", "B")) : ""}${/Best of 3/.test(fm) ? " · Bo3" : ""}</div>
     </div></div>`;
 }
 document.querySelectorAll("[data-bracket]").forEach(box => {
@@ -2522,11 +2617,11 @@ document.querySelectorAll("[data-bracket]").forEach(box => {
   box.innerHTML = `<p class="sched-note">${esc(F.note)} · <span class="bk-hint">Swipe or scroll sideways to follow each round</span></p>` +
     F.cats.map(c => {
       const byId = Object.fromEntries(c.rows.map(r => [r[0], r]));
-      const fin = c.rows.find(r => r[1] === "Final"), third = c.rows.find(r => r[1] === "3rd place");
+      const fin = c.rows.find(r => r[1] === "Final"), third = c.rows.find(r => r[1] === "3rd place" || r[1] === "Losers Final");
       return `<div class="bk-cat"><h4>${esc(c.cat)} <span class="fx-count">${c.teams} teams</span></h4>
         <div class="bk-scroll"><div class="bk-tree">${bracketNode(byId, fin[0])}</div></div>
-        ${third ? `<div class="bk-third"><b>${esc(third[0])} · 3rd place</b> ${esc(third[5])} <em>vs</em> ${esc(third[6])} <span>${esc(third[2])} – ${esc(third[3])}${!/^(Pool Table|Turf)$/.test(third[4]) ? " · " + esc(third[4]) : ""}</span></div>` : ""}
-        ${c.byes ? `<p class="fx-byes"><strong>Byes to the quarter-finals:</strong> ${esc(c.byes)}</p>` : ""}</div>`;
+        ${third ? `<div class="bk-third"><b>${esc(third[0])} · ${third[1] === "Losers Final" ? "Losers Final" : "3rd place"}</b> ${esc(third[5])} <em>vs</em> ${esc(third[6])} <span>${esc(third[2])} – ${esc(third[3])}${!/^(Pool Table|Turf|Court)$/.test(third[4]) ? " · " + esc(third[4]) : ""}</span></div>` : ""}
+        ${c.byes ? `<p class="fx-byes"><strong>${esc(c.byesLabel || "Byes to the quarter-finals")}:</strong> ${esc(c.byes)}</p>` : ""}</div>`;
     }).join("");
 });
 
@@ -2619,7 +2714,7 @@ const ALERTS = [
   { from: "2026-11-06", until: "2026-11-07T14:00", text: "Chess Round 1 pairings are out", sub: "Tap to view", open: "chess-pairings" },
   { from: "2026-11-09", until: "2026-11-11T17:00", text: "Cricket (15 Nov): register by Wed, 11 Nov, 5 PM", sub: "One team per association", ev: "Cricket" },
   { from: "2026-11-09T14:45", until: "2026-11-11T23:59", text: "Throw Ball (15 Nov) now at 5:00 PM", sub: "Register by Wed, 11 Nov · dinner & Musical Night after", ev: "Throw Ball" },
-  { from: "2026-11-12", until: "2026-11-15T17:00", text: "Throw Ball (15 Nov) at 5:00 PM", sub: "Noel Ivy Creek · dinner & Musical Night after", ev: "Throw Ball" },
+  { from: "2026-11-14T23:00", until: "2026-11-15T17:00", text: "Throw Ball fixtures are out", sub: "Sun, 15 Nov · first match 5:00 PM · Noel Ivy Creek", open: "throwball-fixtures" },
   { from: "2026-11-08T21:00", until: "2026-11-14T14:00", text: "Children’s Day (14 Nov) registration is open", sub: "Register from the event cards", ev: "Candy Picking" },
   { from: "2026-11-03", until: "2026-11-03T21:00", text: "Chess registration closes TODAY at 9:00 PM", sub: "Association coordinators only", ev: "Chess" }
 ];
