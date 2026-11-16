@@ -608,6 +608,19 @@
 .sp-tile small { color: #6b6b6b; font-size: 12px; white-space: nowrap; }
 .sp-go { display: block; width: calc(100% - 32px); margin: 0 16px 16px; padding: 14px; border: 0; border-radius: 14px; background: #00529B; color: #fff; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; position: sticky; bottom: 16px; box-shadow: 0 6px 18px rgba(0,82,155,.35); }
 @media (max-width: 480px) { .sp-long { display: none; } .sp-confetti { display: none; } .sp-head { padding: 14px 44px 12px; } .sp-head h2 { font-size: 20px; } .sp-head p { font-size: 12px; } .sp-grid { grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; } .sp-tile { padding: 9px 10px; } .sp-t { gap: 7px; } .sp-ico { flex-basis: 30px; height: 30px; } .sp-ico svg { width: 22px; height: 22px; } .sp-t b { font-size: 13px; } .sp-t small { font-size: 11px; } .sp-tile li { grid-template-columns: 20px 1fr; font-size: 12.5px; } .sp-tile small { display: block; white-space: normal; } .sp-go { font-size: 14px; width: calc(100% - 20px); margin: 0 10px 10px; } }
+.done-group { margin: 26px 0 8px; border: 1px solid var(--line, #e3e6ea); border-radius: 18px; background: var(--card, #fff); overflow: hidden; }
+.done-group > summary { list-style: none; display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer; user-select: none; }
+.done-group > summary::-webkit-details-marker { display: none; }
+.dg-tick { flex: 0 0 34px; height: 34px; border-radius: 50%; background: #e8f5e9; color: #2e7d32; display: grid; place-items: center; font-weight: 800; font-size: 17px; }
+.dg-t { flex: 1; display: grid; gap: 1px; }
+.dg-t b { font-size: 16px; color: var(--ink, #1f2a24); }
+.dg-t small { font-size: 13px; color: var(--muted); }
+.dg-chev { width: 10px; height: 10px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); margin: -4px 6px 0 0; color: var(--muted); transition: transform .2s; }
+.done-group[open] > summary .dg-chev { transform: rotate(-135deg); margin-top: 4px; }
+.done-group[open] > summary { border-bottom: 1px solid var(--line, #e3e6ea); }
+.dg-body { padding: 4px 14px 14px; }
+.dg-body .day:first-child { margin-top: 10px; }
+@media print { .done-group { border: 0; } .done-group > summary { display: none; } .done-group .dg-body { display: block; } }
 </style>
 </head>
 <body>
@@ -686,7 +699,7 @@
         <label for="fText">Search</label>
         <input id="fText" type="search" placeholder="Coordinator, association, age group…">
       </div>
-      <label class="toggle"><input type="checkbox" id="fUpcoming"> Upcoming only</label>
+      <input type="checkbox" id="fUpcoming" hidden>
       <button class="reset" id="reset" type="button">Reset filters</button>
     </div>
   </section>
@@ -1695,7 +1708,7 @@ function render() {
   const byDate = {};
   rows.forEach(e => (byDate[e.date] = byDate[e.date] || []).push(e));
 
-  $("list").innerHTML = Object.keys(byDate).sort().map(d => {
+  const daySection = d => {
     const past = d < todayISO;
     const badge = byDate[d].some(isLive) ? `<span class="badge live"><i></i>Happening now</span>`
       : d === todayISO ? `<span class="badge today">Today</span>`
@@ -1705,8 +1718,22 @@ function render() {
       <div class="day-head"><span class="date">${fmtDate(d)}</span><span class="dow">${fmtDow(d)}</span>${badge}</div>
       <div class="grid">${byDate[d].map(e => card(e, age, g, personal)).join("")}</div>
     </section>`;
-  }).join("");
+  };
+  const days = Object.keys(byDate).sort();
+  const upcoming = days.filter(d => d >= todayISO), done = days.filter(d => d < todayISO).reverse();   // most recent first
+  const nDone = done.reduce((n, d) => n + byDate[d].length, 0);
+  const openDone = completedOpen || nActive > 0;   // filters or a search open it so matches aren't hidden
+  $("list").innerHTML = upcoming.map(daySection).join("") +
+    (done.length ? `<details class="done-group" id="doneGroup"${openDone ? " open" : ""}>
+      <summary><span class="dg-tick">✓</span><span class="dg-t"><b>Completed events (${nDone})</b><small>Results, winners &amp; highlights</small></span><span class="dg-chev" aria-hidden="true"></span></summary>
+      <div class="dg-body">${done.map(daySection).join("")}</div>
+    </details>` : "");
+  const dg = $("doneGroup");
+  if (dg) dg.addEventListener("toggle", () => { if (!nActive) completedOpen = dg.open; });
 }
+let completedOpen = false;
+/* Open the Completed events bar if a card is inside it */
+function revealCard(el) { const dg = el && el.closest(".done-group"); if (dg && !dg.open) dg.open = true; }
 
 function card(e, age, g, personal) {
   const cls = c => !personal ? "" : (fits(c, age, g) ? "match" : "nomatch");
@@ -1918,6 +1945,7 @@ function regBlock(r) {
       card = document.getElementById(a.dataset.ev);
     }
     if (!card) return;
+    revealCard(card);
     history.replaceState(null, "", "#" + a.dataset.ev);
     card.scrollIntoView({ behavior: "smooth", block: "center" });
     card.classList.add("flash"); setTimeout(() => card.classList.remove("flash"), 1800);
@@ -2943,7 +2971,7 @@ document.addEventListener("click", ev => {
   history.replaceState(null, "", "#" + a.dataset.open);
   openAcc(a.dataset.open);
 });
-if (location.hash) openAcc(location.hash.slice(1));
+if (location.hash) { const hc = document.getElementById(location.hash.slice(1)); if (hc && hc.closest(".done-group")) { revealCard(hc); setTimeout(() => hc.scrollIntoView({ block: "center" }), 50); } else openAcc(location.hash.slice(1)); }
 
 /* Tournament schedule category chips */
 document.querySelectorAll(".chips").forEach(group => group.addEventListener("click", ev => {
