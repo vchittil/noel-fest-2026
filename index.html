@@ -584,6 +584,30 @@
 .score-btn .live-dot { width:10px; height:10px; border-radius:50%; background:#ff5252; box-shadow:0 0 0 0 rgba(255,82,82,.7); animation:sbpulse 1.6s infinite; }
 @keyframes sbpulse { 0% { box-shadow:0 0 0 0 rgba(255,82,82,.7); } 70% { box-shadow:0 0 0 8px rgba(255,82,82,0); } 100% { box-shadow:0 0 0 0 rgba(255,82,82,0); } }
 @media print { .score-btn { display:none; } }
+.info-results { margin: 0 0 12px; }
+.sp-go:focus:not(:focus-visible) { outline: none; }
+.splash { position: fixed; inset: 0; z-index: 9999; background: rgba(0,40,80,.72); backdrop-filter: blur(4px); display: grid; place-items: center; padding: 16px; animation: spIn .3s ease; }
+.splash.out { opacity: 0; transition: opacity .3s; }
+@keyframes spIn { from { opacity: 0; } to { opacity: 1; } }
+.sp-card { position: relative; width: min(860px, 100%); max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); overflow: auto; background: #f7f3ea; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+.sp-head { background: #00529B; color: #fff; text-align: center; padding: 22px 48px 18px; border-radius: 24px 24px 0 0; position: sticky; top: 0; z-index: 1; }
+.sp-head h2 { margin: 2px 0 2px; font-size: 26px; }
+.sp-head p { margin: 0; color: #f3cf6b; font-size: 14px; font-weight: 600; }
+.sp-confetti { font-size: 30px; }
+.sp-x { position: absolute; top: 10px; right: 12px; z-index: 2; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.18); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
+.sp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; padding: 16px; }
+.sp-tile { background: #fff; border: 1px solid #ece4d3; border-radius: 16px; padding: 12px 14px; }
+.sp-t { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+.sp-ico { flex: 0 0 38px; height: 38px; border-radius: 10px; background: #fbf8f1; border: 1px solid #e4ddcd; display: grid; place-items: center; }
+.sp-ico svg { width: 28px; height: 28px; overflow: visible; }
+.sp-t b { display: block; font-size: 15px; color: #00529B; }
+.sp-t small { display: block; font-size: 12.5px; color: #6b6b6b; }
+.sp-tile ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; }
+.sp-tile li { display: grid; grid-template-columns: 24px 1fr; align-items: baseline; font-size: 14px; }
+.sp-tile .cr-n { font-weight: 600; color: #1f2a24; }
+.sp-tile small { color: #6b6b6b; font-size: 12px; white-space: nowrap; }
+.sp-go { display: block; width: calc(100% - 32px); margin: 0 16px 16px; padding: 14px; border: 0; border-radius: 14px; background: #00529B; color: #fff; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; position: sticky; bottom: 16px; box-shadow: 0 6px 18px rgba(0,82,155,.35); }
+@media (max-width: 480px) { .sp-long { display: none; } .sp-confetti { display: none; } .sp-head { padding: 14px 44px 12px; } .sp-head h2 { font-size: 20px; } .sp-head p { font-size: 12px; } .sp-grid { grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; } .sp-tile { padding: 9px 10px; } .sp-t { gap: 7px; } .sp-ico { flex-basis: 30px; height: 30px; } .sp-ico svg { width: 22px; height: 22px; } .sp-t b { font-size: 13px; } .sp-t small { font-size: 11px; } .sp-tile li { grid-template-columns: 20px 1fr; font-size: 12.5px; } .sp-tile small { display: block; white-space: normal; } .sp-go { font-size: 14px; width: calc(100% - 20px); margin: 0 10px 10px; } }
 </style>
 </head>
 <body>
@@ -1422,8 +1446,23 @@ const RESULTS = [
   { date: "2026-11-07", event: "Chess", cat: "18 & Below", onCard: true, gold: "Aditya Suhas Nair (Ecotat)", silver: "Aravind Pradeepkumar Nair (Ivy Creek)", bronze: "Joseph Tom (Tall Terrace)",
     podium: [["Aditya Suhas Nair", "Noel Ecotat"], ["Aravind Pradeepkumar Nair", "Noel Ivy Creek"], ["Joseph Tom", "Noel Tall Terrace"]] },
   { date: "2026-11-07", event: "Chess", cat: "Above 18", onCard: true, gold: "Mathew Abraham T. (Cloudwalk)", silver: "Suhail Rasheed (Arcadia)", bronze: "Manoj Kumar T. (Ivy Creek)",
-    podium: [["Mathew Abraham T.", "Noel Cloudwalk"], ["Suhail Rasheed", "Noel Arcadia"], ["Manoj Kumar T.", "Noel Ivy Creek"]] }
+    podium: [["Mathew Abraham T.", "Noel Cloudwalk"], ["Suhail Rasheed", "Noel Arcadia"], ["Manoj Kumar T.", "Noel Ivy Creek"]] },
+  /* Children's Day, 14 Nov. A third value in a podium entry sets the medal (0 gold, 1 silver, 2 bronze) – used for ties */
+  { date: "2026-11-14", event: "Painting", cat: "8 to 12 Years", onCard: true, podium: [["Anna Jacob", "Noel Arcadia"], ["Isha Mehrin", "Noel Tall Terrace"], ["Jaanya Jins", "Noel Arcadia"]] },
+  { date: "2026-11-14", event: "Painting", cat: "7 Years & Below", onCard: true, podium: [["Syra", "Noel Ecoden"], ["George Jacob", "Noel Arcadia"], ["Thomas Eapen", "Noel Arcadia"]] },
+  { date: "2026-11-14", event: "Bucket Throw", cat: "7 Years & Below", onCard: true, podium: [["Clara", "Noel Ecoden"], ["Netra", "Noel Palmdale"], ["Mark Philip", "Noel Greenature"]] },
+  { date: "2026-11-14", event: "Candy Picking", cat: "4 Years & Below", onCard: true, podium: [["Nathan", "Noel Greenature"], ["Reuben", "Noel Ecoden"], ["Cianna", "Noel Greenature"]] },
+  { date: "2026-11-14", event: "Candy Picking", cat: "5 to 7 Years", onCard: true, podium: [["Aizin", "Noel Tall Terrace"], ["Erik", "Noel Poetry"], ["Thea Jose", "Noel Greenature", 2], ["Cyril", "Noel Ecoden", 2]] },
+  { date: "2026-11-14", event: "Basketball Free Throw", cat: "Girls · 8 to 12 Years", onCard: true, podium: [["Anna Mathew", "Noel Greenature"], ["Evelyn", "Noel Greenature"], ["Hannah Ezza", "Noel Poetry"]] },
+  { date: "2026-11-14", event: "Basketball Free Throw", cat: "Boys · 8 to 12 Years", onCard: true, podium: [["Eyan Mithun", "Noel Serenia"], ["Niranjan Anoop", "Noel Ecoden"], ["Ehan Junaid", "Noel Serenia"]] },
+  { date: "2026-11-14", event: "Goal (Free Kick)", cat: "Girls · 8 to 12 Years", onCard: true, podium: [["Ayana Sandeep", "Noel Greenature"], ["Evelyn", "Noel Greenature"], ["Anna Mathew", "Noel Greenature"]] },
+  { date: "2026-11-14", event: "Goal (Free Kick)", cat: "Boys · 8 to 12 Years", onCard: true, podium: [["Mikail Backer", "Noel Greenature"], ["Sree Vaishnav", "Noel Signature"], ["Steve Jojo", "Noel Greenature"]] }
 ];
+/* Entries without a podium (older results) get one from their gold/silver/bronze text */
+RESULTS.forEach(r => { if (!r.podium) r.podium = [r.gold, r.silver, r.bronze].filter(Boolean).map(x => [x, ""]); });
+
+/* Results splash: shown once per visitor while it is active (Indian time) */
+const SPLASH = { id: "kids-2026-11-14", from: "2026-11-16T09:30", until: "2026-11-17T09:30", title: "Children’s Day Results", sub: "Noel Fest 2026 · 14 November · Noel Greenature", date: "2026-11-14" };
 
 const EVENTS = [
   { date: "2026-10-17", name: "Inauguration & Retro Theme Performance", reel: "https://www.instagram.com/reel/Deq3yz5OrOG/?vrfl=anZ1eTh0cGQxMm9h", categories: [OPEN()], tags: [T.open],
@@ -1710,6 +1749,51 @@ $("reset").addEventListener("click", () => {
 });
 render();
 
+/* Winners at the top of each event's Additional Information section */
+(function infoWinners() {
+  const bySection = new Map();
+  RESULTS.forEach(r => {
+    const e = EVENTS.find(x => x.name === r.event); if (!e || !e.info) return;
+    const inner = e.info.map(i => document.getElementById(i[1])).find(Boolean); if (!inner) return;
+    const sec = inner.closest('details.acc[id^="info-"]'); if (!sec) return;
+    if (!bySection.has(sec)) bySection.set(sec, []);
+    bySection.get(sec).push(r);
+  });
+  bySection.forEach((rs, sec) => {
+    const body = sec.querySelector(":scope > .acc-body"); if (!body) return;
+    const box = document.createElement("div");
+    box.className = "card-results info-results";
+    box.innerHTML = `<h4>🏆 Winners</h4>${rs.map(r => `<div class="cr"><b class="cr-cat">${esc(r.cat)}</b>${podiumList(r)}</div>`).join("")}`;
+    body.prepend(box);
+  });
+})();
+
+/* Results splash screen (add ?splash to the address to preview it any time) */
+(function resultsSplash() {
+  const now = istNow(), stamp = now.date + "T" + String(Math.floor(now.min / 60)).padStart(2, "0") + ":" + String(now.min % 60).padStart(2, "0");
+  const force = /[?&]splash\b/.test(location.search);
+  if (!force && (stamp < SPLASH.from || stamp >= SPLASH.until)) return;
+  const key = "noelSplash:" + SPLASH.id;
+  try { if (!force && localStorage.getItem(key)) return; } catch (_) {}
+  const rs = RESULTS.filter(r => r.date === SPLASH.date && r.podium);
+  if (!rs.length) return;
+  const ico = n => ICONS[n] ? `<svg viewBox="0 0 48 48" stroke="#2d2d2d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>` : "";
+  const label = n => n.replace("Basketball ", "");
+  const el = document.createElement("div");
+  el.className = "splash"; el.setAttribute("role", "dialog"); el.setAttribute("aria-modal", "true"); el.setAttribute("aria-label", SPLASH.title);
+  el.innerHTML = `<div class="sp-card">
+    <button type="button" class="sp-x" aria-label="Close">×</button>
+    <div class="sp-head"><span class="sp-confetti">🎉</span><h2>${esc(SPLASH.title)}</h2><p>${esc(SPLASH.sub)}</p></div>
+    <div class="sp-grid">${rs.map(r => `<div class="sp-tile"><div class="sp-t"><span class="sp-ico">${ico(r.event)}</span><div><b>${esc(label(r.event))}</b><small>${esc(r.cat)}</small></div></div>${podiumList(r)}</div>`).join("")}</div>
+    <button type="button" class="sp-go">Congratulations to all!<span class="sp-long"> · See the full schedule</span> →</button>
+  </div>`;
+  document.body.appendChild(el);
+  document.body.style.overflow = "hidden";
+  const close = () => { try { localStorage.setItem(key, "1"); } catch (_) {} el.classList.add("out"); document.body.style.overflow = ""; setTimeout(() => el.remove(), 300); };
+  el.addEventListener("click", e => { if (e.target === el || e.target.closest(".sp-x, .sp-go")) close(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && el.isConnected) close(); });
+})();
+
 /* "Use as App" pop-up: install help, shown for the visitor's phone first */
 (function useAsApp() {
   const sheet = document.getElementById("appSheet"), open = document.getElementById("openApp");
@@ -1771,11 +1855,15 @@ document.getElementById("socialLinks").innerHTML = SOCIAL.filter(([, , url]) => 
   `<a class="soc ${k}" href="${esc(url)}" target="_blank" rel="noopener" aria-label="${label}" title="${label}"><svg viewBox="0 0 24 24" aria-hidden="true">${SOC_SVG[k]}</svg></a>`).join("");
 
 /* Winners on a card (from RESULTS entries marked onCard) */
+function podiumList(r) {
+  const m = ["🥇", "🥈", "🥉"];
+  return `<ol>${r.podium.map((p, i) => `<li><span class="cr-m">${m[p[2] ?? Math.min(i, 2)]}</span><span><span class="cr-n">${esc(p[0])}</span>${p[1] ? ` <small>${esc(p[1])}</small>` : ""}</span></li>`).join("")}</ol>`;
+}
 function cardResults(e) {
   const rs = RESULTS.filter(r => r.onCard && r.event === e.name && r.podium);
   if (!rs.length) return "";
   const m = ["🥇", "🥈", "🥉"];
-  return `<div class="card-results"><h4>🏆 Winners</h4>${rs.map(r => `<div class="cr"><b class="cr-cat">${esc(r.cat)}</b><ol>${r.podium.map((p, i) => `<li><span class="cr-m">${m[i]}</span><span><span class="cr-n">${esc(p[0])}</span> <small>${esc(p[1])}</small></span></li>`).join("")}</ol></div>`).join("")}</div>`;
+  return `<div class="card-results"><h4>🏆 Winners</h4>${rs.map(r => `<div class="cr"><b class="cr-cat">${esc(r.cat)}</b>${podiumList(r)}</div>`).join("")}</div>`;
 }
 /* Last date of registration line on a card */
 function regByText(d) {
@@ -2710,6 +2798,7 @@ setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the
    Use "ev" to jump to an event card, or "open" to open a section in Additional Information.
    RESULTS: each result also shows in the ticker for 7 days after its date. */
 const ALERTS = [
+  { from: "2026-11-16T09:30", until: "2026-11-17T09:30", text: "Children’s Day results are out 🏆", sub: "Winners are on the event cards", ev: "Painting" },
   { from: "2026-11-15T10:30", until: "2026-11-15T18:00", text: "Cricket is live – follow the scores", sub: "Tap for the live scorecard on the Cricket card", ev: "Cricket" },
   { from: "2026-11-13T13:00", until: "2026-11-15T10:30", text: "Cricket fixtures are out", sub: "Sun, 15 Nov · first ball 10:30 AM · Parkway Turf", open: "cricket-fixtures" },
   { from: "2026-11-11T10:30", until: "2026-11-15T23:59", text: "Table Tennis (21 Nov): register by Sun, 15 Nov", sub: "Association coordinators", ev: "Table Tennis – Doubles" },
