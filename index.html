@@ -1465,14 +1465,14 @@
       <form id="ptForm" autocomplete="on" novalidate>
         <p class="pt-editing" id="ptEditing" hidden>Editing your listing · <button type="button" class="pt-link" id="ptCancelEdit">Cancel</button></p>
         <label>Event<select name="event" required></select></label>
-        <label>Category<select name="category" required></select></label>
         <div class="pt-row">
           <label>Age group<select name="age" required></select></label>
-          <label>Skill level<select name="level" required><option value="">Choose…</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label>
+          <label>Gender<select name="gender" required><option value="">Choose…</option><option>Male</option><option>Female</option></select></label>
         </div>
+        <label>Category<select name="category" required></select></label>
         <div class="pt-row">
           <label>First name<input name="name" maxlength="40" required placeholder="e.g. Anu"></label>
-          <label>Gender<select name="gender" required><option value="">Choose…</option><option>Male</option><option>Female</option></select></label>
+          <label>Skill level<select name="level" required><option value="">Choose…</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label>
         </div>
         <label>Your community<select name="community" required></select></label>
         <label>Note <small>(optional)</small><input name="note" maxlength="200" placeholder="e.g. free evenings, love old Hindi songs"></label>
@@ -1945,8 +1945,10 @@ const PT_COMMUNITIES = ["Noel Arcadia", "Noel Cloudwalk", "Noel Define", "Noel E
   const q = s => sheet.querySelector(s), qa = s => [...sheet.querySelectorAll(s)];
   const evObj = n => EVENTS.find(e => e.name === n);
   const short = n => n.replace(" – Doubles", "");
-  const catsOf = n => (evObj(n) ? evObj(n).categories.map(c => c.t) : ["Open Category"]);
-  const ageFromCat = c => (PT_AGES.find(a => c.startsWith(a)) || "");
+  const isRacket = n => /– Doubles$/.test(n);
+  /* Table Tennis & Badminton: Doubles or Mixed Doubles (no Mixed Doubles for 15 & Below); other events use their card categories */
+  const catsOf = (n, age) => isRacket(n) ? (age === "15 & Below" ? ["Doubles"] : ["Doubles", "Mixed Doubles"])
+    : (evObj(n) ? evObj(n).categories.map(c => c.t) : ["Open Category"]);
   const ico = n => ICONS[n] ? `<svg viewBox="0 0 48 48" stroke="#2d2d2d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>` : "";
   const opts = (arr, first) => (first ? `<option value="">${first}</option>` : "") + arr.map(v => `<option>${esc(v)}</option>`).join("");
   let list = [], pick = "", mineCreds = null, editId = null;
@@ -2033,24 +2035,20 @@ const PT_COMMUNITIES = ["Noel Arcadia", "Noel Cloudwalk", "Noel Define", "Noel E
   el("community").innerHTML = opts(PT_COMMUNITIES, "Choose…");
   el("age").innerHTML = opts(PT_AGES, "Choose…");
   function syncCats() {
-    const ev = el("event").value;
-    el("category").innerHTML = opts(ev ? catsOf(ev) : [], "Choose…");
-    if (ev && catsOf(ev).length === 1) el("category").selectedIndex = 1;
-    syncAge();
-  }
-  function syncAge() {
-    const a = ageFromCat(el("category").value);
-    el("age").disabled = !!a; if (a) el("age").value = a;
+    const ev = el("event").value, keep = el("category").value, cats = ev ? catsOf(ev, el("age").value) : [];
+    el("category").innerHTML = opts(cats, "Choose…");
+    if (cats.includes(keep)) el("category").value = keep;
+    else if (cats.length === 1) el("category").selectedIndex = 1;
   }
   el("event").addEventListener("change", syncCats);
-  el("category").addEventListener("change", syncAge);
+  el("age").addEventListener("change", syncCats);
   const msg = (id, t, bad) => { const m = q(id); m.textContent = t || ""; m.classList.toggle("bad", !!bad); };
   function formData() {
     const d = {}; ["event", "category", "age", "level", "name", "gender", "community", "note", "phone", "code", "website"].forEach(k => d[k] = el(k).value.trim());
     return d;
   }
   function validate(d) {
-    for (const [k, t] of [["event", "an event"], ["category", "a category"], ["age", "an age group"], ["level", "a skill level"], ["name", "your first name"], ["gender", "your gender"], ["community", "your community"]])
+    for (const [k, t] of [["event", "an event"], ["age", "an age group"], ["gender", "your gender"], ["category", "a category"], ["name", "your first name"], ["level", "a skill level"], ["community", "your community"]])
       if (!d[k]) return "Please choose " + t + ".";
     if (!/^(\+?91)?[6-9]\d{9}$/.test(d.phone.replace(/[\s-]/g, ""))) return "Please enter a valid 10-digit mobile number.";
     if (!el("consent").checked) return "Please tick the consent box.";
@@ -2114,8 +2112,8 @@ const PT_COMMUNITIES = ["Noel Arcadia", "Noel Cloudwalk", "Noel Define", "Noel E
     const item = b.closest(".pt-item"), id = item.dataset.id, x = (q("#ptMineList")._data || []).find(r => r.id === id);
     if (b.dataset.act === "edit") {
       tab("add"); resetForm(); editId = id;
-      el("event").value = x.event; syncCats(); el("category").value = x.category; syncAge();
-      ["age", "level", "name", "gender", "community", "note"].forEach(k => { if (!el(k).disabled || k !== "age") el(k).value = x[k]; });
+      el("event").value = x.event; el("age").value = x.age; syncCats(); el("category").value = x.category;
+      ["level", "name", "gender", "community", "note"].forEach(k => el(k).value = x[k]);
       el("phone").value = mineCreds.phone; el("phone").readOnly = true; q(".pt-codewrap").hidden = true; el("consent").checked = true;
       q("#ptEditing").hidden = false; q("#ptSubmit").textContent = "Save changes"; return;
     }
