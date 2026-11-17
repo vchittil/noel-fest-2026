@@ -281,16 +281,16 @@
   .results-bar[hidden] { display: none; }
   .rb-label { flex: 0 0 auto; display: flex; align-items: center; gap: 6px; padding: 0 12px; font-weight: 800; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: #1f1a0b; background: #f3cf6b; }
   .rb-ico { font-size: 17px; line-height: 1; }
-  .rb-viewport { flex: 1 1 auto; overflow: hidden; position: relative; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent); mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent); }
-  .rb-track { display: inline-flex; white-space: nowrap; padding: 11px 0; animation: rbScroll var(--rb-dur, 40s) linear infinite; }
-  .results-bar:hover .rb-track, .results-bar.paused .rb-track { animation-play-state: paused; }
+  .rb-viewport { flex: 1 1 auto; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; cursor: grab; position: relative; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent); mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent); }
+  .rb-viewport::-webkit-scrollbar { display: none; }
+  .rb-viewport.dragging { cursor: grabbing; user-select: none; }
+  .rb-track { display: inline-flex; white-space: nowrap; padding: 11px 0; }
   .rb-item { display: inline-flex; align-items: center; gap: 10px; padding: 0 22px; color: #fff; text-decoration: none; font-size: 15px; }
   .rb-item b { color: #f3cf6b; font-weight: 700; }
   .rb-item span { font-weight: 500; }
   .rb-item:hover span { text-decoration: underline; }
   .rb-sep { color: #f3cf6b; opacity: .7; }
-  @keyframes rbScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .rb-viewport { overflow-x: auto; } .rb-track { animation: none; } }
+
   @media (max-width: 640px) { .rb-label { padding: 0 9px; } .rb-txt { display: none; } .rb-item { font-size: 14px; padding: 0 14px; } }
   @media print { .results-bar { display: none; } }
   dd.card-desc { grid-column: 1 / -1; font-size: 14.5px; line-height: 1.4; color: var(--ink); font-weight: 500; margin-bottom: 4px; }
@@ -3140,6 +3140,7 @@ setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the
    Use "ev" to jump to an event card, or "open" to open a section in Additional Information.
    RESULTS: each result also shows in the ticker for 7 days after its date. */
 const ALERTS = [
+  { from: "2026-11-17T17:00", until: "2026-12-05T23:59", text: "🤝 New: Find a hybrid partner", sub: "Table Tennis, Badminton, Quiz, Antakshari & more · tap here", action: "partner" },
   { from: "2026-11-16T09:30", until: "2026-11-17T09:30", text: "Children’s Day results are out 🏆", sub: "Winners are on the event cards", ev: "Painting" },
   { from: "2026-11-15T10:30", until: "2026-11-15T18:00", text: "Cricket is live – follow the scores", sub: "Tap for the live scorecard on the Cricket card", ev: "Cricket" },
   { from: "2026-11-13T13:00", until: "2026-11-15T10:30", text: "Cricket fixtures are out", sub: "Sun, 15 Nov · first ball 10:30 AM · Parkway Turf", open: "cricket-fixtures" },
@@ -3179,22 +3180,69 @@ function renderResults() {
   const ev = name => EVENTS.find(e => e.name === name);
   const alerts = active.map(a => {
     const id = a.ev && ev(a.ev) ? evId(ev(a.ev)) : "";
-    const link = id ? `href="#${id}" data-ev="${id}"` : `href="#${a.open}" data-open="${a.open}"`;
+    const link = a.action ? `href="#" data-action="${a.action}"` : id ? `href="#${id}" data-ev="${id}"` : `href="#${a.open}" data-open="${a.open}"`;
     return `<a class="rb-item rb-alert" ${link}><b>${esc(a.text)}</b>${a.sub ? `<span>${esc(a.sub)}</span>` : ""}</a><span class="rb-sep">✦</span>`;
   }).join("");
   const one = alerts + recent.map(r => `<a class="rb-item" href="#${ev(r.event) ? evId(ev(r.event)) : ""}" data-ev="${ev(r.event) ? evId(ev(r.event)) : ""}">
       <b>${esc(r.cat)}</b><span>🥇 ${esc(r.gold)}</span><span>🥈 ${esc(r.silver)}</span><span>🥉 ${esc(r.bronze)}</span></a><span class="rb-sep">✦</span>`).join("");
-  track.innerHTML = one + one;   // two copies for a seamless loop
   bar.hidden = false;
-  requestAnimationFrame(() => track.style.setProperty("--rb-dur", Math.max(20, Math.round(track.scrollWidth / 2 / 55)) + "s"));
+  track.innerHTML = one;
+  const vw = track.parentElement.clientWidth || innerWidth, w1 = track.scrollWidth || 1;
+  const unit = one.repeat(Math.min(20, Math.max(1, Math.ceil((vw + 40) / w1))));   // each copy at least as wide as the bar
+  track.innerHTML = unit + unit;   // two copies for a seamless loop
 }
 renderResults();
+/* Ticker motion: scrolls on its own; touch, hover or drag pauses it so it can be read, and it resumes ~3 s later */
+(function tickerMotion() {
+  const bar = document.getElementById("resultsBar"), vp = bar && bar.querySelector(".rb-viewport"), track = document.getElementById("rbTrack");
+  if (!bar || !vp || !track || bar.hidden) return;
+  const SPEED = 55, RESUME = 3000;                       // pixels per second; pause after interaction
+  const still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let pos = 0, last = 0, holdUntil = 0, hovering = false, touching = false, drag = null, moved = false;
+  const half = () => track.scrollWidth / 2;               // the strip holds two copies
+  const wrap = () => { const h = half(); if (h <= 0) return; if (pos >= h) pos -= h; if (pos < 1) pos += h; };
+  const hold = ms => { holdUntil = performance.now() + (ms ?? RESUME); };
+  const paused = () => still || hovering || touching || drag || performance.now() < holdUntil;
+  function tick(t) {
+    const dt = last ? Math.min(t - last, 100) : 0; last = t;
+    if (!paused()) { pos += SPEED * dt / 1000; wrap(); vp.scrollLeft = pos; }
+    requestAnimationFrame(tick);
+  }
+  vp.addEventListener("scroll", () => {                    // a swipe, drag or trackpad moved it
+    if (!paused()) return;
+    pos = vp.scrollLeft; const h = half();
+    if (h > 0 && (pos >= h || pos < 1)) { wrap(); vp.scrollLeft = pos; }   // loop without an end
+  }, { passive: true });
+  vp.addEventListener("touchstart", () => { touching = true; }, { passive: true });
+  const touchEnd = () => { touching = false; hold(); };
+  vp.addEventListener("touchend", touchEnd, { passive: true });
+  vp.addEventListener("touchcancel", touchEnd, { passive: true });
+  vp.addEventListener("mouseenter", () => { hovering = true; });
+  vp.addEventListener("mouseleave", () => { hovering = false; if (drag) endDrag(); hold(1200); });
+  vp.addEventListener("wheel", () => hold(), { passive: true });
+  /* mouse drag on desktop (touch uses the phone's own swipe) */
+  vp.addEventListener("pointerdown", e => {
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
+    drag = { x: e.clientX, start: vp.scrollLeft }; moved = false;
+  });
+  window.addEventListener("pointermove", e => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x;
+    if (Math.abs(dx) > 4) { moved = true; vp.classList.add("dragging"); }
+    if (moved) { vp.scrollLeft = drag.start - dx; e.preventDefault(); }
+  });
+  function endDrag() { drag = null; vp.classList.remove("dragging"); hold(); }
+  window.addEventListener("pointerup", () => { if (drag) endDrag(); });
+  vp.addEventListener("click", e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);   // a drag is not a tap
+  vp.addEventListener("dragstart", e => e.preventDefault());   // stop the browser dragging the link itself
+  requestAnimationFrame(tick);
+})();
 (function () {
   const bar = document.getElementById("resultsBar"); if (!bar) return;
-  bar.addEventListener("touchstart", () => bar.classList.add("paused"), { passive: true });
-  bar.addEventListener("touchend", () => setTimeout(() => bar.classList.remove("paused"), 2500), { passive: true });
   bar.addEventListener("click", e => {          // jump to the event card, same as the event icons
-    const a = e.target.closest(".rb-item"); if (!a || !a.dataset.ev) return;   // data-open links use the page's own opener
+    const a = e.target.closest(".rb-item"); if (!a) return;
+    if (a.dataset.action === "partner") { e.preventDefault(); const o = document.getElementById("openPartner"); if (o) o.click(); return; }
+    if (!a.dataset.ev) return;   // data-open links use the page's own opener
     e.preventDefault();
     const icon = document.querySelector(`.ev[data-ev="${a.dataset.ev}"]`);
     if (icon) icon.click();
