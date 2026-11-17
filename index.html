@@ -562,7 +562,7 @@
   .quick.pills .qi img, .quick.pills .qi svg { width: 19px !important; height: 19px !important; }
   .quick.pills .ql { font-size: 13.5px !important; }
 }
-@media (max-width: 355px) { .quick.pills { flex-wrap: wrap; } }
+@media (max-width: 375px) { .quick.pills { flex-wrap: wrap; row-gap: 8px; } }
 /* Use as App pill: subtle, right-aligned */
 .quick.pills .qt#openApp { background:#eaf3fc; border:1px dashed #7fb0de; box-shadow:none; }
 .quick.pills .qt#openApp .qi { background:#fff; }
@@ -621,6 +621,55 @@
 .dg-body { padding: 4px 14px 14px; }
 .dg-body .day:first-child { margin-top: 10px; }
 @media print { .done-group { border: 0; } .done-group > summary { display: none; } .done-group .dg-body { display: block; } }
+/* Find a Hybrid Partner */
+@media (max-width: 480px) { .quick.pills .ql-long { display: none; } .quick.pills .qt#openApp { padding: 5px; } .quick.pills .qt#openApp .ql { display: none; } }
+.pt-card { max-width: 560px; }
+.pt-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 4px; margin-bottom: 14px; }
+.pt-tabs button { border: 0; background: transparent; padding: 9px 6px; border-radius: 9px; font: inherit; font-weight: 600; font-size: 14px; color: var(--muted); cursor: pointer; }
+.pt-tabs button[aria-selected="true"] { background: var(--surface); color: #00529B; box-shadow: 0 1px 4px rgba(0,0,0,.12); }
+.pt-off { background: #fff8e1; border: 1px solid #f0dfa8; color: #7a5a12; border-radius: 12px; padding: 10px 12px; font-size: 14px; margin-bottom: 12px; }
+.pt-events { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin-bottom: 12px; }
+.pt-ev { display: grid; justify-items: center; gap: 3px; padding: 10px 6px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); font: inherit; cursor: pointer; color: var(--ink); }
+.pt-ev.on { border-color: #00529B; box-shadow: 0 0 0 2px rgba(0,82,155,.2); background: #eaf3fc; }
+.pt-ev b { font-size: 13px; } .pt-ev small { font-size: 11.5px; color: var(--muted); }
+.pt-ico { width: 34px; height: 34px; display: grid; place-items: center; } .pt-ico svg { width: 30px; height: 30px; overflow: visible; }
+.pt-filters { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.pt-filters select, .pt-card form select, .pt-card form input:not([type=checkbox]) { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font: inherit; font-size: 14px; }
+.pt-list { display: grid; gap: 8px; }
+.pt-item { border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; background: var(--surface); }
+.pt-item.found { opacity: .7; }
+.pt-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 8px; }
+.pt-top b { font-size: 15px; } .pt-comm { color: var(--muted); font-size: 13px; }
+.pt-lvl { margin-left: auto; font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #eef2f6; color: #445; }
+.lvl-beginner { background: #e8f5e9; color: #1b5e20; } .lvl-intermediate { background: #e3f2fd; color: #0d47a1; } .lvl-advanced { background: #fce4ec; color: #880e4f; } .lvl-found { background: #e8f5e9; color: #1b5e20; }
+.pt-meta { font-size: 13px; color: var(--muted); margin-top: 3px; }
+.pt-note { font-size: 13.5px; margin-top: 4px; font-style: italic; }
+.pt-contact { margin-top: 8px; width: 100%; padding: 9px; border: 0; border-radius: 10px; background: #25a244; color: #fff; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
+.pt-empty { color: var(--muted); font-size: 14px; text-align: center; padding: 14px 6px; margin: 0; }
+.pt-card form { display: grid; gap: 10px; }
+.pt-card form label { display: grid; gap: 4px; font-size: 13px; font-weight: 600; color: var(--ink); }
+.pt-card form label small { font-weight: 400; color: var(--muted); }
+.pt-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pt-consent { display: flex !important; gap: 8px; align-items: flex-start; font-weight: 400 !important; font-size: 12.5px !important; color: var(--muted) !important; line-height: 1.4; }
+.pt-consent input { margin-top: 2px; flex: 0 0 auto; }
+.pt-hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.pt-btn { padding: 12px; border: 0; border-radius: 12px; background: #00529B; color: #fff; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; }
+.pt-btn.ghost { background: var(--bg); color: #00529B; border: 1px solid var(--line); }
+.pt-btn:disabled { opacity: .6; }
+.pt-msg { margin: 0; font-size: 13.5px; color: #1b5e20; min-height: 1em; } .pt-msg.bad { color: #c0392b; }
+.pt-editing { margin: 0; background: #eaf3fc; color: #00529B; border-radius: 10px; padding: 8px 10px; font-size: 13.5px; font-weight: 600; }
+.pt-link { border: 0; background: none; color: inherit; text-decoration: underline; font: inherit; cursor: pointer; padding: 0; }
+.pt-done { display: grid; gap: 12px; }
+.pt-ok { background: #e8f5e9; color: #1b5e20; border-radius: 12px; padding: 10px 12px; font-size: 14.5px; }
+.pt-code { text-align: center; border: 2px dashed #00529B; border-radius: 14px; padding: 12px; color: var(--ink); font-size: 13px; }
+.pt-code b { display: block; font-size: 38px; letter-spacing: .25em; color: #00529B; margin: 4px 0; }
+.pt-code small { color: var(--muted); }
+.pt-mineform { grid-template-columns: 1fr 110px auto; align-items: end; }
+.pt-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.pt-actions button { flex: 1; min-width: 90px; padding: 8px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.pt-actions .danger { color: #c0392b; } .pt-actions .danger.sure { background: #c0392b; color: #fff; border-color: #c0392b; }
+@media (max-width: 480px) { .pt-events { grid-template-columns: repeat(4, 1fr); gap: 6px; } .pt-ev { padding: 8px 2px; } .pt-ev b { font-size: 11.5px; } .pt-ev small { font-size: 10.5px; } .pt-ico { width: 28px; height: 28px; } .pt-ico svg { width: 24px; height: 24px; } .pt-mineform { grid-template-columns: 1fr 1fr; } .pt-mineform .pt-btn { grid-column: 1 / -1; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pt-ev.on, :root:not([data-theme="light"]) .pt-editing { background: rgba(127,176,222,.12); } :root:not([data-theme="light"]) .pt-tabs button[aria-selected="true"] { color: #8fc3ff; } }
 </style>
 </head>
 <body>
@@ -650,7 +699,8 @@
 <nav class="quick pills" aria-label="Fest highlights">
       <a class="qt" href="https://www.noelprojects.com/gallery" target="_blank" rel="noopener"><span class="qi"><img src="data:image/png;base64,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" alt=""></span><span class="ql">Photos</span></a>
       <button type="button" class="qt" id="openPrizes"><span class="qi"><svg viewBox="0 0 48 48" stroke="#2d2d2d" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M14 8h20v10a10 10 0 0 1-20 0z" fill="#ffd23f"/><path d="M14 11H8c0 6 3 9 7 9M34 11h6c0 6-3 9-7 9" fill="none" stroke="#c99a2e" stroke-width="2.6"/><path d="M21 27h6v6h-6z" fill="#e8b400"/><path d="M15 33h18l2 7H13z" fill="#b5651d"/><path d="M20 13l2 4M28 13l-1 3" stroke="#fff" stroke-width="1.6" opacity=".7"/><circle cx="24" cy="18" r="3.4" fill="#fff3c4" stroke="#c99a2e"/></svg></span><span class="ql">Prizes</span></button>
-      <button type="button" class="qt" id="openApp"><span class="qi"><svg viewBox="0 0 48 48" stroke="#2d2d2d" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><rect x="14" y="5" width="20" height="38" rx="4" fill="#9ed0ff"/><rect x="17" y="10" width="14" height="24" rx="1.5" fill="#fff"/><circle cx="24" cy="38.5" r="1.8" fill="#2d2d2d"/><path d="M24 15v12M19.5 22.5l4.5 4.5 4.5-4.5" stroke="#00529B" stroke-width="2.2" fill="none"/></svg></span><span class="ql">Use as App</span></button>
+      <button type="button" class="qt" id="openPartner"><span class="qi"><svg viewBox="0 0 48 48" stroke="#2d2d2d" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M4 22l8-8 7 3 5-3 5 3 7-3 8 8-6 6" fill="#ffd8a8"/><path d="M12 14l-8 8 5 5M36 14l8 8-5 5" fill="#9ed0ff"/><path d="M19 17l-5 6c-1 1.5 1 3.5 2.5 2.2L22 21l9 8.5c1.2 1.2 3-.4 2-1.8M27 33l-3-3M30 31l-3-3M23.5 35l-2.5-2.5" fill="none"/></svg></span><span class="ql"><span class="ql-long">Find a </span>Partner</span></button>
+      <button type="button" class="qt" id="openApp"><span class="qi"><svg viewBox="0 0 48 48" stroke="#2d2d2d" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><rect x="14" y="5" width="20" height="38" rx="4" fill="#9ed0ff"/><rect x="17" y="10" width="14" height="24" rx="1.5" fill="#fff"/><circle cx="24" cy="38.5" r="1.8" fill="#2d2d2d"/><path d="M24 15v12M19.5 22.5l4.5 4.5 4.5-4.5" stroke="#00529B" stroke-width="2.2" fill="none"/></svg></span><span class="ql"><span class="ql-long">Use as </span>App</span></button>
     </nav>
 
   <div class="results-bar" id="resultsBar" hidden aria-label="Alerts">
@@ -1388,6 +1438,67 @@
     </ul>
   </div>
 </div>
+<div class="sheet" id="partnerSheet" hidden role="dialog" aria-modal="true" aria-labelledby="ptTitle">
+  <div class="sheet-card pt-card">
+    <button type="button" class="sheet-x" aria-label="Close">×</button>
+    <h2 id="ptTitle">🤝 Find a Hybrid Partner</h2>
+    <p class="sheet-sub">Team up with someone from another Noel community. Hybrid teams are allowed by the Core Committee.</p>
+    <div class="pt-tabs" role="tablist">
+      <button type="button" role="tab" data-pt="find" aria-selected="true">Find</button>
+      <button type="button" role="tab" data-pt="add" aria-selected="false">I’m looking</button>
+      <button type="button" role="tab" data-pt="mine" aria-selected="false">My listings</button>
+    </div>
+    <div class="pt-off" id="ptOff" hidden>The partner finder is being set up. Please check back soon.</div>
+
+    <section class="pt-pane" data-pane="find">
+      <div class="pt-events" id="ptEvents"></div>
+      <div class="pt-filters">
+        <select id="ptfCat" aria-label="Category"><option value="">All categories</option></select>
+        <select id="ptfAge" aria-label="Age group"><option value="">All ages</option></select>
+        <select id="ptfLevel" aria-label="Skill level"><option value="">All levels</option></select>
+        <select id="ptfMine" aria-label="Hide my community"><option value="">Hide my community…</option></select>
+      </div>
+      <div class="pt-list" id="ptList"><p class="pt-empty">Loading…</p></div>
+    </section>
+
+    <section class="pt-pane" data-pane="add" hidden>
+      <form id="ptForm" autocomplete="on" novalidate>
+        <p class="pt-editing" id="ptEditing" hidden>Editing your listing · <button type="button" class="pt-link" id="ptCancelEdit">Cancel</button></p>
+        <label>Event<select name="event" required></select></label>
+        <label>Category<select name="category" required></select></label>
+        <div class="pt-row">
+          <label>Age group<select name="age" required></select></label>
+          <label>Skill level<select name="level" required><option value="">Choose…</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label>
+        </div>
+        <div class="pt-row">
+          <label>First name<input name="name" maxlength="40" required placeholder="e.g. Anu"></label>
+          <label>Gender<select name="gender" required><option value="">Choose…</option><option>Male</option><option>Female</option></select></label>
+        </div>
+        <label>Your community<select name="community" required></select></label>
+        <label>Note <small>(optional)</small><input name="note" maxlength="200" placeholder="e.g. free evenings, love old Hindi songs"></label>
+        <div class="pt-row">
+          <label>WhatsApp number<input name="phone" inputmode="tel" maxlength="14" required placeholder="10-digit mobile"></label>
+          <label class="pt-codewrap">Edit code <small>(if you have one)</small><input name="code" inputmode="numeric" maxlength="4" placeholder="4 digits"></label>
+        </div>
+        <input name="website" class="pt-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="pt-consent"><input type="checkbox" name="consent" required> I agree to show my first name, community, age group, level and note to other Noel Fest participants. My number is shared only when someone taps Contact. Listings are deleted after Noel Fest (23 Dec).</label>
+        <p class="pt-msg" id="ptFormMsg" role="status"></p>
+        <button type="submit" class="pt-btn" id="ptSubmit">Add my listing</button>
+      </form>
+      <div class="pt-done" id="ptDone" hidden></div>
+    </section>
+
+    <section class="pt-pane" data-pane="mine" hidden>
+      <form id="ptMineForm" class="pt-row pt-mineform" novalidate>
+        <label>WhatsApp number<input name="phone" inputmode="tel" maxlength="14" required></label>
+        <label>Edit code<input name="code" inputmode="numeric" maxlength="4" required></label>
+        <button type="submit" class="pt-btn">Show</button>
+      </form>
+      <p class="pt-msg" id="ptMineMsg" role="status"></p>
+      <div class="pt-list" id="ptMineList"></div>
+    </section>
+  </div>
+</div>
 <div class="sheet" id="appSheet" hidden role="dialog" aria-modal="true" aria-labelledby="appTitle">
   <div class="sheet-card app-card">
     <button type="button" class="sheet-x" aria-label="Close">×</button>
@@ -1819,6 +1930,211 @@ render();
   const close = () => { try { localStorage.setItem(key, "1"); } catch (_) {} el.classList.add("out"); document.body.style.overflow = ""; setTimeout(() => el.remove(), 300); };
   el.addEventListener("click", e => { if (e.target === el || e.target.closest(".sp-x, .sp-go")) close(); });
   document.addEventListener("keydown", e => { if (e.key === "Escape" && el.isConnected) close(); });
+})();
+
+/* ---------- Find a Hybrid Partner ----------
+   Data lives in a Google Sheet behind a Google Apps Script web app (PARTNER_API).
+   Phone numbers are never loaded into the page: a number is fetched only when someone taps Contact. */
+const PARTNER_API = "https://script.google.com/macros/s/AKfycbz3pG6EAhYAbplAspd5EVCMCaonAmUdMHsssdVUm8repQ5ediqAb0M3Tubsuv5p8e6Z/exec";
+const PT_EVENTS = ["Table Tennis – Doubles", "Badminton – Doubles", "Group Music", "Cards", "Quiz", "Waterpolo", "Antakshari"];
+const PT_AGES = ["15 & Below", "16 to 35", "36 to 50", "Above 50"];
+const PT_COMMUNITIES = ["Noel Arcadia", "Noel Cloudwalk", "Noel Define", "Noel Earth Song", "Noel Ecoden", "Noel Ecotat", "Noel Fragranz", "Noel Greenature", "Noel Heritage", "Noel House", "Noel Ivy Creek", "Noel Octave", "Noel Palmdale", "Noel Poetry", "Noel Serenia", "Noel Signature", "Noel Tall Terrace", "Noel Touchstone"];
+(function partnerFinder() {
+  const sheet = document.getElementById("partnerSheet"), open = document.getElementById("openPartner");
+  if (!sheet || !open) return;
+  const q = s => sheet.querySelector(s), qa = s => [...sheet.querySelectorAll(s)];
+  const evObj = n => EVENTS.find(e => e.name === n);
+  const short = n => n.replace(" – Doubles", "");
+  const catsOf = n => (evObj(n) ? evObj(n).categories.map(c => c.t) : ["Open Category"]);
+  const ageFromCat = c => (PT_AGES.find(a => c.startsWith(a)) || "");
+  const ico = n => ICONS[n] ? `<svg viewBox="0 0 48 48" stroke="#2d2d2d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>` : "";
+  const opts = (arr, first) => (first ? `<option value="">${first}</option>` : "") + arr.map(v => `<option>${esc(v)}</option>`).join("");
+  let list = [], pick = "", mineCreds = null, editId = null;
+
+  async function api(body) {
+    if (!PARTNER_API) throw new Error("The partner finder is being set up. Please check back soon.");
+    let r;
+    try {
+      r = body ? await fetch(PARTNER_API, { method: "POST", body: JSON.stringify(body) })
+               : await fetch(PARTNER_API + "?action=list");
+    } catch (_) { throw new Error("Couldn’t reach the partner list. Check your internet connection and try again."); }
+    const j = await r.json();
+    if (!j.ok) throw new Error(j.error || "Something went wrong. Please try again.");
+    return j;
+  }
+  async function contactOf(id) {
+    const r = await fetch(PARTNER_API + "?action=contact&id=" + encodeURIComponent(id));
+    const j = await r.json(); if (!j.ok) throw new Error(j.error || "Could not get the number.");
+    return j;
+  }
+
+  /* ----- tabs ----- */
+  function tab(name) {
+    qa(".pt-tabs [data-pt]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.pt === name)));
+    qa(".pt-pane").forEach(p => p.hidden = p.dataset.pane !== name);
+    if (name === "find") load();
+  }
+  qa(".pt-tabs [data-pt]").forEach(b => b.addEventListener("click", () => tab(b.dataset.pt)));
+
+  /* ----- find ----- */
+  q("#ptfAge").innerHTML = opts(PT_AGES, "All ages");
+  q("#ptfLevel").innerHTML = opts(["Beginner", "Intermediate", "Advanced"], "All levels");
+  q("#ptfMine").innerHTML = `<option value="">Hide my community…</option>` + PT_COMMUNITIES.map(c => `<option value="${esc(c)}">Hide ${esc(c)}</option>`).join("");
+  try { const m = localStorage.getItem("ptMine"); if (m) q("#ptfMine").value = m; } catch (_) {}
+  function drawEvents() {
+    const counts = {}; list.forEach(x => counts[x.event] = (counts[x.event] || 0) + 1);
+    q("#ptEvents").innerHTML = PT_EVENTS.map(n => `<button type="button" class="pt-ev${pick === n ? " on" : ""}" data-ev="${esc(n)}"><span class="pt-ico">${ico(n)}</span><b>${esc(short(n))}</b><small>${counts[n] ? counts[n] + " looking" : "none yet"}</small></button>`).join("");
+  }
+  function drawList() {
+    const fc = q("#ptfCat").value, fa = q("#ptfAge").value, fl = q("#ptfLevel").value, fm = q("#ptfMine").value;
+    const rows = list.filter(x => (!pick || x.event === pick) && (!fc || x.category === fc) && (!fa || x.age === fa) && (!fl || x.level === fl) && (!fm || x.community !== fm));
+    if (!rows.length) { q("#ptList").innerHTML = `<p class="pt-empty">No one is listed here yet. Be the first – tap <b>I’m looking</b>.</p>`; return; }
+    q("#ptList").innerHTML = rows.map(x => `<div class="pt-item">
+      <div class="pt-top"><b>${esc(x.name)}</b><span class="pt-comm">${esc(x.community)}</span><span class="pt-lvl lvl-${esc(String(x.level).toLowerCase())}">${esc(x.level)}</span></div>
+      <div class="pt-meta">${esc(short(x.event))} · ${esc(x.category)}${x.category.startsWith(x.age) ? "" : " · " + esc(x.age)} · ${esc(x.gender)}</div>
+      ${x.note ? `<div class="pt-note">“${esc(x.note)}”</div>` : ""}
+      <button type="button" class="pt-contact" data-id="${esc(x.id)}" data-name="${esc(x.name)}" data-ev="${esc(short(x.event))}" data-cat="${esc(x.category)}">Contact on WhatsApp</button>
+    </div>`).join("");
+  }
+  async function load() {
+    q("#ptOff").hidden = !!PARTNER_API;
+    if (!PARTNER_API) { list = []; drawEvents(); q("#ptList").innerHTML = ""; return; }
+    q("#ptList").innerHTML = `<p class="pt-empty">Loading…</p>`;
+    try { list = (await api()).list; } catch (err) { q("#ptList").innerHTML = `<p class="pt-empty">${esc(err.message)}</p>`; return; }
+    drawEvents(); drawList();
+  }
+  q("#ptEvents").addEventListener("click", e => {
+    const b = e.target.closest(".pt-ev"); if (!b) return;
+    pick = pick === b.dataset.ev ? "" : b.dataset.ev;
+    q("#ptfCat").innerHTML = opts(pick ? catsOf(pick) : [], "All categories");
+    drawEvents(); drawList();
+  });
+  ["#ptfCat", "#ptfAge", "#ptfLevel", "#ptfMine"].forEach(s => q(s).addEventListener("change", () => {
+    if (s === "#ptfMine") { try { localStorage.setItem("ptMine", q(s).value); } catch (_) {} }
+    drawList();
+  }));
+  q("#ptList").addEventListener("click", async e => {
+    const b = e.target.closest(".pt-contact"); if (!b) return;
+    const label = b.textContent; b.disabled = true; b.textContent = "Getting number…";
+    const win = window.open("", "_blank");   // opened straight away so phones don't block it
+    try {
+      const c = await contactOf(b.dataset.id);
+      const msg = `Hi ${c.name}, I saw your Noel Fest 2026 partner listing for ${b.dataset.ev} (${b.dataset.cat}). Shall we team up?`;
+      const url = `https://wa.me/91${c.phone}?text=${encodeURIComponent(msg)}`;
+      if (win) win.location.href = url; else location.href = url;
+      b.textContent = label;
+    } catch (err) { if (win) win.close(); b.textContent = err.message; }
+    b.disabled = false;
+  });
+
+  /* ----- add / edit ----- */
+  const F = q("#ptForm"), el = n => F.elements[n];
+  el("event").innerHTML = opts(PT_EVENTS, "Choose…");
+  el("community").innerHTML = opts(PT_COMMUNITIES, "Choose…");
+  el("age").innerHTML = opts(PT_AGES, "Choose…");
+  function syncCats() {
+    const ev = el("event").value;
+    el("category").innerHTML = opts(ev ? catsOf(ev) : [], "Choose…");
+    if (ev && catsOf(ev).length === 1) el("category").selectedIndex = 1;
+    syncAge();
+  }
+  function syncAge() {
+    const a = ageFromCat(el("category").value);
+    el("age").disabled = !!a; if (a) el("age").value = a;
+  }
+  el("event").addEventListener("change", syncCats);
+  el("category").addEventListener("change", syncAge);
+  const msg = (id, t, bad) => { const m = q(id); m.textContent = t || ""; m.classList.toggle("bad", !!bad); };
+  function formData() {
+    const d = {}; ["event", "category", "age", "level", "name", "gender", "community", "note", "phone", "code", "website"].forEach(k => d[k] = el(k).value.trim());
+    return d;
+  }
+  function validate(d) {
+    for (const [k, t] of [["event", "an event"], ["category", "a category"], ["age", "an age group"], ["level", "a skill level"], ["name", "your first name"], ["gender", "your gender"], ["community", "your community"]])
+      if (!d[k]) return "Please choose " + t + ".";
+    if (!/^(\+?91)?[6-9]\d{9}$/.test(d.phone.replace(/[\s-]/g, ""))) return "Please enter a valid 10-digit mobile number.";
+    if (!el("consent").checked) return "Please tick the consent box.";
+    return "";
+  }
+  function resetForm() {
+    F.reset(); editId = null; q("#ptEditing").hidden = true; q("#ptSubmit").textContent = "Add my listing";
+    el("phone").readOnly = false; q(".pt-codewrap").hidden = false; syncCats();
+  }
+  q("#ptCancelEdit").addEventListener("click", () => { resetForm(); tab("mine"); });
+  F.addEventListener("submit", async e => {
+    e.preventDefault();
+    const d = formData(), bad = validate(d);
+    if (bad) return msg("#ptFormMsg", bad, true);
+    const btn = q("#ptSubmit"); btn.disabled = true; msg("#ptFormMsg", "Saving…");
+    try {
+      if (editId) {
+        await api(Object.assign({ action: "update", id: editId }, d, mineCreds));
+        msg("#ptFormMsg", ""); resetForm(); tab("mine"); await showMine(); msg("#ptMineMsg", "Listing updated ✓");
+      } else {
+        const r = await api(Object.assign({ action: "create" }, d));
+        try { localStorage.setItem("ptMine", d.community); } catch (_) {}
+        F.hidden = true; const done = q("#ptDone"); done.hidden = false;
+        done.innerHTML = `<div class="pt-ok">✓ You’re listed for <b>${esc(short(d.event))}</b> (${esc(d.category)}).</div>` +
+          (r.isNewCode ? `<div class="pt-code">Your edit code<b>${esc(r.code)}</b><small>Take a screenshot. You need it with your number to edit or delete your listings.</small></div>` : `<p class="pt-note">Use your existing edit code to manage it.</p>`) +
+          `<div class="pt-row"><button type="button" class="pt-btn ghost" data-again>Add another</button><button type="button" class="pt-btn" data-see>See listings</button></div>`;
+        msg("#ptFormMsg", "");
+      }
+    } catch (err) {
+      msg("#ptFormMsg", err.message, true);
+      if (/edit code/i.test(err.message)) el("code").focus();
+    }
+    btn.disabled = false;
+  });
+  q("#ptDone").addEventListener("click", e => {
+    if (e.target.closest("[data-again]")) { const keep = { phone: el("phone").value, name: el("name").value, gender: el("gender").value, community: el("community").value };
+      q("#ptDone").hidden = true; F.hidden = false; resetForm(); Object.entries(keep).forEach(([k, v]) => el(k).value = v); }
+    if (e.target.closest("[data-see]")) { q("#ptDone").hidden = true; F.hidden = false; resetForm(); tab("find"); }
+  });
+
+  /* ----- my listings ----- */
+  const M = q("#ptMineForm");
+  async function showMine() {
+    const r = await api(Object.assign({ action: "mine" }, mineCreds));
+    q("#ptMineList").innerHTML = r.list.length ? r.list.map(x => `<div class="pt-item${x.status === "found" ? " found" : ""}" data-id="${esc(x.id)}">
+      <div class="pt-top"><b>${esc(short(x.event))}</b><span class="pt-comm">${esc(x.category)}</span>${x.status === "found" ? `<span class="pt-lvl lvl-found">Partner found</span>` : ""}</div>
+      <div class="pt-meta">${esc(x.age)} · ${esc(x.level)} · ${esc(x.name)}, ${esc(x.community)}</div>
+      ${x.note ? `<div class="pt-note">“${esc(x.note)}”</div>` : ""}
+      <div class="pt-actions"><button type="button" data-act="edit">Edit</button><button type="button" data-act="found">${x.status === "found" ? "Show again" : "Partner found ✓"}</button><button type="button" data-act="delete" class="danger">Delete</button></div>
+    </div>`).join("") : `<p class="pt-empty">No listings for this number.</p>`;
+    q("#ptMineList")._data = r.list;
+  }
+  M.addEventListener("submit", async e => {
+    e.preventDefault();
+    mineCreds = { phone: M.elements.phone.value.trim(), code: M.elements.code.value.trim() };
+    msg("#ptMineMsg", "Loading…");
+    try { await showMine(); msg("#ptMineMsg", ""); } catch (err) { msg("#ptMineMsg", err.message, true); q("#ptMineList").innerHTML = ""; }
+  });
+  q("#ptMineList").addEventListener("click", async e => {
+    const b = e.target.closest("[data-act]"); if (!b) return;
+    const item = b.closest(".pt-item"), id = item.dataset.id, x = (q("#ptMineList")._data || []).find(r => r.id === id);
+    if (b.dataset.act === "edit") {
+      tab("add"); resetForm(); editId = id;
+      el("event").value = x.event; syncCats(); el("category").value = x.category; syncAge();
+      ["age", "level", "name", "gender", "community", "note"].forEach(k => { if (!el(k).disabled || k !== "age") el(k).value = x[k]; });
+      el("phone").value = mineCreds.phone; el("phone").readOnly = true; q(".pt-codewrap").hidden = true; el("consent").checked = true;
+      q("#ptEditing").hidden = false; q("#ptSubmit").textContent = "Save changes"; return;
+    }
+    if (b.dataset.act === "delete" && !b.classList.contains("sure")) { b.classList.add("sure"); b.textContent = "Tap again to delete"; return; }
+    b.disabled = true;
+    try {
+      if (b.dataset.act === "found") await api(Object.assign({ action: "found", id, found: x.status !== "found" }, mineCreds));
+      if (b.dataset.act === "delete") await api(Object.assign({ action: "delete", id }, mineCreds));
+      await showMine(); msg("#ptMineMsg", b.dataset.act === "delete" ? "Listing deleted." : "Updated ✓");
+    } catch (err) { msg("#ptMineMsg", err.message, true); b.disabled = false; }
+  });
+
+  /* ----- open / close ----- */
+  const show = () => { sheet.hidden = false; document.body.style.overflow = "hidden"; tab("find"); };
+  const hide = () => { sheet.hidden = true; document.body.style.overflow = ""; open.focus(); };
+  open.addEventListener("click", show);
+  sheet.addEventListener("click", e => { if (e.target === sheet || e.target.closest(".sheet-x")) hide(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !sheet.hidden) hide(); });
+  syncCats();
 })();
 
 /* "Use as App" pop-up: install help, shown for the visitor's phone first */
