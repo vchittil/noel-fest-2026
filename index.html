@@ -1261,7 +1261,7 @@
             <h4>Rules</h4>
             <ul><li>Songs may be in Malayalam, Hindi, Tamil or English.</li><li>Judging will follow the usual yardsticks of Indian music: <strong>Sruthi, Taal, Feel and Overall Presentation</strong>.</li><li>Light music and film songs can be sung.</li><li>Karaoke can be used.</li><li>Singers playing their own musical instrument is discouraged, but is allowed subject to conditions.</li><li>Each song has <strong>5 minutes</strong>, including the time to set up the karaoke.</li><li>Participants or their association representative must bring the karaoke. To avoid confusion when starting, the representative can bring all of the association's karaoke tracks together on one USB pen drive, to be stored on the laptop on stage.</li></ul>
             <h4>Entries</h4>
-            <p>Two entries per category from each association.</p>
+            <p>Two entries per category from each association. Register using the <strong>Register now</strong> button on the event card by <strong>9:00 PM, Monday, 23 November 2026</strong>.</p>
             <h4>Association Points</h4>
             <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
           </div>
@@ -1634,7 +1634,7 @@ const EVENTS = [
     participants: "Multiple entries allowed from each association – minimum 2 per group", note: "Up to 5 minutes per performance. Followed by a DJ Party!",
     info: [["Rules & Guidelines", "dance-rules"]] },
 
-  { date: "2026-11-15", name: "Cricket", score: "https://chshare.link/scorecard/mYH1Jw", live: ["10:30", "17:55"], categories: [OPEN()], tags: [T.open],
+  { date: "2026-11-15", name: "Cricket", reel: "https://www.instagram.com/reel/Df4GNIvFdoq/?cnvx=OGJsdDZvMGxxbTJo", score: "https://chshare.link/scorecard/mYH1Jw", live: ["10:30", "17:55"], categories: [OPEN()], tags: [T.open],
     participants: "One team from each association", venue: "Parkway Turf, Kakkanad", host: "Core Committee", time: "10:30 AM – 5:55 PM", coord: "Jai", phone: "95XXX X6660", pk: "gigwlesuhu",
     reg: { url: "https://forms.gle/xkzWX3nWBraZtBLBA", closes: "2026-11-11T17:00", who: "One team per association" },
     note: "11 teams · knockout · 8 a side. First ball 10:30 AM sharp – first two teams report by 10:15 AM. Final ends 5:55 PM, followed by prizes.",
@@ -1661,6 +1661,7 @@ const EVENTS = [
     categories: [C("Below 12 – Boys & Girls together", 0, 11), C("12 to 18 – Boys, Girls", 12, 18), C("19 to 59 – Men, Women", 19, 59), C("60 & Above – Men, Women", 60, MAX)],
     tags: [T.kids, T.boys, T.girls, T.juniors, T.men, T.women, T.adults, T.seniors],
     participants: "2 entries per category: Below 12 · 12–18 (B) · 12–18 (G) · 19–59 (M) · 19–59 (W) · 60+ (M) · 60+ (W)", venue: "Noel Serenia, Thrikkakara", host: "Serenia", coord: "Radhika", phone: "81XXX X6700", pk: "gwhwkrhysy",
+    reg: { url: "https://forms.gle/tWi72vGn1M6TdMYW9", closes: "2026-11-23T21:00", who: "2 entries per category per association" },
     info: [["Rules & Guidelines", "solomusic-rules"]] },
 
   { date: "2026-11-29", name: "Nature Photography", live: ["07:00", "08:30"], categories: [OPEN()], tags: [T.open],
@@ -3142,6 +3143,7 @@ setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the
    Use "ev" to jump to an event card, or "open" to open a section in Additional Information.
    RESULTS: each result also shows in the ticker for 7 days after its date. */
 const ALERTS = [
+  { from: "2026-11-18T15:30", until: "2026-11-23T21:00", text: "Solo Singing (28 Nov): register by Mon, 23 Nov, 9 PM", ev: "Solo Music" },
   { from: "2026-11-17T17:00", until: "2026-12-05T23:59", text: "🤝 New: Find a hybrid partner", sub: "Table Tennis, Badminton, Quiz, Antakshari & more · tap here", action: "partner" },
   { from: "2026-11-16T09:30", until: "2026-11-17T09:30", text: "Children’s Day results are out 🏆", sub: "Winners are on the event cards", ev: "Painting" },
   { from: "2026-11-15T10:30", until: "2026-11-15T18:00", text: "Cricket is live – follow the scores", sub: "Tap for the live scorecard on the Cricket card", ev: "Cricket" },
