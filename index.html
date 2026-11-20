@@ -443,14 +443,14 @@
     table.fx-table tbody tr:nth-child(even) { background: var(--bg); }
     table.fx-table tr.final { background: var(--gold-soft); }
     table.fx-table td { padding: 0; border: 0; background: none !important; }
-    table.fx-table .td-no { grid-column: 1; } table.fx-table .td-round { grid-column: 2; color: var(--muted); }
-    table.fx-table .td-time { grid-column: 3; text-align: right; font-weight: 600; }
+    table.fx-table .td-no { grid-column: 1; } table.fx-table .td-round { grid-column: 1 / -1; color: var(--muted); white-space: normal; font-size: 13px; }
+    table.fx-table .td-time { grid-column: 2 / -1; text-align: right; font-weight: 600; }
     table.fx-table .td-mu { grid-column: 1 / -1; font-size: 14px; }
     table.fx-table .td-board { grid-column: 1; font-size: 12px; color: var(--muted); }
     table.fx-table .td-fmt { grid-column: 2 / -1; font-size: 12px; white-space: normal; }
     table.fx-table.noboard .td-fmt { grid-column: 1 / -1; }
-    table.fx-table .td-no, table.fx-table .td-round, table.fx-table .td-time { grid-row: 1; }
-    table.fx-table .td-mu { grid-row: 2; } table.fx-table .td-board, table.fx-table .td-fmt { grid-row: 3; }
+    table.fx-table .td-no, table.fx-table .td-time { grid-row: 1; } table.fx-table .td-round { grid-row: 2; }
+    table.fx-table .td-mu { grid-row: 3; } table.fx-table .td-board, table.fx-table .td-fmt { grid-row: 4; }
   }
   .sched-note { margin: 4px 0 10px; font-size: 13px; color: var(--muted); }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
@@ -1230,6 +1230,18 @@
             <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
           </div>
         </details>
+        <details class="acc" id="tabletennis-fixtures">
+          <summary>Fixtures</summary>
+          <div class="acc-body"><div class="bk-wrap" data-bracket="tabletennis"></div>
+            <p class="fx-byes">Pick a category above to see its draw. Teams with a bye go straight into the next round. Each match has a 20-minute slot.</p>
+          </div>
+        </details>
+        <details class="acc" id="tabletennis-schedule">
+          <summary>Match Schedule</summary>
+          <div class="acc-body"><div class="fx-wrap" data-fxsched="tabletennis"></div>
+            <p class="fx-byes">Order of matches across Tables 1–3. Losers finals and finals are played from 7:50 pm. Schedule subject to change by the organisers.</p>
+          </div>
+        </details>
       </div>
     </details>
     <details class="acc" id="info-badminton">
@@ -1653,11 +1665,11 @@ const EVENTS = [
     note: "6 teams · qualifiers, semi-finals, Losers Final and Final. First match 5:00 PM – report by 4:45 PM. Followed by dinner and a Musical Night!",
     info: [["Fixtures", "throwball-fixtures"], ["Match Schedule", "throwball-schedule"], ["Rules & Guidelines", "throwball-rules"]] },
 
-  { date: "2026-11-21", name: "Table Tennis – Doubles", categories: RACKET_CATS,
+  { date: "2026-11-21", name: "Table Tennis – Doubles", live: ["14:30", "22:10"], categories: RACKET_CATS,
     tags: [T.boys, T.girls, T.juniors, T.men, T.women, T.mixed, T.adults, T.seniors],
-    participants: "15 & Below – 2 teams; other categories – 1 team from each association", venue: "Noel Earth Song, Kadavanthra", host: "Earthsong", coord: "Chandramohan", phone: "94XXX X1525", pk: "zrfusygigu",
+    participants: "15 & Below – 2 teams; other categories – 1 team from each association", venue: "Noel Earth Song, Kadavanthra", host: "Earthsong", time: "2:30 PM – 10:10 PM", coord: "Chandramohan", phone: "94XXX X1525", pk: "zrfusygigu",
     reg: { url: "https://forms.gle/ZEcWTt1PDJT7B5K57", closes: "2026-11-17T23:59", who: "Association coordinators" },
-    info: [["Rules & Guidelines", "tabletennis-rules"]] },
+    info: [["Fixtures", "tabletennis-fixtures"], ["Match Schedule", "tabletennis-schedule"], ["Rules & Guidelines", "tabletennis-rules"]] },
 
   { date: "2026-11-22", name: "Badminton – Doubles", categories: RACKET_CATS,
     tags: [T.boys, T.girls, T.juniors, T.men, T.women, T.mixed, T.adults, T.seniors],
@@ -2281,6 +2293,722 @@ function regBlock(r) {
    One data set drives both views: the bracket (Fixtures) and the time-ordered Match Schedule.
    rows: [match no, round, start, end, board/table, team A, team B, format] */
 const FIXTURE_TABLES = {
+ "tabletennis": {
+ "date": "2026-11-21",
+ "note": "Saturday, 21 November 2026 · Noel Earth Song · 3 tables · first match 2:30 pm",
+ "label": "Table",
+ "pick": true,
+ "cats": [
+  {
+   "cat": "15 & Below – Boys",
+   "teams": 14,
+   "byesLabel": "Byes to the quarter-finals",
+   "byes": "Joe & Shiva (Serenia), Nathan & Ryan (Casa Tierra & Enliva)",
+   "rows": [
+    [
+     "M1",
+     "Round of 16",
+     "2:30 pm",
+     "2:50 pm",
+     "Table 1",
+     "Aimen & George (Arcadia)",
+     "Sidharth & Joshua (Ecoden)",
+     ""
+    ],
+    [
+     "M2",
+     "Round of 16",
+     "2:30 pm",
+     "2:50 pm",
+     "Table 2",
+     "Benjamin & Aswin (Casa Tierra & Enliva)",
+     "Kenneth & Advaith (Poetry)",
+     ""
+    ],
+    [
+     "M3",
+     "Round of 16",
+     "2:30 pm",
+     "2:50 pm",
+     "Table 3",
+     "Yohan & Joseph (Signature)",
+     "Rehan & Niranjan (Ecoden)",
+     ""
+    ],
+    [
+     "M4",
+     "Round of 16",
+     "2:50 pm",
+     "3:10 pm",
+     "Table 1",
+     "Joseph & Jacob (Tall Terrace)",
+     "Evan & Jake (Fragranz)",
+     ""
+    ],
+    [
+     "M5",
+     "Round of 16",
+     "2:50 pm",
+     "3:10 pm",
+     "Table 2",
+     "Mikayl & Dev (Greenature)",
+     "Aamil & Ehaan (Serenia)",
+     ""
+    ],
+    [
+     "M6",
+     "Round of 16",
+     "2:50 pm",
+     "3:10 pm",
+     "Table 3",
+     "Aman & Jake (Arcadia)",
+     "Tanay & Tanuj (Earth Song)",
+     ""
+    ],
+    [
+     "M7",
+     "Quarter-final",
+     "5:10 pm",
+     "5:30 pm",
+     "Table 2",
+     "Joe & Shiva (Serenia)",
+     "Winner of M1",
+     ""
+    ],
+    [
+     "M8",
+     "Quarter-final",
+     "5:10 pm",
+     "5:30 pm",
+     "Table 3",
+     "Winner of M2",
+     "Winner of M3",
+     ""
+    ],
+    [
+     "M9",
+     "Quarter-final",
+     "5:30 pm",
+     "5:50 pm",
+     "Table 1",
+     "Winner of M4",
+     "Winner of M5",
+     ""
+    ],
+    [
+     "M10",
+     "Quarter-final",
+     "5:30 pm",
+     "5:50 pm",
+     "Table 2",
+     "Winner of M6",
+     "Nathan & Ryan (Casa Tierra & Enliva)",
+     ""
+    ],
+    [
+     "M11",
+     "Semi-final",
+     "6:30 pm",
+     "6:50 pm",
+     "Table 2",
+     "Winner of M7",
+     "Winner of M8",
+     ""
+    ],
+    [
+     "M12",
+     "Semi-final",
+     "6:30 pm",
+     "6:50 pm",
+     "Table 3",
+     "Winner of M9",
+     "Winner of M10",
+     ""
+    ],
+    [
+     "M13",
+     "Losers Final",
+     "7:50 pm",
+     "8:10 pm",
+     "Table 2",
+     "Loser of M11",
+     "Loser of M12",
+     ""
+    ],
+    [
+     "M14",
+     "Final",
+     "8:10 pm",
+     "8:30 pm",
+     "Table 3",
+     "Winner of M11",
+     "Winner of M12",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "35 & Below – Women",
+   "teams": 6,
+   "byesLabel": "Byes to the semi-finals",
+   "byes": "Michelle & Alphonsa (Ecoden), Nailah & Aadya (Serenia)",
+   "rows": [
+    [
+     "M1",
+     "Quarter-final",
+     "3:10 pm",
+     "3:30 pm",
+     "Table 3",
+     "Anika & Tanvi (Poetry)",
+     "Thrisha & Nandini (Serenia)",
+     ""
+    ],
+    [
+     "M2",
+     "Quarter-final",
+     "3:30 pm",
+     "3:50 pm",
+     "Table 1",
+     "Devana & Nandana (Poetry)",
+     "Keerthy & Namitha (Ecoden)",
+     ""
+    ],
+    [
+     "M3",
+     "Semi-final",
+     "5:30 pm",
+     "5:50 pm",
+     "Table 3",
+     "Michelle & Alphonsa (Ecoden)",
+     "Winner of M1",
+     ""
+    ],
+    [
+     "M4",
+     "Semi-final",
+     "5:50 pm",
+     "6:10 pm",
+     "Table 1",
+     "Winner of M2",
+     "Nailah & Aadya (Serenia)",
+     ""
+    ],
+    [
+     "M5",
+     "Losers Final",
+     "7:50 pm",
+     "8:10 pm",
+     "Table 3",
+     "Loser of M3",
+     "Loser of M4",
+     ""
+    ],
+    [
+     "M6",
+     "Final",
+     "8:30 pm",
+     "8:50 pm",
+     "Table 1",
+     "Winner of M3",
+     "Winner of M4",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "16 to 35 – Men",
+   "teams": 10,
+   "byesLabel": "Byes to the quarter-finals",
+   "byes": "Abel & Sai (Arcadia), Mrinal & Aravind (Ivy Creek), Vedant & Viraj (Fragranz), Ryan & Vedanth (Earth Song), Evan & Johan (Greenature), Aaron & Evan (Serenia)",
+   "rows": [
+    [
+     "M1",
+     "Round of 16",
+     "3:10 pm",
+     "3:30 pm",
+     "Table 1",
+     "Fardeen & Alhad (Tall Terrace)",
+     "Pratheerth & Rahul (Ecoden)",
+     ""
+    ],
+    [
+     "M2",
+     "Round of 16",
+     "3:10 pm",
+     "3:30 pm",
+     "Table 2",
+     "Jerry & Deon (Ecotat)",
+     "Alex & Hybrid partner (Signature & Hybrid)",
+     ""
+    ],
+    [
+     "M3",
+     "Quarter-final",
+     "5:50 pm",
+     "6:10 pm",
+     "Table 2",
+     "Abel & Sai (Arcadia)",
+     "Mrinal & Aravind (Ivy Creek)",
+     ""
+    ],
+    [
+     "M4",
+     "Quarter-final",
+     "5:50 pm",
+     "6:10 pm",
+     "Table 3",
+     "Vedant & Viraj (Fragranz)",
+     "Winner of M1",
+     ""
+    ],
+    [
+     "M5",
+     "Quarter-final",
+     "6:10 pm",
+     "6:30 pm",
+     "Table 1",
+     "Ryan & Vedanth (Earth Song)",
+     "Evan & Johan (Greenature)",
+     ""
+    ],
+    [
+     "M6",
+     "Quarter-final",
+     "6:10 pm",
+     "6:30 pm",
+     "Table 2",
+     "Winner of M2",
+     "Aaron & Evan (Serenia)",
+     ""
+    ],
+    [
+     "M7",
+     "Semi-final",
+     "6:50 pm",
+     "7:10 pm",
+     "Table 1",
+     "Winner of M3",
+     "Winner of M4",
+     ""
+    ],
+    [
+     "M8",
+     "Semi-final",
+     "6:50 pm",
+     "7:10 pm",
+     "Table 2",
+     "Winner of M5",
+     "Winner of M6",
+     ""
+    ],
+    [
+     "M9",
+     "Losers Final",
+     "8:10 pm",
+     "8:30 pm",
+     "Table 1",
+     "Loser of M7",
+     "Loser of M8",
+     ""
+    ],
+    [
+     "M10",
+     "Final",
+     "8:50 pm",
+     "9:10 pm",
+     "Table 1",
+     "Winner of M7",
+     "Winner of M8",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "16 to 35 – Mixed Doubles",
+   "teams": 5,
+   "byesLabel": "Byes to the semi-finals",
+   "byes": "Eshan & Rebecca (Serenia & Palmdale), Steve/Jim & Gayatri (Arcadia), Ethan & Mahra (Greenature)",
+   "rows": [
+    [
+     "M1",
+     "Quarter-final",
+     "3:50 pm",
+     "4:10 pm",
+     "Table 1",
+     "Anna Annu & Dr. Aravind (Tall Terrace)",
+     "Albert & Sanjana (Ecoden)",
+     ""
+    ],
+    [
+     "M2",
+     "Semi-final",
+     "6:10 pm",
+     "6:30 pm",
+     "Table 3",
+     "Eshan & Rebecca (Serenia & Palmdale)",
+     "Steve/Jim & Gayatri (Arcadia)",
+     ""
+    ],
+    [
+     "M3",
+     "Semi-final",
+     "6:30 pm",
+     "6:50 pm",
+     "Table 1",
+     "Winner of M1",
+     "Ethan & Mahra (Greenature)",
+     ""
+    ],
+    [
+     "M4",
+     "Losers Final",
+     "8:10 pm",
+     "8:30 pm",
+     "Table 2",
+     "Loser of M2",
+     "Loser of M3",
+     ""
+    ],
+    [
+     "M5",
+     "Final",
+     "8:30 pm",
+     "8:50 pm",
+     "Table 2",
+     "Winner of M2",
+     "Winner of M3",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "36 & Above – Women",
+   "teams": 6,
+   "byesLabel": "Byes to the semi-finals",
+   "byes": "Ambili & Radhika (Serenia), Jincy & Marian (Arcadia)",
+   "rows": [
+    [
+     "M1",
+     "Quarter-final",
+     "3:30 pm",
+     "3:50 pm",
+     "Table 2",
+     "Renu & Leena (Arcadia)",
+     "Anju & Indu (Poetry)",
+     ""
+    ],
+    [
+     "M2",
+     "Quarter-final",
+     "3:30 pm",
+     "3:50 pm",
+     "Table 3",
+     "Priyanka & Meghana (Ecoden)",
+     "Aisha & Elsa (Greenature)",
+     ""
+    ],
+    [
+     "M3",
+     "Semi-final",
+     "6:50 pm",
+     "7:10 pm",
+     "Table 3",
+     "Ambili & Radhika (Serenia)",
+     "Winner of M1",
+     ""
+    ],
+    [
+     "M4",
+     "Semi-final",
+     "7:10 pm",
+     "7:30 pm",
+     "Table 1",
+     "Winner of M2",
+     "Jincy & Marian (Arcadia)",
+     ""
+    ],
+    [
+     "M5",
+     "Losers Final",
+     "8:50 pm",
+     "9:10 pm",
+     "Table 2",
+     "Loser of M3",
+     "Loser of M4",
+     ""
+    ],
+    [
+     "M6",
+     "Final",
+     "9:10 pm",
+     "9:30 pm",
+     "Table 2",
+     "Winner of M3",
+     "Winner of M4",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "36 to 50 – Men",
+   "teams": 8,
+   "rows": [
+    [
+     "M1",
+     "Quarter-final",
+     "3:50 pm",
+     "4:10 pm",
+     "Table 2",
+     "Augustine & Thomas (Serenia)",
+     "Manoj/Sebin & Issac (Arcadia)",
+     ""
+    ],
+    [
+     "M2",
+     "Quarter-final",
+     "3:50 pm",
+     "4:10 pm",
+     "Table 3",
+     "Dr. Tom & Aswith (Tall Terrace)",
+     "Dr. Raju & Paul (Earth Song)",
+     ""
+    ],
+    [
+     "M3",
+     "Quarter-final",
+     "4:10 pm",
+     "4:30 pm",
+     "Table 1",
+     "Rakesh & Bejoy (Signature)",
+     "Manu & Adarsh (Ecoden)",
+     ""
+    ],
+    [
+     "M4",
+     "Quarter-final",
+     "4:10 pm",
+     "4:30 pm",
+     "Table 2",
+     "Shreejith & John (Cloudwalk)",
+     "Manu & George (Greenature)",
+     ""
+    ],
+    [
+     "M5",
+     "Semi-final",
+     "7:30 pm",
+     "7:50 pm",
+     "Table 1",
+     "Winner of M1",
+     "Winner of M2",
+     ""
+    ],
+    [
+     "M6",
+     "Semi-final",
+     "7:30 pm",
+     "7:50 pm",
+     "Table 2",
+     "Winner of M3",
+     "Winner of M4",
+     ""
+    ],
+    [
+     "M7",
+     "Losers Final",
+     "8:50 pm",
+     "9:10 pm",
+     "Table 3",
+     "Loser of M5",
+     "Loser of M6",
+     ""
+    ],
+    [
+     "M8",
+     "Final",
+     "9:30 pm",
+     "9:50 pm",
+     "Table 2",
+     "Winner of M5",
+     "Winner of M6",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "36 & Above – Mixed Doubles",
+   "teams": 8,
+   "rows": [
+    [
+     "M1",
+     "Quarter-final",
+     "4:10 pm",
+     "4:30 pm",
+     "Table 3",
+     "Vinod & Alisha (Earth Song)",
+     "Pritish & Bindu Mony (Ecoden)",
+     ""
+    ],
+    [
+     "M2",
+     "Quarter-final",
+     "4:30 pm",
+     "4:50 pm",
+     "Table 1",
+     "Aby & Tina (Signature)",
+     "Brilliant & Tanya (Arcadia)",
+     ""
+    ],
+    [
+     "M3",
+     "Quarter-final",
+     "4:30 pm",
+     "4:50 pm",
+     "Table 2",
+     "Deepu & Smitha (Serenia)",
+     "Mathew & Liz (Greenature)",
+     ""
+    ],
+    [
+     "M4",
+     "Quarter-final",
+     "4:30 pm",
+     "4:50 pm",
+     "Table 3",
+     "Capt Kurian & Hema (Arcadia)",
+     "Shivaprasad & Beteena (Ecoden)",
+     ""
+    ],
+    [
+     "M5",
+     "Semi-final",
+     "7:10 pm",
+     "7:30 pm",
+     "Table 2",
+     "Winner of M1",
+     "Winner of M2",
+     ""
+    ],
+    [
+     "M6",
+     "Semi-final",
+     "7:10 pm",
+     "7:30 pm",
+     "Table 3",
+     "Winner of M3",
+     "Winner of M4",
+     ""
+    ],
+    [
+     "M7",
+     "Losers Final",
+     "8:30 pm",
+     "8:50 pm",
+     "Table 3",
+     "Loser of M5",
+     "Loser of M6",
+     ""
+    ],
+    [
+     "M8",
+     "Final",
+     "9:50 pm",
+     "10:10 pm",
+     "Table 2",
+     "Winner of M5",
+     "Winner of M6",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "Above 50 – Men",
+   "teams": 8,
+   "rows": [
+    [
+     "M1",
+     "Quarter-final",
+     "4:50 pm",
+     "5:10 pm",
+     "Table 1",
+     "Vinod & Satheesh (Arcadia)",
+     "Dr Binu Raju & Dr Rajesh Raju (Heritage)",
+     ""
+    ],
+    [
+     "M2",
+     "Quarter-final",
+     "4:50 pm",
+     "5:10 pm",
+     "Table 2",
+     "Sajan & Itty Varghese (Tall Terrace)",
+     "Ninan & Philip (Greenature)",
+     ""
+    ],
+    [
+     "M3",
+     "Quarter-final",
+     "4:50 pm",
+     "5:10 pm",
+     "Table 3",
+     "Mony & Sreeram (Ecoden)",
+     "Vijayakumar Pillai & Jogi (Earth Song)",
+     ""
+    ],
+    [
+     "M4",
+     "Quarter-final",
+     "5:10 pm",
+     "5:30 pm",
+     "Table 1",
+     "George & Ciju (Poetry)",
+     "Dr. Mathew & Koshy (Palmdale)",
+     ""
+    ],
+    [
+     "M5",
+     "Semi-final",
+     "7:30 pm",
+     "7:50 pm",
+     "Table 3",
+     "Winner of M1",
+     "Winner of M2",
+     ""
+    ],
+    [
+     "M6",
+     "Semi-final",
+     "7:50 pm",
+     "8:10 pm",
+     "Table 1",
+     "Winner of M3",
+     "Winner of M4",
+     ""
+    ],
+    [
+     "M7",
+     "Losers Final",
+     "9:10 pm",
+     "9:30 pm",
+     "Table 1",
+     "Loser of M5",
+     "Loser of M6",
+     ""
+    ],
+    [
+     "M8",
+     "Final",
+     "9:10 pm",
+     "9:30 pm",
+     "Table 3",
+     "Winner of M5",
+     "Winner of M6",
+     ""
+    ]
+   ]
+  }
+ ]
+},
  "badminton": {
  "date": "2026-11-22",
  "note": "Sunday, 22 November 2026 · Bright Sports Center, Thrikkakara",
@@ -3813,8 +4541,8 @@ function renderSchedules() {
         const list = rows.filter(x => x.r[4] === bd);
         const nowR = list.find(x => n.min >= t2m(x.r[2]) && n.min < t2m(x.r[3]));
         const nextR = list.find(x => t2m(x.r[2]) > n.min);
-        if (nowR) status[nowR.r[0]] = "now";
-        if (nextR) status[nextR.r[0]] = "next";
+        if (nowR) status[nowR.cat + "|" + nowR.r[0]] = "now";
+        if (nextR) status[nextR.cat + "|" + nextR.r[0]] = "next";
       });
     }
     const keep = box.querySelector(".fx-find input"), q0 = keep ? keep.value : "", cat0 = (box.querySelector(".chip.on") || {}).dataset?.cat || "";
@@ -3824,9 +4552,9 @@ function renderSchedules() {
       <div class="fx-find"><input type="search" placeholder="Find your team or association…" aria-label="Find your team" value="${esc(q0)}"></div>
       <div class="table-wrap"><table class="fx-table sched-table${showBoard ? "" : " noboard"}">
         <thead><tr><th>Time</th>${showBoard ? `<th>${F.label}</th>` : ""}<th>Match</th><th>Category · Round</th><th>Teams</th><th>Format</th></tr></thead>
-        <tbody>${rows.map(({ cat, r: [no, rd, st, en, bd, a, b, fm] }) => `<tr class="${rd === "Final" ? "final" : ""}${status[no] ? " st-" + status[no] : ""}" data-cat="${esc(cat)}" data-q="${esc((a + " " + b + " " + no + " " + cat).toLowerCase())}">
+        <tbody>${rows.map(({ cat, r: [no, rd, st, en, bd, a, b, fm] }) => `<tr class="${rd === "Final" ? "final" : ""}${status[cat + "|" + no] ? " st-" + status[cat + "|" + no] : ""}" data-cat="${esc(cat)}" data-q="${esc((a + " " + b + " " + no + " " + cat).toLowerCase())}">
           <td class="td-time">${esc(st)} – ${esc(en)}</td>${showBoard ? `<td class="td-board">${esc(bd)}</td>` : ""}
-          <td class="td-no">${esc(no)}${status[no] === "now" ? ` <span class="st-badge now">● Now</span>` : status[no] === "next" ? ` <span class="st-badge next">Next</span>` : ""}</td>
+          <td class="td-no">${esc(no)}${status[cat + "|" + no] === "now" ? ` <span class="st-badge now">● Now</span>` : status[cat + "|" + no] === "next" ? ` <span class="st-badge next">Next</span>` : ""}</td>
           <td class="td-round">${esc(cat)} · ${esc(shortRound(rd))}</td>
           <td class="td-mu">${team(a)} <em>vs</em> ${team(b)}</td><td class="td-fmt">${esc(fm)}</td></tr>`).join("")}</tbody>
       </table></div><p class="fx-none" hidden>No matches found.</p>`;
@@ -3877,6 +4605,7 @@ setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the
    Use "ev" to jump to an event card, or "open" to open a section in Additional Information.
    RESULTS: each result also shows in the ticker for 7 days after its date. */
 const ALERTS = [
+  { from: "2026-11-20T12:00", until: "2026-11-21T14:30", text: "Table Tennis (21 Nov) fixtures & schedule are out", sub: "First match 2:30 PM · Noel Earth Song", open: "tabletennis-fixtures" },
   { from: "2026-11-20T11:00", until: "2026-11-22T09:00", text: "Badminton (22 Nov) fixtures are out", sub: "Find your team", open: "badminton-fixtures" },
   { from: "2026-11-18T15:30", until: "2026-11-23T21:00", text: "Solo Singing (28 Nov): register by Mon, 23 Nov, 9 PM", ev: "Solo Music" },
   { from: "2026-11-17T17:00", until: "2026-12-05T23:59", text: "🤝 New: Find a hybrid partner", sub: "Table Tennis, Badminton, Quiz, Antakshari & more · tap here", action: "partner" },
