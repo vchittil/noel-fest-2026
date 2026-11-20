@@ -670,6 +670,8 @@
 .pt-actions .danger { color: #c0392b; } .pt-actions .danger.sure { background: #c0392b; color: #fff; border-color: #c0392b; }
 @media (max-width: 480px) { .pt-events { grid-template-columns: repeat(4, 1fr); gap: 6px; } .pt-ev { padding: 8px 2px; } .pt-ev b { font-size: 11.5px; } .pt-ev small { font-size: 10.5px; } .pt-ico { width: 28px; height: 28px; } .pt-ico svg { width: 24px; height: 24px; } .pt-mineform { grid-template-columns: 1fr 1fr; } .pt-mineform .pt-btn { grid-column: 1 / -1; } }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pt-ev.on, :root:not([data-theme="light"]) .pt-editing { background: rgba(127,176,222,.12); } :root:not([data-theme="light"]) .pt-tabs button[aria-selected="true"] { color: #8fc3ff; } }
+.bk-pick { margin-bottom: 10px; }
+.bk-cat[hidden] { display: none; }
 </style>
 </head>
 <body>
@@ -1250,6 +1252,12 @@
             <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
           </div>
         </details>
+        <details class="acc" id="badminton-fixtures">
+          <summary>Fixtures</summary>
+          <div class="acc-body"><div class="bk-wrap" data-bracket="badminton"></div>
+            <p class="fx-byes">Pick a category above to see its draw. Teams with a bye go straight into the next round. Match times will be announced at the venue.</p>
+          </div>
+        </details>
       </div>
     </details>
     <details class="acc" id="info-solomusic">
@@ -1259,9 +1267,9 @@
           <summary>Rules &amp; Guidelines</summary>
           <div class="acc-body rules">
             <h4>Rules</h4>
-            <ul><li>Songs may be in Malayalam, Hindi, Tamil or English.</li><li>Judging will follow the usual yardsticks of Indian music: <strong>Sruthi, Taal, Feel and Overall Presentation</strong>.</li><li>Light music and film songs can be sung.</li><li>Karaoke can be used.</li><li>Singers playing their own musical instrument is discouraged, but is allowed subject to conditions.</li><li>Each song has <strong>5 minutes</strong>, including the time to set up the karaoke.</li><li>Participants or their association representative must bring the karaoke. To avoid confusion when starting, the representative can bring all of the association's karaoke tracks together on one USB pen drive, to be stored on the laptop on stage.</li></ul>
+            <ul><li>Songs may be in Malayalam, Hindi, Tamil or English.</li><li>Judging will follow the usual yardsticks of Indian music: <strong>Sruthi, Taal, Feel and Overall Presentation</strong>.</li><li>Light music and film songs can be sung.</li><li>Karaoke can be used.</li><li>Singers playing their own musical instrument is discouraged, but is allowed subject to conditions.</li><li>Each song has <strong>5 minutes</strong>, including the time to set up the karaoke.</li><li>Karaoke tracks must be submitted in advance by the participant or their association representative, ideally by <strong>9:00 PM on Friday, 27 November</strong> (the day before the event). The representative can put all of the association’s tracks in one <strong>Google Drive folder</strong> and share the link with the event coordinators by WhatsApp or email, or hand them over on one <strong>USB drive</strong>. The tracks will be stored on the laptop on stage – with so many participants, this avoids confusion and delays when starting the karaoke.</li><li>Individual pen drives or YouTube links will not be accepted on stage, and coverage for mobile phones on stage cannot be ensured.</li></ul>
             <h4>Entries</h4>
-            <p>Two entries per category from each association. Register using the <strong>Register now</strong> button on the event card by <strong>9:00 PM, Monday, 23 November 2026</strong>.</p>
+            <p>Each association may send <strong>3 entries in Below 12</strong> and <strong>2 entries in every other category</strong>. Register using the <strong>Register now</strong> button on the event card by <strong>9:00 PM, Monday, 23 November 2026</strong>.</p>
             <h4>Association Points</h4>
             <div class="medals"><div class="medal gold"><span>Gold</span><strong>10</strong> points</div><div class="medal silver"><span>Silver</span><strong>8</strong> points</div><div class="medal bronze"><span>Bronze</span><strong>5</strong> points</div></div>
           </div>
@@ -1655,13 +1663,13 @@ const EVENTS = [
     tags: [T.boys, T.girls, T.juniors, T.men, T.women, T.mixed, T.adults, T.seniors],
     participants: "15 & Below – 2 teams; other categories – 1 team from each association", venue: "Bright Sports Center, Kangarapady", host: "Ecoden & Core Team", coord: "Manu Abraham", phone: "99XXX X2431", pk: "htdiarkpzu",
     reg: { url: "https://docs.google.com/forms/d/e/1FAIpQLSchiE5hAntW-nmdDoS_4magSVJzTNHmHvooQcYDyelmMIAaaw/viewform?usp=sharing&ouid=116573784664578770255", closes: "2026-11-17T23:59", who: "Association coordinators" },
-    info: [["Rules & Guidelines", "badminton-rules"]] },
+    info: [["Fixtures", "badminton-fixtures"], ["Rules & Guidelines", "badminton-rules"]] },
 
   { date: "2026-11-28", name: "Solo Music",
     categories: [C("Below 12 – Boys & Girls together", 0, 11), C("12 to 18 – Boys, Girls", 12, 18), C("19 to 59 – Men, Women", 19, 59), C("60 & Above – Men, Women", 60, MAX)],
     tags: [T.kids, T.boys, T.girls, T.juniors, T.men, T.women, T.adults, T.seniors],
-    participants: "2 entries per category: Below 12 · 12–18 (B) · 12–18 (G) · 19–59 (M) · 19–59 (W) · 60+ (M) · 60+ (W)", venue: "Noel Serenia, Thrikkakara", host: "Serenia", coord: "Radhika", phone: "81XXX X6700", pk: "gwhwkrhysy",
-    reg: { url: "https://forms.gle/tWi72vGn1M6TdMYW9", closes: "2026-11-23T21:00", who: "2 entries per category per association" },
+    participants: "3 entries in Below 12 · 2 entries in each of 12–18 (B) · 12–18 (G) · 19–59 (M) · 19–59 (W) · 60+ (M) · 60+ (W)", venue: "Noel Serenia, Thrikkakara", host: "Serenia", coord: "Radhika", phone: "81XXX X6700", pk: "gwhwkrhysy",
+    reg: { url: "https://forms.gle/tWi72vGn1M6TdMYW9", closes: "2026-11-23T21:00", who: "3 entries in Below 12, 2 in other categories" },
     info: [["Rules & Guidelines", "solomusic-rules"]] },
 
   { date: "2026-11-29", name: "Nature Photography", live: ["07:00", "08:30"], categories: [OPEN()], tags: [T.open],
@@ -2273,6 +2281,726 @@ function regBlock(r) {
    One data set drives both views: the bracket (Fixtures) and the time-ordered Match Schedule.
    rows: [match no, round, start, end, board/table, team A, team B, format] */
 const FIXTURE_TABLES = {
+ "badminton": {
+ "date": "2026-11-22",
+ "note": "Sunday, 22 November 2026 · Bright Sports Center, Thrikkakara",
+ "label": "Court",
+ "pick": true,
+ "cats": [
+  {
+   "cat": "15 & Below – Boys",
+   "teams": 18,
+   "rows": [
+    [
+     "R32-2",
+     "Round of 32",
+     "",
+     "",
+     "",
+     "Aamil & Adharv (Serenia)",
+     "Jacob & Joseph (Tall Terrace)",
+     ""
+    ],
+    [
+     "R32-10",
+     "Round of 32",
+     "10:50 am",
+     "",
+     "Court 2",
+     "Gautham & Paul Deepak (Tall Terrace)",
+     "Aimen & Jake (Arcadia)",
+     ""
+    ],
+    [
+     "R16-1",
+     "Round of 16",
+     "",
+     "",
+     "",
+     "Rehan & Sidharth (Ecoden)",
+     "Winner of R32-2",
+     ""
+    ],
+    [
+     "R16-2",
+     "Round of 16",
+     "",
+     "",
+     "",
+     "Yohaan & Steve (Signature)",
+     "Antonio & Jake (Palmdale)",
+     ""
+    ],
+    [
+     "R16-3",
+     "Round of 16",
+     "",
+     "",
+     "",
+     "George & Aryan (Poetry)",
+     "Kurian & Efraim (Arcadia)",
+     ""
+    ],
+    [
+     "R16-4",
+     "Round of 16",
+     "",
+     "",
+     "",
+     "Akash & Jonah (Heritage)",
+     "Ethan & Aron (Greenature)",
+     ""
+    ],
+    [
+     "R16-5",
+     "Round of 16",
+     "",
+     "",
+     "",
+     "Ronav & Joseph (Signature)",
+     "Winner of R32-10",
+     ""
+    ],
+    [
+     "R16-6",
+     "Round of 16",
+     "",
+     "",
+     "",
+     "Niranjan & Abhiram (Ecoden)",
+     "Arjun & Kenneth (Poetry)",
+     ""
+    ],
+    [
+     "R16-7",
+     "Round of 16",
+     "",
+     "",
+     "",
+     "Ethan & Daweed (Palmdale)",
+     "Shiva & Joe (Serenia)",
+     ""
+    ],
+    [
+     "R16-8",
+     "Round of 16",
+     "",
+     "",
+     "",
+     "Rayhaan & Hrishikesh (Octave)",
+     "Evan & Luke (Fragranz)",
+     ""
+    ],
+    [
+     "QF-1",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Winner of R16-1",
+     "Winner of R16-2",
+     ""
+    ],
+    [
+     "QF-2",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Winner of R16-3",
+     "Winner of R16-4",
+     ""
+    ],
+    [
+     "QF-3",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Winner of R16-5",
+     "Winner of R16-6",
+     ""
+    ],
+    [
+     "QF-4",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Winner of R16-7",
+     "Winner of R16-8",
+     ""
+    ],
+    [
+     "SF-1",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Winner of QF-1",
+     "Winner of QF-2",
+     ""
+    ],
+    [
+     "SF-2",
+     "Semi-final",
+     "12:00 pm",
+     "",
+     "",
+     "Winner of QF-3",
+     "Winner of QF-4",
+     ""
+    ],
+    [
+     "F",
+     "Final",
+     "",
+     "",
+     "",
+     "Winner of SF-1",
+     "Winner of SF-2",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "15 & Below – Girls",
+   "teams": 7,
+   "byesLabel": "Bye to the semi-finals",
+   "byes": "Anju & Sera (Poetry)",
+   "rows": [
+    [
+     "QF-2",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Keerathana & Ann (Ecoden)",
+     "Anvika & Anna (Arcadia)",
+     ""
+    ],
+    [
+     "QF-3",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Alphonsa & Sarah (Ecoden)",
+     "Jhanvi & Abira (Arcadia)",
+     ""
+    ],
+    [
+     "QF-4",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Nethra & Indra (Palmdale)",
+     "Zarah & Hannah (Poetry)",
+     ""
+    ],
+    [
+     "SF-1",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Anju & Sera (Poetry)",
+     "Winner of QF-2",
+     ""
+    ],
+    [
+     "SF-2",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Winner of QF-3",
+     "Winner of QF-4",
+     ""
+    ],
+    [
+     "F",
+     "Final",
+     "",
+     "",
+     "",
+     "Winner of SF-1",
+     "Winner of SF-2",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "16 to 35 – Men",
+   "teams": 8,
+   "rows": [
+    [
+     "QF-1",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Royce & Partner (Ivy Creek)",
+     "Bharath & Partner (Greenature)",
+     ""
+    ],
+    [
+     "QF-2",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Kaushik & Emil (Heritage)",
+     "Fardeen & Dr. Nirup (Tall Terrace)",
+     ""
+    ],
+    [
+     "QF-3",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Pranav & Sabarish (Ecoden)",
+     "Suhail & Jim (Arcadia)",
+     ""
+    ],
+    [
+     "QF-4",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Vibin & Abin (Signature)",
+     "Arnav & Aron (Serenia)",
+     ""
+    ],
+    [
+     "SF-1",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Winner of QF-1",
+     "Winner of QF-2",
+     ""
+    ],
+    [
+     "SF-2",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Winner of QF-3",
+     "Winner of QF-4",
+     ""
+    ],
+    [
+     "F",
+     "Final",
+     "",
+     "",
+     "",
+     "Winner of SF-1",
+     "Winner of SF-2",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "16 to 35 – Women",
+   "teams": 4,
+   "rows": [
+    [
+     "SF-1",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Anna Annu & Mariya (Tall Terrace)",
+     "Anna & Rose (Serenia)",
+     ""
+    ],
+    [
+     "SF-2",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Chandana & Akhila (Poetry)",
+     "Nami & Keerthy (Ecoden)",
+     ""
+    ],
+    [
+     "F",
+     "Final",
+     "",
+     "",
+     "",
+     "Winner of SF-1",
+     "Winner of SF-2",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "16 to 35 – Mixed Doubles",
+   "teams": 9,
+   "rows": [
+    [
+     "R16-2",
+     "Round of 16",
+     "",
+     "",
+     "",
+     "Abel & Keerthi (Arcadia)",
+     "Aaron & Aarleen (Palmdale)",
+     ""
+    ],
+    [
+     "QF-1",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Ethan & Mehra (Greenature)",
+     "Winner of R16-2",
+     ""
+    ],
+    [
+     "QF-2",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Irene & Zayan (Poetry)",
+     "Jerry & Theresa (Ecotat)",
+     ""
+    ],
+    [
+     "QF-3",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Nandini & Evan (Serenia)",
+     "Aravind & Serena (Ivy Creek)",
+     ""
+    ],
+    [
+     "QF-4",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Albert & TBD (Ecoden)",
+     "Anjana & Jacob (Tall Terrace)",
+     ""
+    ],
+    [
+     "SF-1",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Winner of QF-1",
+     "Winner of QF-2",
+     ""
+    ],
+    [
+     "SF-2",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Winner of QF-3",
+     "Winner of QF-4",
+     ""
+    ],
+    [
+     "F",
+     "Final",
+     "",
+     "",
+     "",
+     "Winner of SF-1",
+     "Winner of SF-2",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "36 to 50 – Men",
+   "teams": 10,
+   "rows": [
+    [
+     "R16-2",
+     "Round of 16",
+     "",
+     "",
+     "",
+     "Dr. Tom & Mahesh (Tall Terrace)",
+     "Augustine & Chacko (Serenia)",
+     ""
+    ],
+    [
+     "R16-6",
+     "Round of 16",
+     "",
+     "",
+     "",
+     "Manoj & Anil (Ecotat)",
+     "George & Babu (Greenature)",
+     ""
+    ],
+    [
+     "QF-1",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Muneer & Rakesh (Poetry)",
+     "Winner of R16-2",
+     ""
+    ],
+    [
+     "QF-2",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Prince & Varun (Cloudwalk + Ecoden)",
+     "Anoop & Sudeep (Heritage)",
+     ""
+    ],
+    [
+     "QF-3",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Sudheer & Manu (Ecoden)",
+     "Winner of R16-6",
+     ""
+    ],
+    [
+     "QF-4",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Deepak James & Noble Varghese (Octave)",
+     "Sefin & Vincent (Palmdale)",
+     ""
+    ],
+    [
+     "SF-1",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Winner of QF-1",
+     "Winner of QF-2",
+     ""
+    ],
+    [
+     "SF-2",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Winner of QF-3",
+     "Winner of QF-4",
+     ""
+    ],
+    [
+     "F",
+     "Final",
+     "",
+     "",
+     "",
+     "Winner of SF-1",
+     "Winner of SF-2",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "Above 50 – Men",
+   "teams": 5,
+   "byesLabel": "Byes to the semi-finals",
+   "byes": "Ajith & Jaseel (Earth Song), Koshy & Anish A (Palmdale + Serenia), Dr Menon & Jacob (Heritage)",
+   "rows": [
+    [
+     "QF-2",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Sajan & Johnson (Tall Terrace)",
+     "Philip & Jibu (Greenature)",
+     ""
+    ],
+    [
+     "SF-1",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Ajith & Jaseel (Earth Song)",
+     "Winner of QF-2",
+     ""
+    ],
+    [
+     "SF-2",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Koshy & Anish A (Palmdale + Serenia)",
+     "Dr Menon & Jacob (Heritage)",
+     ""
+    ],
+    [
+     "F",
+     "Final",
+     "",
+     "",
+     "",
+     "Winner of SF-1",
+     "Winner of SF-2",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "36 & Above – Women",
+   "teams": 7,
+   "byesLabel": "Bye to the semi-finals",
+   "byes": "Preeti & Partner (Ivy Creek)",
+   "rows": [
+    [
+     "QF-2",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Panjami & Teena (Signature)",
+     "Meera & Safeera (Tall Terrace)",
+     ""
+    ],
+    [
+     "QF-3",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Anju & Indu (Poetry)",
+     "Reshmi & Reshmi Shield (Arcadia)",
+     ""
+    ],
+    [
+     "QF-4",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Ann & Chithra (Ecoden)",
+     "Thankam & Najia (Serenia)",
+     ""
+    ],
+    [
+     "SF-1",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Preeti & Partner (Ivy Creek)",
+     "Winner of QF-2",
+     ""
+    ],
+    [
+     "SF-2",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Winner of QF-3",
+     "Winner of QF-4",
+     ""
+    ],
+    [
+     "F",
+     "Final",
+     "",
+     "",
+     "",
+     "Winner of SF-1",
+     "Winner of SF-2",
+     ""
+    ]
+   ]
+  },
+  {
+   "cat": "36 & Above – Mixed Doubles",
+   "teams": 6,
+   "byesLabel": "Byes to the semi-finals",
+   "byes": "Susan & Sanith (Poetry), Jisha & Renjith (Serenia)",
+   "rows": [
+    [
+     "QF-2",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Jacob or Brill & Farzana (Arcadia)",
+     "Mathew & Elsa (Greenature)",
+     ""
+    ],
+    [
+     "QF-4",
+     "Quarter-final",
+     "",
+     "",
+     "",
+     "Humaiz & Nusrath (Tall Terrace)",
+     "Bejoy & Bindhu (Ecoden)",
+     ""
+    ],
+    [
+     "SF-1",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Susan & Sanith (Poetry)",
+     "Winner of QF-2",
+     ""
+    ],
+    [
+     "SF-2",
+     "Semi-final",
+     "",
+     "",
+     "",
+     "Jisha & Renjith (Serenia)",
+     "Winner of QF-4",
+     ""
+    ],
+    [
+     "F",
+     "Final",
+     "",
+     "",
+     "",
+     "Winner of SF-1",
+     "Winner of SF-2",
+     ""
+    ]
+   ]
+  }
+ ]
+},
  "throwball": {
  "date": "2026-11-15",
  "note": "Sunday, 15 November 2026 · Noel Ivy Creek · first match 5:00 pm · break 6:00–6:15 pm · prize presentation 8:15 pm",
@@ -3037,7 +3765,7 @@ const FIXTURE_TABLES = {
 };
 const isRef = t => /^(Winner|Loser) of /.test(t);
 const t2m = t => { const [hm, ap] = t.split(" "); let [a, b] = hm.split(":").map(Number); if (ap === "pm" && a !== 12) a += 12; return a * 60 + b; };
-const shortRound = r => ({ "Round of 16": "R16", "Quarter-final": "QF", "Semi-final": "SF", "Preliminary": "Prelim", "3rd place": "3rd place", "Final": "Final" })[r] || r;
+const shortRound = r => ({ "Round of 32": "R32", "Round of 16": "R16", "Quarter-final": "QF", "Semi-final": "SF", "Preliminary": "Prelim", "3rd place": "3rd place", "Final": "Final" })[r] || r;
 
 /* Bracket (Fixtures) */
 function bracketNode(byId, no) {
@@ -3049,20 +3777,26 @@ function bracketNode(byId, no) {
     <div class="mbox${rd === "Final" ? " final" : ""}" data-no="${no}">
       <div class="mh"><b>${esc(no)}</b><span>${esc(shortRound(rd))}</span></div>
       ${side(a)}${side(b)}
-      <div class="mt">${esc(st.replace(" pm", ""))}–${esc(en)}${!/^(Pool Table|Turf|Court)$/.test(bd) ? " · " + esc(bd.replace("Board ", "B")) : ""}${/Best of 3/.test(fm) ? " · Bo3" : ""}</div>
+      ${st || bd ? `<div class="mt">${[st ? esc(st.replace(" pm", "")) + (en ? "–" + esc(en) : "") : "", bd && !/^(Pool Table|Turf|Court)$/.test(bd) ? esc(bd.replace("Board ", "B")) : ""].filter(Boolean).join(" · ")}${/Best of 3/.test(fm) ? " · Bo3" : ""}</div>` : ""}
     </div></div>`;
 }
 document.querySelectorAll("[data-bracket]").forEach(box => {
   const F = FIXTURE_TABLES[box.dataset.bracket]; if (!F) return;
   box.innerHTML = `<p class="sched-note">${esc(F.note)} · <span class="bk-hint">Swipe or scroll sideways to follow each round</span></p>` +
-    F.cats.map(c => {
+    (F.pick ? `<div class="chips bk-pick">${F.cats.map((c, i) => `<button type="button" class="chip${i ? "" : " on"}" data-i="${i}">${esc(c.cat)}</button>`).join("")}</div>` : "") +
+    F.cats.map((c, i) => {
       const byId = Object.fromEntries(c.rows.map(r => [r[0], r]));
       const fin = c.rows.find(r => r[1] === "Final"), third = c.rows.find(r => r[1] === "3rd place" || r[1] === "Losers Final");
-      return `<div class="bk-cat"><h4>${esc(c.cat)} <span class="fx-count">${c.teams} teams</span></h4>
+      return `<div class="bk-cat"${F.pick && i ? " hidden" : ""} data-i="${i}"><h4>${esc(c.cat)} <span class="fx-count">${c.teams} teams</span></h4>
         <div class="bk-scroll"><div class="bk-tree">${bracketNode(byId, fin[0])}</div></div>
         ${third ? `<div class="bk-third"><b>${esc(third[0])} · ${third[1] === "Losers Final" ? "Losers Final" : "3rd place"}</b> ${esc(third[5])} <em>vs</em> ${esc(third[6])} <span>${esc(third[2])} – ${esc(third[3])}${!/^(Pool Table|Turf|Court)$/.test(third[4]) ? " · " + esc(third[4]) : ""}</span></div>` : ""}
         ${c.byes ? `<p class="fx-byes"><strong>${esc(c.byesLabel || "Byes to the quarter-finals")}:</strong> ${esc(c.byes)}</p>` : ""}</div>`;
     }).join("");
+  if (F.pick) box.querySelector(".bk-pick").addEventListener("click", e => {
+    const b = e.target.closest(".chip"); if (!b) return;
+    box.querySelectorAll(".bk-pick .chip").forEach(x => x.classList.toggle("on", x === b));
+    box.querySelectorAll(".bk-cat").forEach(x => x.hidden = x.dataset.i !== b.dataset.i);
+  });
 });
 
 /* Match Schedule (time-ordered, all categories) */
@@ -3143,6 +3877,7 @@ setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the
    Use "ev" to jump to an event card, or "open" to open a section in Additional Information.
    RESULTS: each result also shows in the ticker for 7 days after its date. */
 const ALERTS = [
+  { from: "2026-11-20T11:00", until: "2026-11-22T09:00", text: "Badminton (22 Nov) fixtures are out", sub: "Find your team", open: "badminton-fixtures" },
   { from: "2026-11-18T15:30", until: "2026-11-23T21:00", text: "Solo Singing (28 Nov): register by Mon, 23 Nov, 9 PM", ev: "Solo Music" },
   { from: "2026-11-17T17:00", until: "2026-12-05T23:59", text: "🤝 New: Find a hybrid partner", sub: "Table Tennis, Badminton, Quiz, Antakshari & more · tap here", action: "partner" },
   { from: "2026-11-16T09:30", until: "2026-11-17T09:30", text: "Children’s Day results are out 🏆", sub: "Winners are on the event cards", ev: "Painting" },
@@ -3343,7 +4078,7 @@ if (location.hash) { const hc = document.getElementById(location.hash.slice(1));
 document.querySelectorAll(".chips").forEach(group => group.addEventListener("click", ev => {
   const b = ev.target.closest(".chip"); if (!b) return;
   group.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", c === b));
-  const tbl = group.parentElement.querySelector("table.sched");
+  const tbl = group.parentElement.querySelector("table.sched"); if (!tbl) return;
   tbl.querySelectorAll("tbody tr").forEach(tr => tr.hidden = !!b.dataset.cat && tr.dataset.cat !== b.dataset.cat);
 }));
 </script>
