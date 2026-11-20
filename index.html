@@ -1267,7 +1267,13 @@
         <details class="acc" id="badminton-fixtures">
           <summary>Fixtures</summary>
           <div class="acc-body"><div class="bk-wrap" data-bracket="badminton"></div>
-            <p class="fx-byes">Pick a category above to see its draw. Teams with a bye go straight into the next round. Match times will be announced at the venue.</p>
+            <p class="fx-byes">Pick a category above to see its draw. Teams with a bye go straight into the next round.</p>
+          </div>
+        </details>
+        <details class="acc" id="badminton-schedule">
+          <summary>Match Schedule</summary>
+          <div class="acc-body"><div class="fx-wrap" data-fxsched="badminton"></div>
+            <p class="fx-byes">Order of play across Courts 1–4, from 10:00 am. Each match has a 25-minute slot. Final times will be announced at the venue. Schedule subject to change by the organisers.</p>
           </div>
         </details>
       </div>
@@ -1671,11 +1677,11 @@ const EVENTS = [
     reg: { url: "https://forms.gle/ZEcWTt1PDJT7B5K57", closes: "2026-11-17T23:59", who: "Association coordinators" },
     info: [["Fixtures", "tabletennis-fixtures"], ["Match Schedule", "tabletennis-schedule"], ["Rules & Guidelines", "tabletennis-rules"]] },
 
-  { date: "2026-11-22", name: "Badminton – Doubles", categories: RACKET_CATS,
+  { date: "2026-11-22", name: "Badminton – Doubles", live: ["10:00", "18:00"], categories: RACKET_CATS,
     tags: [T.boys, T.girls, T.juniors, T.men, T.women, T.mixed, T.adults, T.seniors],
-    participants: "15 & Below – 2 teams; other categories – 1 team from each association", venue: "Bright Sports Center, Kangarapady", host: "Ecoden & Core Team", coord: "Manu Abraham", phone: "99XXX X2431", pk: "htdiarkpzu",
+    participants: "15 & Below – 2 teams; other categories – 1 team from each association", venue: "Bright Sports Center, Kangarapady", host: "Ecoden & Core Team", time: "10:00 AM onwards", coord: "Manu Abraham", phone: "99XXX X2431", pk: "htdiarkpzu",
     reg: { url: "https://docs.google.com/forms/d/e/1FAIpQLSchiE5hAntW-nmdDoS_4magSVJzTNHmHvooQcYDyelmMIAaaw/viewform?usp=sharing&ouid=116573784664578770255", closes: "2026-11-17T23:59", who: "Association coordinators" },
-    info: [["Fixtures", "badminton-fixtures"], ["Rules & Guidelines", "badminton-rules"]] },
+    info: [["Fixtures", "badminton-fixtures"], ["Match Schedule", "badminton-schedule"], ["Rules & Guidelines", "badminton-rules"]] },
 
   { date: "2026-11-28", name: "Solo Music",
     categories: [C("Below 12 – Boys & Girls together", 0, 11), C("12 to 18 – Boys, Girls", 12, 18), C("19 to 59 – Men, Women", 19, 59), C("60 & Above – Men, Women", 60, MAX)],
@@ -3011,7 +3017,7 @@ const FIXTURE_TABLES = {
 },
  "badminton": {
  "date": "2026-11-22",
- "note": "Sunday, 22 November 2026 · Bright Sports Center, Thrikkakara",
+ "note": "Sunday, 22 November 2026 · Bright Sports Center, Thrikkakara · 4 courts · first match 10:00 am",
  "label": "Court",
  "pick": true,
  "cats": [
@@ -3022,9 +3028,9 @@ const FIXTURE_TABLES = {
     [
      "R32-2",
      "Round of 32",
-     "",
-     "",
-     "",
+     "10:00 am",
+     "10:25 am",
+     "Court 1",
      "Aamil & Adharv (Serenia)",
      "Jacob & Joseph (Tall Terrace)",
      ""
@@ -3032,8 +3038,8 @@ const FIXTURE_TABLES = {
     [
      "R32-10",
      "Round of 32",
-     "10:50 am",
-     "",
+     "10:00 am",
+     "10:25 am",
      "Court 2",
      "Gautham & Paul Deepak (Tall Terrace)",
      "Aimen & Jake (Arcadia)",
@@ -3042,9 +3048,9 @@ const FIXTURE_TABLES = {
     [
      "R16-1",
      "Round of 16",
-     "",
-     "",
-     "",
+     "10:50 am",
+     "11:15 am",
+     "Court 1",
      "Rehan & Sidharth (Ecoden)",
      "Winner of R32-2",
      ""
@@ -3052,9 +3058,9 @@ const FIXTURE_TABLES = {
     [
      "R16-2",
      "Round of 16",
-     "",
-     "",
-     "",
+     "10:00 am",
+     "10:25 am",
+     "Court 3",
      "Yohaan & Steve (Signature)",
      "Antonio & Jake (Palmdale)",
      ""
@@ -3062,9 +3068,9 @@ const FIXTURE_TABLES = {
     [
      "R16-3",
      "Round of 16",
-     "",
-     "",
-     "",
+     "10:00 am",
+     "10:25 am",
+     "Court 4",
      "George & Aryan (Poetry)",
      "Kurian & Efraim (Arcadia)",
      ""
@@ -3072,9 +3078,9 @@ const FIXTURE_TABLES = {
     [
      "R16-4",
      "Round of 16",
-     "",
-     "",
-     "",
+     "10:25 am",
+     "10:50 am",
+     "Court 1",
      "Akash & Jonah (Heritage)",
      "Ethan & Aron (Greenature)",
      ""
@@ -3082,9 +3088,9 @@ const FIXTURE_TABLES = {
     [
      "R16-5",
      "Round of 16",
-     "",
-     "",
-     "",
+     "10:50 am",
+     "11:15 am",
+     "Court 2",
      "Ronav & Joseph (Signature)",
      "Winner of R32-10",
      ""
@@ -3092,9 +3098,9 @@ const FIXTURE_TABLES = {
     [
      "R16-6",
      "Round of 16",
-     "",
-     "",
-     "",
+     "10:25 am",
+     "10:50 am",
+     "Court 2",
      "Niranjan & Abhiram (Ecoden)",
      "Arjun & Kenneth (Poetry)",
      ""
@@ -3102,9 +3108,9 @@ const FIXTURE_TABLES = {
     [
      "R16-7",
      "Round of 16",
-     "",
-     "",
-     "",
+     "10:25 am",
+     "10:50 am",
+     "Court 3",
      "Ethan & Daweed (Palmdale)",
      "Shiva & Joe (Serenia)",
      ""
@@ -3112,9 +3118,9 @@ const FIXTURE_TABLES = {
     [
      "R16-8",
      "Round of 16",
-     "",
-     "",
-     "",
+     "10:25 am",
+     "10:50 am",
+     "Court 4",
      "Rayhaan & Hrishikesh (Octave)",
      "Evan & Luke (Fragranz)",
      ""
@@ -3122,9 +3128,9 @@ const FIXTURE_TABLES = {
     [
      "QF-1",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "11:40 am",
+     "12:05 pm",
+     "Court 1",
      "Winner of R16-1",
      "Winner of R16-2",
      ""
@@ -3132,9 +3138,9 @@ const FIXTURE_TABLES = {
     [
      "QF-2",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "11:40 am",
+     "12:05 pm",
+     "Court 2",
      "Winner of R16-3",
      "Winner of R16-4",
      ""
@@ -3142,9 +3148,9 @@ const FIXTURE_TABLES = {
     [
      "QF-3",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "11:40 am",
+     "12:05 pm",
+     "Court 3",
      "Winner of R16-5",
      "Winner of R16-6",
      ""
@@ -3152,9 +3158,9 @@ const FIXTURE_TABLES = {
     [
      "QF-4",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "11:40 am",
+     "12:05 pm",
+     "Court 4",
      "Winner of R16-7",
      "Winner of R16-8",
      ""
@@ -3162,9 +3168,9 @@ const FIXTURE_TABLES = {
     [
      "SF-1",
      "Semi-final",
-     "",
-     "",
-     "",
+     "12:30 pm",
+     "12:55 pm",
+     "Court 1",
      "Winner of QF-1",
      "Winner of QF-2",
      ""
@@ -3172,9 +3178,9 @@ const FIXTURE_TABLES = {
     [
      "SF-2",
      "Semi-final",
-     "12:00 pm",
-     "",
-     "",
+     "12:30 pm",
+     "12:55 pm",
+     "Court 2",
      "Winner of QF-3",
      "Winner of QF-4",
      ""
@@ -3200,9 +3206,9 @@ const FIXTURE_TABLES = {
     [
      "QF-2",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "10:50 am",
+     "11:15 am",
+     "Court 3",
      "Keerathana & Ann (Ecoden)",
      "Anvika & Anna (Arcadia)",
      ""
@@ -3210,9 +3216,9 @@ const FIXTURE_TABLES = {
     [
      "QF-3",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "10:50 am",
+     "11:15 am",
+     "Court 4",
      "Alphonsa & Sarah (Ecoden)",
      "Jhanvi & Abira (Arcadia)",
      ""
@@ -3220,9 +3226,9 @@ const FIXTURE_TABLES = {
     [
      "QF-4",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "11:15 am",
+     "11:40 am",
+     "Court 1",
      "Nethra & Indra (Palmdale)",
      "Zarah & Hannah (Poetry)",
      ""
@@ -3230,9 +3236,9 @@ const FIXTURE_TABLES = {
     [
      "SF-1",
      "Semi-final",
-     "",
-     "",
-     "",
+     "12:05 pm",
+     "12:30 pm",
+     "Court 1",
      "Anju & Sera (Poetry)",
      "Winner of QF-2",
      ""
@@ -3240,9 +3246,9 @@ const FIXTURE_TABLES = {
     [
      "SF-2",
      "Semi-final",
-     "",
-     "",
-     "",
+     "12:05 pm",
+     "12:30 pm",
+     "Court 2",
      "Winner of QF-3",
      "Winner of QF-4",
      ""
@@ -3266,9 +3272,9 @@ const FIXTURE_TABLES = {
     [
      "QF-1",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "12:55 pm",
+     "1:20 pm",
+     "Court 1",
      "Royce & Partner (Ivy Creek)",
      "Bharath & Partner (Greenature)",
      ""
@@ -3276,9 +3282,9 @@ const FIXTURE_TABLES = {
     [
      "QF-2",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "12:55 pm",
+     "1:20 pm",
+     "Court 2",
      "Kaushik & Emil (Heritage)",
      "Fardeen & Dr. Nirup (Tall Terrace)",
      ""
@@ -3286,9 +3292,9 @@ const FIXTURE_TABLES = {
     [
      "QF-3",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "12:55 pm",
+     "1:20 pm",
+     "Court 3",
      "Pranav & Sabarish (Ecoden)",
      "Suhail & Jim (Arcadia)",
      ""
@@ -3296,9 +3302,9 @@ const FIXTURE_TABLES = {
     [
      "QF-4",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "12:55 pm",
+     "1:20 pm",
+     "Court 4",
      "Vibin & Abin (Signature)",
      "Arnav & Aron (Serenia)",
      ""
@@ -3306,9 +3312,9 @@ const FIXTURE_TABLES = {
     [
      "SF-1",
      "Semi-final",
-     "",
-     "",
-     "",
+     "1:45 pm",
+     "2:10 pm",
+     "Court 1",
      "Winner of QF-1",
      "Winner of QF-2",
      ""
@@ -3316,9 +3322,9 @@ const FIXTURE_TABLES = {
     [
      "SF-2",
      "Semi-final",
-     "",
-     "",
-     "",
+     "1:45 pm",
+     "2:10 pm",
+     "Court 2",
      "Winner of QF-3",
      "Winner of QF-4",
      ""
@@ -3342,9 +3348,9 @@ const FIXTURE_TABLES = {
     [
      "SF-1",
      "Semi-final",
-     "",
-     "",
-     "",
+     "1:45 pm",
+     "2:10 pm",
+     "Court 3",
      "Anna Annu & Mariya (Tall Terrace)",
      "Anna & Rose (Serenia)",
      ""
@@ -3352,9 +3358,9 @@ const FIXTURE_TABLES = {
     [
      "SF-2",
      "Semi-final",
-     "",
-     "",
-     "",
+     "1:45 pm",
+     "2:10 pm",
+     "Court 4",
      "Chandana & Akhila (Poetry)",
      "Nami & Keerthy (Ecoden)",
      ""
@@ -3378,9 +3384,9 @@ const FIXTURE_TABLES = {
     [
      "R16-2",
      "Round of 16",
-     "",
-     "",
-     "",
+     "2:10 pm",
+     "2:35 pm",
+     "Court 3",
      "Abel & Keerthi (Arcadia)",
      "Aaron & Aarleen (Palmdale)",
      ""
@@ -3388,9 +3394,9 @@ const FIXTURE_TABLES = {
     [
      "QF-1",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "3:00 pm",
+     "3:25 pm",
+     "Court 4",
      "Ethan & Mehra (Greenature)",
      "Winner of R16-2",
      ""
@@ -3398,9 +3404,9 @@ const FIXTURE_TABLES = {
     [
      "QF-2",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "2:35 pm",
+     "3:00 pm",
+     "Court 4",
      "Irene & Zayan (Poetry)",
      "Jerry & Theresa (Ecotat)",
      ""
@@ -3408,9 +3414,9 @@ const FIXTURE_TABLES = {
     [
      "QF-3",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "2:35 pm",
+     "3:00 pm",
+     "Court 3",
      "Nandini & Evan (Serenia)",
      "Aravind & Serena (Ivy Creek)",
      ""
@@ -3418,9 +3424,9 @@ const FIXTURE_TABLES = {
     [
      "QF-4",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "3:00 pm",
+     "3:25 pm",
+     "Court 1",
      "Albert & TBD (Ecoden)",
      "Anjana & Jacob (Tall Terrace)",
      ""
@@ -3428,9 +3434,9 @@ const FIXTURE_TABLES = {
     [
      "SF-1",
      "Semi-final",
-     "",
-     "",
-     "",
+     "3:45 pm",
+     "4:10 pm",
+     "Court 1",
      "Winner of QF-1",
      "Winner of QF-2",
      ""
@@ -3438,9 +3444,9 @@ const FIXTURE_TABLES = {
     [
      "SF-2",
      "Semi-final",
-     "",
-     "",
-     "",
+     "3:45 pm",
+     "4:10 pm",
+     "Court 2",
      "Winner of QF-3",
      "Winner of QF-4",
      ""
@@ -3464,9 +3470,9 @@ const FIXTURE_TABLES = {
     [
      "R16-2",
      "Round of 16",
-     "",
-     "",
-     "",
+     "12:30 pm",
+     "12:55 pm",
+     "Court 3",
      "Dr. Tom & Mahesh (Tall Terrace)",
      "Augustine & Chacko (Serenia)",
      ""
@@ -3474,9 +3480,9 @@ const FIXTURE_TABLES = {
     [
      "R16-6",
      "Round of 16",
-     "",
-     "",
-     "",
+     "12:30 pm",
+     "12:55 pm",
+     "Court 4",
      "Manoj & Anil (Ecotat)",
      "George & Babu (Greenature)",
      ""
@@ -3484,9 +3490,9 @@ const FIXTURE_TABLES = {
     [
      "QF-1",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "1:20 pm",
+     "1:45 pm",
+     "Court 1",
      "Muneer & Rakesh (Poetry)",
      "Winner of R16-2",
      ""
@@ -3494,9 +3500,9 @@ const FIXTURE_TABLES = {
     [
      "QF-2",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "1:20 pm",
+     "1:45 pm",
+     "Court 2",
      "Prince & Varun (Cloudwalk + Ecoden)",
      "Anoop & Sudeep (Heritage)",
      ""
@@ -3504,9 +3510,9 @@ const FIXTURE_TABLES = {
     [
      "QF-3",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "1:20 pm",
+     "1:45 pm",
+     "Court 3",
      "Sudheer & Manu (Ecoden)",
      "Winner of R16-6",
      ""
@@ -3514,9 +3520,9 @@ const FIXTURE_TABLES = {
     [
      "QF-4",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "1:20 pm",
+     "1:45 pm",
+     "Court 4",
      "Deepak James & Noble Varghese (Octave)",
      "Sefin & Vincent (Palmdale)",
      ""
@@ -3524,9 +3530,9 @@ const FIXTURE_TABLES = {
     [
      "SF-1",
      "Semi-final",
-     "",
-     "",
-     "",
+     "2:10 pm",
+     "2:35 pm",
+     "Court 1",
      "Winner of QF-1",
      "Winner of QF-2",
      ""
@@ -3534,9 +3540,9 @@ const FIXTURE_TABLES = {
     [
      "SF-2",
      "Semi-final",
-     "",
-     "",
-     "",
+     "2:10 pm",
+     "2:35 pm",
+     "Court 2",
      "Winner of QF-3",
      "Winner of QF-4",
      ""
@@ -3562,9 +3568,9 @@ const FIXTURE_TABLES = {
     [
      "QF-2",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "2:10 pm",
+     "2:35 pm",
+     "Court 4",
      "Sajan & Johnson (Tall Terrace)",
      "Philip & Jibu (Greenature)",
      ""
@@ -3572,9 +3578,9 @@ const FIXTURE_TABLES = {
     [
      "SF-1",
      "Semi-final",
-     "",
-     "",
-     "",
+     "3:00 pm",
+     "3:25 pm",
+     "Court 2",
      "Ajith & Jaseel (Earth Song)",
      "Winner of QF-2",
      ""
@@ -3582,9 +3588,9 @@ const FIXTURE_TABLES = {
     [
      "SF-2",
      "Semi-final",
-     "",
-     "",
-     "",
+     "3:00 pm",
+     "3:25 pm",
+     "Court 3",
      "Koshy & Anish A (Palmdale + Serenia)",
      "Dr Menon & Jacob (Heritage)",
      ""
@@ -3610,9 +3616,9 @@ const FIXTURE_TABLES = {
     [
      "QF-2",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "11:15 am",
+     "11:40 am",
+     "Court 2",
      "Panjami & Teena (Signature)",
      "Meera & Safeera (Tall Terrace)",
      ""
@@ -3620,9 +3626,9 @@ const FIXTURE_TABLES = {
     [
      "QF-3",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "11:15 am",
+     "11:40 am",
+     "Court 3",
      "Anju & Indu (Poetry)",
      "Reshmi & Reshmi Shield (Arcadia)",
      ""
@@ -3630,9 +3636,9 @@ const FIXTURE_TABLES = {
     [
      "QF-4",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "11:15 am",
+     "11:40 am",
+     "Court 4",
      "Ann & Chithra (Ecoden)",
      "Thankam & Najia (Serenia)",
      ""
@@ -3640,9 +3646,9 @@ const FIXTURE_TABLES = {
     [
      "SF-1",
      "Semi-final",
-     "",
-     "",
-     "",
+     "12:05 pm",
+     "12:30 pm",
+     "Court 3",
      "Preeti & Partner (Ivy Creek)",
      "Winner of QF-2",
      ""
@@ -3650,9 +3656,9 @@ const FIXTURE_TABLES = {
     [
      "SF-2",
      "Semi-final",
-     "",
-     "",
-     "",
+     "12:05 pm",
+     "12:30 pm",
+     "Court 4",
      "Winner of QF-3",
      "Winner of QF-4",
      ""
@@ -3678,9 +3684,9 @@ const FIXTURE_TABLES = {
     [
      "QF-2",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "2:35 pm",
+     "3:00 pm",
+     "Court 1",
      "Jacob or Brill & Farzana (Arcadia)",
      "Mathew & Elsa (Greenature)",
      ""
@@ -3688,9 +3694,9 @@ const FIXTURE_TABLES = {
     [
      "QF-4",
      "Quarter-final",
-     "",
-     "",
-     "",
+     "2:35 pm",
+     "3:00 pm",
+     "Court 2",
      "Humaiz & Nusrath (Tall Terrace)",
      "Bejoy & Bindhu (Ecoden)",
      ""
@@ -3698,9 +3704,9 @@ const FIXTURE_TABLES = {
     [
      "SF-1",
      "Semi-final",
-     "",
-     "",
-     "",
+     "3:30 pm",
+     "3:55 pm",
+     "Court 1",
      "Susan & Sanith (Poetry)",
      "Winner of QF-2",
      ""
@@ -3708,9 +3714,9 @@ const FIXTURE_TABLES = {
     [
      "SF-2",
      "Semi-final",
-     "",
-     "",
-     "",
+     "3:30 pm",
+     "3:55 pm",
+     "Court 2",
      "Jisha & Renjith (Serenia)",
      "Winner of QF-4",
      ""
@@ -4505,7 +4511,7 @@ function bracketNode(byId, no) {
     <div class="mbox${rd === "Final" ? " final" : ""}" data-no="${no}">
       <div class="mh"><b>${esc(no)}</b><span>${esc(shortRound(rd))}</span></div>
       ${side(a)}${side(b)}
-      ${st || bd ? `<div class="mt">${[st ? esc(st.replace(" pm", "")) + (en ? "–" + esc(en) : "") : "", bd && !/^(Pool Table|Turf|Court)$/.test(bd) ? esc(bd.replace("Board ", "B")) : ""].filter(Boolean).join(" · ")}${/Best of 3/.test(fm) ? " · Bo3" : ""}</div>` : ""}
+      ${st || bd ? `<div class="mt">${[st ? esc(st.replace(/ (am|pm)$/, "")) + (en ? "–" + esc(en) : "") : "", bd && !/^(Pool Table|Turf|Court)$/.test(bd) ? esc(bd.replace("Board ", "B")) : ""].filter(Boolean).join(" · ")}${/Best of 3/.test(fm) ? " · Bo3" : ""}</div>` : ""}
     </div></div>`;
 }
 document.querySelectorAll("[data-bracket]").forEach(box => {
@@ -4531,7 +4537,7 @@ document.querySelectorAll("[data-bracket]").forEach(box => {
 function renderSchedules() {
   document.querySelectorAll("[data-fxsched]").forEach(box => {
     const F = FIXTURE_TABLES[box.dataset.fxsched]; if (!F) return;
-    const rows = F.cats.flatMap(c => c.rows.map(r => ({ cat: c.cat, r }))).sort((x, y) => t2m(x.r[2]) - t2m(y.r[2]) || x.r[4].localeCompare(y.r[4]));
+    const rows = F.cats.flatMap(c => c.rows.filter(r => r[2]).map(r => ({ cat: c.cat, r }))).sort((x, y) => t2m(x.r[2]) - t2m(y.r[2]) || x.r[4].localeCompare(y.r[4]));
     const showBoard = new Set(rows.map(x => x.r[4])).size > 1;
     const n = istNow(), today = n.date === F.date;
     const status = {}; // per board: the match now on, and the next one
@@ -4606,7 +4612,7 @@ setInterval(renderSchedules, 60000);   // keeps "Now" / "Next" up to date on the
    RESULTS: each result also shows in the ticker for 7 days after its date. */
 const ALERTS = [
   { from: "2026-11-20T12:00", until: "2026-11-21T14:30", text: "Table Tennis (21 Nov) fixtures & schedule are out", sub: "First match 2:30 PM · Noel Earth Song", open: "tabletennis-fixtures" },
-  { from: "2026-11-20T11:00", until: "2026-11-22T09:00", text: "Badminton (22 Nov) fixtures are out", sub: "Find your team", open: "badminton-fixtures" },
+  { from: "2026-11-20T11:00", until: "2026-11-22T10:00", text: "Badminton (22 Nov) fixtures & schedule are out", sub: "First match 10:00 AM · Bright Sports Center", open: "badminton-schedule" },
   { from: "2026-11-18T15:30", until: "2026-11-23T21:00", text: "Solo Singing (28 Nov): register by Mon, 23 Nov, 9 PM", ev: "Solo Music" },
   { from: "2026-11-17T17:00", until: "2026-12-05T23:59", text: "🤝 New: Find a hybrid partner", sub: "Table Tennis, Badminton, Quiz, Antakshari & more · tap here", action: "partner" },
   { from: "2026-11-16T09:30", until: "2026-11-17T09:30", text: "Children’s Day results are out 🏆", sub: "Winners are on the event cards", ev: "Painting" },
